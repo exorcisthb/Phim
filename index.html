@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RoPhim Cinema - Xem Phim Lẻ Hành Động & Kinh Dị 2022-2026</title>
-  <meta name="description" content="Trải nghiệm xem phim lẻ Hành động và Kinh dị chất lượng cao FullHD 1080p phát trực tuyến 0 MB ổ cứng.">
+  <title>RoPhim Cinema - Xem Phim Lẻ Hành Động, Kinh Dị & Hài 2022-2026</title>
+  <meta name="description" content="Trải nghiệm xem phim lẻ Hành Động, Kinh Dị và Hài chất lượng cao FullHD 1080p phát trực tuyến 0 MB ổ cứng.">
   <link rel="stylesheet" href="index.css">
   <!-- FontAwesome Icons & HLS.js for direct video streaming -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -54,7 +54,34 @@
       <div class="cinema-player-wrapper">
         <video id="videoPlayer" controls autoplay poster=""></video>
 
-  
+        <!-- Video Error Overlay -->
+        <div id="videoErrorOverlay" class="video-error-overlay hidden">
+          <div class="video-error-box">
+            <div class="video-error-icon">⚠️</div>
+            <h3 class="video-error-title">Không thể tải phim</h3>
+            <p class="video-error-desc" id="videoErrorDesc">Nguồn stream không khả dụng hoặc đã hết hạn.</p>
+            <div class="video-error-actions">
+              <button class="error-btn retry-btn" id="retryStreamBtn">
+                <i class="fa-solid fa-rotate-right"></i> Thử lại
+              </button>
+              <button class="error-btn alt-btn" id="reportBrokenBtn">
+                <i class="fa-solid fa-triangle-exclamation"></i> Link hỏng
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Seek Buttons -->
+        <div class="seek-controls">
+          <button class="seek-btn" id="seekBackBtn" title="Tua lùi 30 giây">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>30s</span>
+          </button>
+          <button class="seek-btn" id="seekFwdBtn" title="Tua tới 30 giây">
+            <i class="fa-solid fa-rotate-right"></i>
+            <span>30s</span>
+          </button>
+        </div>
       </div>
 
       <!-- Movie Details Panel Below Video -->
@@ -65,10 +92,27 @@
             <span id="cinemaRating"><i class="fa-solid fa-star" style="color: #ffb703;"></i> 4.9</span>
             <span id="cinemaYear"><i class="fa-solid fa-calendar"></i> 2026</span>
             <span id="cinemaGenre"><i class="fa-solid fa-film"></i> Kinh Dị</span>
+            <span id="cinemaCountry" class="country-badge"><i class="fa-solid fa-globe"></i> Hàn Quốc</span>
             <span id="cinemaDuration"><i class="fa-solid fa-clock"></i> 120 phút</span>
-            <span class="card-quality">1080p FHD</span>
+            <span id="cinemaQuality" class="card-quality">1080p FHD</span>
             <span id="currentSourceLabel" class="source-badge">Cloud Stream m3u8</span>
           </div>
+          <div id="camNoticeBox" class="cam-notice-box hidden">
+            <i class="fa-solid fa-video-camera"></i> 
+            <span><strong>BẢN CAM (QUAY RẠP):</strong> Phim này hiện đang ở chất lượng quay rạp. Bản Full HD 1080p chính thức sẽ tự động cập nhật ngay khi phát hành!</span>
+          </div>
+          
+          <!-- Episode Selection Panel for TV Series -->
+          <div id="episodesPanel" class="episodes-panel hidden">
+            <div class="episodes-header">
+              <i class="fa-solid fa-list-ol"></i>
+              <h3>Danh Sách Tập Phim (<span id="epCountText">0/0</span>)</h3>
+            </div>
+            <div id="episodesGrid" class="episodes-grid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
           <div class="synopsis-box">
             <h3><i class="fa-solid fa-align-left"></i> Nội dung phim</h3>
             <p id="cinemaDesc" class="cinema-desc">Mô tả phim chi tiết...</p>
@@ -136,22 +180,43 @@
         </div>
       </section>
 
-      <!-- Filter & Category Controls -->
+      <!-- Filter & Category Controls Bar -->
       <section class="controls-bar">
-        <div class="filter-tabs">
-          <button class="tab active" data-genre="all">Tất Cả Phim</button>
-          <button class="tab" data-genre="Hành Động"><i class="fa-solid fa-bolt"></i> Hành Động</button>
-          <button class="tab" data-genre="Kinh Dị"><i class="fa-solid fa-ghost"></i> Kinh Dị</button>
+        <!-- Type Filter Tabs: All / Phim Lẻ / Phim Bộ -->
+        <div class="type-filter-tabs">
+          <button class="type-tab active" data-type="all">Tất Cả Phim</button>
+          <button class="type-tab" data-type="single"><i class="fa-solid fa-film"></i> Phim Lẻ</button>
+          <button class="type-tab" data-type="series"><i class="fa-solid fa-tv"></i> Phim Bộ</button>
         </div>
 
-        <select id="yearSelect" class="year-select">
-          <option value="all">Tất cả năm (2022 - 2026)</option>
-          <option value="2026">Năm 2026</option>
-          <option value="2025">Năm 2025</option>
-          <option value="2024">Năm 2024</option>
-          <option value="2023">Năm 2023</option>
-          <option value="2022">Năm 2022</option>
-        </select>
+        <!-- Filter Select Dropdowns Group -->
+        <div class="filter-dropdowns">
+          <select id="genreSelect" class="filter-select">
+            <option value="all">🎭 Tất cả thể loại</option>
+            <option value="Hành Động">⚡ Hành Động</option>
+            <option value="Kinh Dị">👻 Kinh Dị</option>
+            <option value="Hài">😂 Hài</option>
+            <option value="Phiêu Lưu">🧭 Phiêu Lưu</option>
+            <option value="Viễn Tưởng">🚀 Viễn Tưởng</option>
+          </select>
+
+          <select id="countrySelect" class="filter-select">
+            <option value="all">🌐 Tất cả quốc gia</option>
+            <option value="Hàn Quốc">🇰🇷 Hàn Quốc</option>
+            <option value="Mỹ">🇺🇸 Mỹ / Âu Mỹ</option>
+            <option value="Nhật Bản">🇯🇵 Nhật Bản</option>
+            <option value="Khác">🌍 Quốc Gia Khác</option>
+          </select>
+
+          <select id="yearSelect" class="filter-select">
+            <option value="all">📅 Tất cả năm</option>
+            <option value="2026">Năm 2026</option>
+            <option value="2025">Năm 2025</option>
+            <option value="2024">Năm 2024</option>
+            <option value="2023">Năm 2023</option>
+            <option value="2022">Năm 2022</option>
+          </select>
+        </div>
       </section>
 
       <!-- Movie Grid Header -->

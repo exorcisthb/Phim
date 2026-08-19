@@ -1,8 +1,12 @@
 Phim_Le_MP4/
 __pycache__/
 *.pyc
+*.pyo
 .tempmediaStorage/
 scratch/
 test_*.py
 inspect_*.py
 parse_*.py
+node_modules/
+.env
+motchill_movies.json

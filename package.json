@@ -1,13 +1,15 @@
 {
   "name": "rophim-cinema",
   "version": "1.0.0",
-  "description": "RoPhim Cinema Web App - Xem Phim Lẻ Hành Động & Kinh Dị 2022-2026",
-  "main": "index.html",
+  "description": "RoPhim Cinema - Xem Phim Trực Tuyến Chất Lượng Cao",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "dev": "npx -y serve -l 8080",
-    "start": "npx -y serve -l 8080",
-    "crawl": "python auto_crawl.py",
-    "download": "python download_phim_le.py"
+    "crawl": "python auto_daily_crawler.py"
+  },
+  "dependencies": {
+    "express": "^4.22.2"
   },
   "keywords": [
     "movie-streaming",
