@@ -14,7 +14,7 @@
 
   <!-- Header Section -->
   <header class="header">
-    <a href="#" class="brand">
+    <a href="#" class="brand" id="brandLogo">
       <div class="brand-icon">
         <i class="fa-solid fa-play"></i>
       </div>
@@ -37,7 +37,61 @@
     </div>
   </header>
 
-  <main class="container">
+  <!-- Cinema Watch Player View (Motchill / Netflix Style Large Player) -->
+  <section class="cinema-section hidden" id="cinemaSection">
+    <div class="cinema-container">
+      <div class="cinema-header">
+        <button class="back-btn" id="backToHomeBtn">
+          <i class="fa-solid fa-arrow-left"></i> Quay lại danh sách
+        </button>
+        <div class="cinema-title-badge">
+          <span id="cinemaGenreTag" class="badge-tag">Kinh Dị</span>
+          <span id="cinemaYearTag" class="badge-tag">2026</span>
+        </div>
+      </div>
+
+      <!-- Massive Cinema Player -->
+      <div class="cinema-player-wrapper">
+        <video id="videoPlayer" controls autoplay poster=""></video>
+
+        <!-- Quality Selector Control Overlay -->
+        <div class="quality-control-bar">
+          <span class="quality-label"><i class="fa-solid fa-sliders"></i> Chất lượng:</span>
+          <select id="qualitySelect" class="quality-select">
+            <option value="-1">Tự động (Auto HD)</option>
+            <option value="1080">1080p FullHD</option>
+            <option value="720">720p HD</option>
+            <option value="480">480p SD</option>
+          </select>
+          <span id="bufferStatus" class="buffer-status"><i class="fa-solid fa-bolt" style="color: #00f2fe;"></i> Đang tối ưu bộ đệm</span>
+        </div>
+      </div>
+
+      <!-- Movie Details Panel Below Video -->
+      <div class="cinema-details">
+        <div class="cinema-info-main">
+          <h1 id="cinemaTitle" class="cinema-title">Tên Phim</h1>
+          <div class="cinema-meta">
+            <span id="cinemaRating"><i class="fa-solid fa-star" style="color: #ffb703;"></i> 4.9</span>
+            <span id="cinemaDuration"><i class="fa-solid fa-clock"></i> 120 phút</span>
+            <span class="card-quality">1080p FHD</span>
+            <span id="currentSourceLabel" class="source-badge">Cloud Stream m3u8</span>
+          </div>
+          <p id="cinemaDesc" class="cinema-desc">Mô tả phim...</p>
+        </div>
+
+        <div class="cinema-actions-box">
+          <div class="source-switch-group">
+            <label>Nguồn video:</label>
+            <button class="source-mode-btn active" id="btnSwitchHls">Cloud Stream (.m3u8)</button>
+            <button class="source-mode-btn" id="btnSwitchLocal">Local MP4 File</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container" id="mainContainer">
     <!-- Hero Banner Featured Movie -->
     <section class="hero" id="heroSection">
       <img id="heroBg" class="hero-bg" src="" alt="Featured Backdrop">
@@ -99,41 +153,6 @@
       <!-- Page numbers rendered dynamically -->
     </div>
   </main>
-
-  <!-- Video Player Modal -->
-  <div class="modal" id="videoModal">
-    <div class="modal-content">
-      <button class="modal-close" id="modalCloseBtn">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <div class="player-wrapper">
-        <video id="videoPlayer" controls autoplay poster=""></video>
-      </div>
-
-      <div class="modal-body">
-        <h3 id="modalTitle" class="modal-title">Tên Phim</h3>
-        <div class="modal-meta">
-          <span id="modalGenre"><i class="fa-solid fa-film"></i> Hành Động</span>
-          <span id="modalYear"><i class="fa-solid fa-calendar"></i> 2026</span>
-          <span id="modalDuration"><i class="fa-solid fa-clock"></i> 120 phút</span>
-          <span id="modalQuality"><i class="fa-solid fa-display"></i> 1080p FHD</span>
-        </div>
-        <p id="modalDesc" class="modal-desc">Mô tả phim...</p>
-
-        <div class="source-options">
-          <div>
-            <strong>Nguồn phát video:</strong>
-            <span id="currentSourceLabel" style="color: var(--text-sub); margin-left: 8px;">Direct Cloud HLS Stream</span>
-          </div>
-          <div style="display: flex; gap: 8px;">
-            <button class="source-mode-btn active" id="btnSwitchHls">Cloud Stream (.m3u8)</button>
-            <button class="source-mode-btn" id="btnSwitchLocal">Local MP4 File</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer class="footer">

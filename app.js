@@ -18,7 +18,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterTabs = document.querySelectorAll('.tab');
   const yearSelect = document.getElementById('yearSelect');
   const gridHeading = document.getElementById('gridHeading');
-  
+  const brandLogo = document.getElementById('brandLogo');
+  const mainContainer = document.getElementById('mainContainer');
+
+  // Cinema Section Elements
+  const cinemaSection = document.getElementById('cinemaSection');
+  const backToHomeBtn = document.getElementById('backToHomeBtn');
+  const cinemaTitle = document.getElementById('cinemaTitle');
+  const cinemaRating = document.getElementById('cinemaRating');
+  const cinemaDuration = document.getElementById('cinemaDuration');
+  const cinemaDesc = document.getElementById('cinemaDesc');
+  const cinemaGenreTag = document.getElementById('cinemaGenreTag');
+  const cinemaYearTag = document.getElementById('cinemaYearTag');
+  const videoPlayer = document.getElementById('videoPlayer');
+  const qualitySelect = document.getElementById('qualitySelect');
+  const bufferStatus = document.getElementById('bufferStatus');
+  const btnSwitchHls = document.getElementById('btnSwitchHls');
+  const btnSwitchLocal = document.getElementById('btnSwitchLocal');
+  const currentSourceLabel = document.getElementById('currentSourceLabel');
+
   // Hero Elements
   const heroBg = document.getElementById('heroBg');
   const heroTitle = document.getElementById('heroTitle');
@@ -30,26 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroPlayBtn = document.getElementById('heroPlayBtn');
   const heroInfoBtn = document.getElementById('heroInfoBtn');
 
-  // Modal Elements
-  const videoModal = document.getElementById('videoModal');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
-  const videoPlayer = document.getElementById('videoPlayer');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalGenre = document.getElementById('modalGenre');
-  const modalYear = document.getElementById('modalYear');
-  const modalDuration = document.getElementById('modalDuration');
-  const modalDesc = document.getElementById('modalDesc');
-  const btnSwitchHls = document.getElementById('btnSwitchHls');
-  const btnSwitchLocal = document.getElementById('btnSwitchLocal');
-  const currentSourceLabel = document.getElementById('currentSourceLabel');
-
   // Header Mode Buttons
   const modeHlsBtn = document.getElementById('modeHls');
   const modeLocalBtn = document.getElementById('modeLocal');
 
   let hlsInstance = null;
 
-  // Helper: Normalize Vietnamese strings for robust matching
+  // Helper: Normalize Vietnamese strings
   function removeVietnameseTones(str) {
     if (!str) return '';
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -99,8 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
     heroDuration.textContent = movie.duration;
     heroDesc.textContent = movie.description;
 
-    heroPlayBtn.onclick = () => openPlayerModal(movie);
-    heroInfoBtn.onclick = () => openPlayerModal(movie);
+    heroPlayBtn.onclick = () => openCinemaWatchView(movie);
+    heroInfoBtn.onclick = () => openCinemaWatchView(movie);
   }
 
   // 3. Render Movies Grid with Pagination
@@ -137,14 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Pagination calculations
     const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
     if (currentPage > totalPages) currentPage = 1;
 
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const paginatedItems = filtered.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-    // Render Grid
     movieGrid.innerHTML = paginatedItems.map(movie => `
       <div class="card" data-id="${movie.id}">
         <div class="card-poster-wrapper">
@@ -169,20 +172,19 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `).join('');
 
-    // Add Click Listener to Card
+    // Add Click Listener to Card -> Open Massive Cinema View
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', () => {
         const id = parseInt(card.getAttribute('data-id'));
         const movie = moviesData.find(m => m.id === id);
-        if (movie) openPlayerModal(movie);
+        if (movie) openCinemaWatchView(movie);
       });
     });
 
-    // Render Pagination Controls
     renderPagination(totalPages);
   }
 
-  // 4. Render Pagination Buttons
+  // 4. Render Pagination Controls
   function renderPagination(totalPages) {
     if (totalPages <= 1) {
       paginationEl.innerHTML = '';
@@ -191,10 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let buttonsHtml = '';
 
-    // Previous Button
     buttonsHtml += `<button class="page-btn ${currentPage === 1 ? 'disabled' : ''}" id="prevPageBtn"><i class="fa-solid fa-chevron-left"></i> Trước</button>`;
 
-    // Page Numbers logic
     for (let i = 1; i <= totalPages; i++) {
       if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
         buttonsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
@@ -203,12 +203,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Next Button
     buttonsHtml += `<button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}" id="nextPageBtn">Sau <i class="fa-solid fa-chevron-right"></i></button>`;
 
     paginationEl.innerHTML = buttonsHtml;
 
-    // Page Button Click Listeners
     paginationEl.querySelectorAll('.page-btn[data-page]').forEach(btn => {
       btn.addEventListener('click', () => {
         currentPage = parseInt(btn.getAttribute('data-page'));
@@ -244,20 +242,40 @@ document.addEventListener('DOMContentLoaded', () => {
     gridHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // 5. Open Player Modal
-  function openPlayerModal(movie) {
+  // 5. Open Motchill/Netflix Style Cinema Watch View
+  function openCinemaWatchView(movie) {
     activeMovie = movie;
-    modalTitle.textContent = `${movie.title} (${movie.year})`;
-    modalGenre.innerHTML = `<i class="fa-solid fa-film"></i> ${movie.genre}`;
-    modalYear.innerHTML = `<i class="fa-solid fa-calendar"></i> ${movie.year}`;
-    modalDuration.innerHTML = `<i class="fa-solid fa-clock"></i> ${movie.duration}`;
-    modalDesc.textContent = movie.description;
+    cinemaTitle.textContent = `${movie.title} (${movie.year})`;
+    cinemaGenreTag.textContent = movie.genre;
+    cinemaYearTag.textContent = movie.year;
+    cinemaRating.innerHTML = `<i class="fa-solid fa-star" style="color: #ffb703;"></i> ${movie.rating}`;
+    cinemaDuration.innerHTML = `<i class="fa-solid fa-clock"></i> ${movie.duration}`;
+    cinemaDesc.textContent = movie.description;
 
-    videoModal.classList.add('active');
+    cinemaSection.classList.remove('hidden');
+    cinemaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
     loadVideoSource();
   }
 
-  // 6. Load Video Stream (Optimized HLS for Maximum Smoothness)
+  function closeCinemaWatchView() {
+    cinemaSection.classList.add('hidden');
+    videoPlayer.pause();
+    if (hlsInstance) {
+      hlsInstance.destroy();
+      hlsInstance = null;
+    }
+    videoPlayer.src = '';
+  }
+
+  backToHomeBtn.addEventListener('click', closeCinemaWatchView);
+  brandLogo.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeCinemaWatchView();
+    mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // 6. Load Video Stream (Optimized HLS & Quality Selector)
   function loadVideoSource() {
     if (!activeMovie) return;
 
@@ -267,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (useCloudStream) {
-      currentSourceLabel.textContent = "Direct Cloud HLS Stream (.m3u8)";
+      currentSourceLabel.textContent = "Cloud Stream (.m3u8)";
       btnSwitchHls.classList.add('active');
       btnSwitchLocal.classList.remove('active');
 
@@ -276,9 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (Hls.isSupported()) {
         hlsInstance = new Hls({
           capLevelToPlayerSize: true,
-          maxBufferLength: 60,
-          maxMaxBufferLength: 120,
-          maxBufferSize: 60 * 1000 * 1000,
+          maxBufferLength: 90,        // Buffer 90 seconds ahead for zero-lag streaming
+          maxMaxBufferLength: 180,
+          maxBufferSize: 100 * 1000 * 1000,
           maxBufferHole: 0.5,
           lowLatencyMode: false,
           enableWorker: true
@@ -286,7 +304,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hlsInstance.loadSource(streamUrl);
         hlsInstance.attachMedia(videoPlayer);
-        hlsInstance.on(Hls.Events.MANIFEST_PARSED, function () {
+        
+        hlsInstance.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+          bufferStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #00f2fe;"></i> Đã tải luồng m3u8`;
+          
+          // Populate Quality Selector Dropdown
+          const levels = hlsInstance.levels;
+          if (levels && levels.length > 0) {
+            let opts = '<option value="-1">Tự động (Auto HD)</option>';
+            levels.forEach((lvl, idx) => {
+              const res = lvl.height ? `${lvl.height}p` : `Luồng ${idx + 1}`;
+              opts += `<option value="${idx}">${res}</option>`;
+            });
+            qualitySelect.innerHTML = opts;
+          } else {
+            qualitySelect.innerHTML = `
+              <option value="-1">Tự động (Auto HD)</option>
+              <option value="1080">1080p FullHD</option>
+              <option value="720">720p HD</option>
+            `;
+          }
+
           videoPlayer.play().catch(() => {});
         });
 
@@ -294,6 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (data.fatal) {
             switch (data.type) {
               case Hls.ErrorTypes.NETWORK_ERROR:
+                bufferStatus.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color: #ffb703;"></i> Đang kết nối lại CDN...`;
                 hlsInstance.startLoad();
                 break;
               case Hls.ErrorTypes.MEDIA_ERROR:
@@ -312,32 +351,28 @@ document.addEventListener('DOMContentLoaded', () => {
         videoPlayer.src = streamUrl;
       }
     } else {
-      currentSourceLabel.textContent = "Local MP4 Video File (E:\\Phim\\Phim_Le_MP4)";
+      currentSourceLabel.textContent = "File MP4 Local (E:\\Phim\\Phim_Le_MP4)";
       btnSwitchHls.classList.remove('active');
       btnSwitchLocal.classList.add('active');
+      bufferStatus.innerHTML = `<i class="fa-solid fa-hard-drive" style="color: #ffb703;"></i> Nguồn MP4 Gốc`;
 
       videoPlayer.src = activeMovie.local_mp4;
       videoPlayer.play().catch(() => {});
     }
   }
 
-  // 7. Close Modal
-  function closeModal() {
-    videoModal.classList.remove('active');
-    videoPlayer.pause();
+  // Handle Quality Selector Change (1080p / 720p / Auto)
+  qualitySelect.addEventListener('change', (e) => {
+    const val = parseInt(e.target.value);
     if (hlsInstance) {
-      hlsInstance.destroy();
-      hlsInstance = null;
+      hlsInstance.currentLevel = val; // -1 for Auto, or 0, 1, 2 for specific levels
+      bufferStatus.innerHTML = val === -1 
+        ? `<i class="fa-solid fa-bolt" style="color: #00f2fe;"></i> Tự động điều chỉnh độ phân giải`
+        : `<i class="fa-solid fa-check" style="color: #00f2fe;"></i> Đã đổi độ phân giải`;
     }
-    videoPlayer.src = '';
-  }
-
-  modalCloseBtn.addEventListener('click', closeModal);
-  videoModal.addEventListener('click', (e) => {
-    if (e.target === videoModal) closeModal();
   });
 
-  // Source Switching
+  // Source Switching Buttons
   btnSwitchHls.addEventListener('click', () => {
     useCloudStream = true;
     loadVideoSource();
@@ -352,15 +387,17 @@ document.addEventListener('DOMContentLoaded', () => {
     useCloudStream = true;
     modeHlsBtn.classList.add('active');
     modeLocalBtn.classList.remove('active');
+    if (activeMovie) loadVideoSource();
   });
 
   modeLocalBtn.addEventListener('click', () => {
     useCloudStream = false;
     modeLocalBtn.classList.add('active');
     modeHlsBtn.classList.remove('active');
+    if (activeMovie) loadVideoSource();
   });
 
-  // 8. Event Listeners for Filters
+  // Filter Tab Events
   filterTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       filterTabs.forEach(t => t.classList.remove('active'));
