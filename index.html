@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoPhim Cinema - Xem Phim Lẻ Hành Động & Kinh Dị 2022-2026</title>
+  <meta name="description" content="Trải nghiệm xem phim lẻ Hành động và Kinh dị chất lượng cao FullHD 1080p phát trực tuyến 0 MB ổ cứng.">
+  <link rel="stylesheet" href="index.css">
+  <!-- FontAwesome Icons & HLS.js for direct video streaming -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="header">
+    <a href="#" class="brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-play"></i>
+      </div>
+      <span class="brand-name">RoPhim</span>
+      <span class="brand-badge">Cinema</span>
+    </a>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm tên phim, diễn viên, năm phát hành...">
+    </div>
+
+    <div class="source-selector">
+      <button class="source-btn active" id="modeHls" title="Xem trực tiếp trên đám mây 0 MB ổ cứng">
+        <i class="fa-solid fa-cloud"></i> Stream Cloud (0 MB)
+      </button>
+      <button class="source-btn" id="modeLocal" title="Phát file MP4 đã tải trong máy">
+        <i class="fa-solid fa-hard-drive"></i> File MP4 Local
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Banner Featured Movie -->
+    <section class="hero" id="heroSection">
+      <img id="heroBg" class="hero-bg" src="" alt="Featured Backdrop">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i class="fa-solid fa-fire"></i> Phim Nổi Bật 2026
+        </div>
+        <h1 id="heroTitle" class="hero-title">Đang tải...</h1>
+        <div class="hero-meta">
+          <span id="heroRating"><i class="fa-solid fa-star" style="color: #ffb703;"></i> 4.9</span>
+          <span id="heroYear">2026</span>
+          <span id="heroGenre">Hành Động</span>
+          <span id="heroDuration">122 phút</span>
+          <span class="card-quality">1080p FHD</span>
+        </div>
+        <p id="heroDesc" class="hero-desc">Mô tả phim nổi bật...</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="heroPlayBtn">
+            <i class="fa-solid fa-play"></i> Xem Ngay
+          </button>
+          <button class="btn btn-secondary" id="heroInfoBtn">
+            <i class="fa-solid fa-circle-info"></i> Chi Tiết Phim
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Category Controls -->
+    <section class="controls-bar">
+      <div class="filter-tabs">
+        <button class="tab active" data-genre="all">Tất Cả Phim</button>
+        <button class="tab" data-genre="Hành Động"><i class="fa-solid fa-bolt"></i> Hành Động</button>
+        <button class="tab" data-genre="Kinh Dị"><i class="fa-solid fa-ghost"></i> Kinh Dị</button>
+      </div>
+
+      <select id="yearSelect" class="year-select">
+        <option value="all">Tất cả năm (2022 - 2026)</option>
+        <option value="2026">Năm 2026</option>
+        <option value="2025">Năm 2025</option>
+        <option value="2024">Năm 2024</option>
+        <option value="2023">Năm 2023</option>
+        <option value="2022">Năm 2022</option>
+      </select>
+    </section>
+
+    <!-- Movie Grid -->
+    <h2 class="section-title" id="gridHeading">Danh Sách Phim Lẻ Đề Xuất</h2>
+    <div class="movie-grid" id="movieGrid">
+      <!-- Cards dynamically rendered by app.js -->
+    </div>
+  </main>
+
+  <!-- Video Player Modal -->
+  <div class="modal" id="videoModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalCloseBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="player-wrapper">
+        <video id="videoPlayer" controls autoplay poster=""></video>
+      </div>
+
+      <div class="modal-body">
+        <h3 id="modalTitle" class="modal-title">Tên Phim</h3>
+        <div class="modal-meta">
+          <span id="modalGenre"><i class="fa-solid fa-film"></i> Hành Động</span>
+          <span id="modalYear"><i class="fa-solid fa-calendar"></i> 2026</span>
+          <span id="modalDuration"><i class="fa-solid fa-clock"></i> 120 phút</span>
+          <span id="modalQuality"><i class="fa-solid fa-display"></i> 1080p FHD</span>
+        </div>
+        <p id="modalDesc" class="modal-desc">Mô tả phim...</p>
+
+        <div class="source-options">
+          <div>
+            <strong>Nguồn phát video:</strong>
+            <span id="currentSourceLabel" style="color: var(--text-sub); margin-left: 8px;">Direct Cloud HLS Stream</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="source-mode-btn active" id="btnSwitchHls">Cloud Stream (.m3u8)</button>
+            <button class="source-mode-btn" id="btnSwitchLocal">Local MP4 File</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>RoPhim Cinema &copy; 2026 - Giao Diện Xem Phim Trực Tuyến Chất Lượng Cao</p>
+    <p style="font-size: 0.8rem; margin-top: 6px; color: var(--text-muted);">
+      Phát video trực tiếp từ Cloud Stream m3u8 (0 MB ổ cứng) hoặc kết nối file MP4 cá nhân.
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
