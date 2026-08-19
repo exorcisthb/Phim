@@ -54,17 +54,7 @@
       <div class="cinema-player-wrapper">
         <video id="videoPlayer" controls autoplay poster=""></video>
 
-        <!-- Quality Control Bar -->
-        <div class="quality-control-bar">
-          <span class="quality-label"><i class="fa-solid fa-sliders"></i> Chất lượng:</span>
-          <select id="qualitySelect" class="quality-select">
-            <option value="-1">Tự động (Auto HD)</option>
-            <option value="1080">1080p FullHD</option>
-            <option value="720">720p HD</option>
-            <option value="480">480p SD</option>
-          </select>
-          <span id="bufferStatus" class="buffer-status"><i class="fa-solid fa-bolt" style="color: #00f2fe;"></i> Đang tối ưu bộ đệm</span>
-        </div>
+  
       </div>
 
       <!-- Movie Details Panel Below Video -->
@@ -90,6 +80,17 @@
             <label><i class="fa-solid fa-server"></i> Chọn nguồn video:</label>
             <button class="source-mode-btn active" id="btnSwitchHls">Cloud Stream (.m3u8)</button>
             <button class="source-mode-btn" id="btnSwitchLocal">Local MP4 File</button>
+          </div>
+
+          <div class="quality-panel">
+            <label><i class="fa-solid fa-sliders"></i> Chất lượng hình ảnh:</label>
+            <select id="qualitySelect" class="quality-select-panel">
+              <option value="-1">Tự động (Auto HD)</option>
+              <option value="1080">1080p FullHD</option>
+              <option value="720">720p HD</option>
+              <option value="480">480p SD</option>
+            </select>
+            <span id="bufferStatus" class="buffer-status-panel"><i class="fa-solid fa-circle-check" style="color:#00f2fe"></i> Sẵn sàng phát</span>
           </div>
         </div>
       </div>

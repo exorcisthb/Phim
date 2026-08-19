@@ -267,55 +267,58 @@ video {
   object-fit: contain;
 }
 
-/* Quality Control Bar Below Player */
-.quality-control-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
-  padding: 1.5rem 1.5rem 0.8rem 1.5rem;
+/* Quality Panel (below video, in sidebar) */
+.quality-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.quality-panel label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-sub);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 1rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+  gap: 0.4rem;
 }
 
-.cinema-player-wrapper:hover .quality-control-bar {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.quality-label {
+.quality-select-panel {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-glass);
   color: white;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.quality-select {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid var(--accent-red);
-  color: white;
-  padding: 0.4rem 0.8rem;
+  padding: 0.6rem 0.9rem;
   border-radius: var(--radius-sm);
   outline: none;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
+  width: 100%;
+  transition: var(--transition);
 }
 
-.quality-select option {
+.quality-select-panel:hover,
+.quality-select-panel:focus {
+  border-color: var(--accent-red);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.quality-select-panel option {
   background: var(--bg-surface);
   color: white;
 }
 
-.buffer-status {
+.buffer-status-panel {
   font-size: 0.8rem;
   color: var(--text-sub);
-  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 /* Cinema Details Panel */
