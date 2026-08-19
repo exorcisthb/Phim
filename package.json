@@ -1,0 +1,19 @@
+{
+  "name": "rophim-cinema",
+  "version": "1.0.0",
+  "description": "RoPhim Cinema Web App - Xem Phim Lẻ Hành Động & Kinh Dị 2022-2026",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y serve -l 8080",
+    "start": "npx -y serve -l 8080",
+    "crawl": "python auto_crawl.py",
+    "download": "python download_phim_le.py"
+  },
+  "keywords": [
+    "movie-streaming",
+    "rophim",
+    "hls-player"
+  ],
+  "author": "exorcisthb",
+  "license": "MIT"
+}
