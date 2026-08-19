@@ -37,24 +37,24 @@
     </div>
   </header>
 
-  <!-- Cinema Watch Player View (Motchill / Netflix Style Large Player) -->
-  <section class="cinema-section hidden" id="cinemaSection">
+  <!-- WATCH VIEW (Dedicated Watch Page for Single Movie) -->
+  <div id="watchView" class="view-section hidden">
     <div class="cinema-container">
+      <!-- Top Navigation & Breadcrumb -->
       <div class="cinema-header">
         <button class="back-btn" id="backToHomeBtn">
-          <i class="fa-solid fa-arrow-left"></i> Quay lại danh sách
+          <i class="fa-solid fa-arrow-left"></i> Quay lại trang chủ
         </button>
-        <div class="cinema-title-badge">
-          <span id="cinemaGenreTag" class="badge-tag">Kinh Dị</span>
-          <span id="cinemaYearTag" class="badge-tag">2026</span>
+        <div class="breadcrumb">
+          <span>Trang Chủ</span> / <span>Xem Phim</span> / <strong id="watchBreadcrumbTitle">Tên Phim</strong>
         </div>
       </div>
 
-      <!-- Massive Cinema Player -->
+      <!-- Massive Cinema Video Player -->
       <div class="cinema-player-wrapper">
         <video id="videoPlayer" controls autoplay poster=""></video>
 
-        <!-- Quality Selector Control Overlay -->
+        <!-- Quality Control Bar -->
         <div class="quality-control-bar">
           <span class="quality-label"><i class="fa-solid fa-sliders"></i> Chất lượng:</span>
           <select id="qualitySelect" class="quality-select">
@@ -73,86 +73,102 @@
           <h1 id="cinemaTitle" class="cinema-title">Tên Phim</h1>
           <div class="cinema-meta">
             <span id="cinemaRating"><i class="fa-solid fa-star" style="color: #ffb703;"></i> 4.9</span>
+            <span id="cinemaYear"><i class="fa-solid fa-calendar"></i> 2026</span>
+            <span id="cinemaGenre"><i class="fa-solid fa-film"></i> Kinh Dị</span>
             <span id="cinemaDuration"><i class="fa-solid fa-clock"></i> 120 phút</span>
             <span class="card-quality">1080p FHD</span>
             <span id="currentSourceLabel" class="source-badge">Cloud Stream m3u8</span>
           </div>
-          <p id="cinemaDesc" class="cinema-desc">Mô tả phim...</p>
+          <div class="synopsis-box">
+            <h3><i class="fa-solid fa-align-left"></i> Nội dung phim</h3>
+            <p id="cinemaDesc" class="cinema-desc">Mô tả phim chi tiết...</p>
+          </div>
         </div>
 
         <div class="cinema-actions-box">
           <div class="source-switch-group">
-            <label>Nguồn video:</label>
+            <label><i class="fa-solid fa-server"></i> Chọn nguồn video:</label>
             <button class="source-mode-btn active" id="btnSwitchHls">Cloud Stream (.m3u8)</button>
             <button class="source-mode-btn" id="btnSwitchLocal">Local MP4 File</button>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <main class="container" id="mainContainer">
-    <!-- Hero Banner Featured Movie -->
-    <section class="hero" id="heroSection">
-      <img id="heroBg" class="hero-bg" src="" alt="Featured Backdrop">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <div class="hero-tag">
-          <i class="fa-solid fa-fire"></i> Phim Nổi Bật 2026
+      <!-- Related Movies Section -->
+      <section class="related-section">
+        <h2 class="section-title">Phim Cùng Thể Loại Đề Xuất</h2>
+        <div class="movie-grid" id="relatedGrid">
+          <!-- Rendered dynamically -->
         </div>
-        <h1 id="heroTitle" class="hero-title">Đang tải...</h1>
-        <div class="hero-meta">
-          <span id="heroRating"><i class="fa-solid fa-star" style="color: #ffb703;"></i> 4.9</span>
-          <span id="heroYear">2026</span>
-          <span id="heroGenre">Hành Động</span>
-          <span id="heroDuration">122 phút</span>
-          <span class="card-quality">1080p FHD</span>
+      </section>
+    </div>
+  </div>
+
+  <!-- HOME VIEW (Movie List & Search Grid) -->
+  <div id="homeView" class="view-section">
+    <main class="container">
+      <!-- Hero Banner Featured Movie -->
+      <section class="hero" id="heroSection">
+        <img id="heroBg" class="hero-bg" src="" alt="Featured Backdrop">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-tag">
+            <i class="fa-solid fa-fire"></i> Phim Nổi Bật 2026
+          </div>
+          <h1 id="heroTitle" class="hero-title">Đang tải...</h1>
+          <div class="hero-meta">
+            <span id="heroRating"><i class="fa-solid fa-star" style="color: #ffb703;"></i> 4.9</span>
+            <span id="heroYear">2026</span>
+            <span id="heroGenre">Hành Động</span>
+            <span id="heroDuration">122 phút</span>
+            <span class="card-quality">1080p FHD</span>
+          </div>
+          <p id="heroDesc" class="hero-desc">Mô tả phim nổi bật...</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="heroPlayBtn">
+              <i class="fa-solid fa-play"></i> Xem Ngay
+            </button>
+            <button class="btn btn-secondary" id="heroInfoBtn">
+              <i class="fa-solid fa-circle-info"></i> Chi Tiết Phim
+            </button>
+          </div>
         </div>
-        <p id="heroDesc" class="hero-desc">Mô tả phim nổi bật...</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" id="heroPlayBtn">
-            <i class="fa-solid fa-play"></i> Xem Ngay
-          </button>
-          <button class="btn btn-secondary" id="heroInfoBtn">
-            <i class="fa-solid fa-circle-info"></i> Chi Tiết Phim
-          </button>
+      </section>
+
+      <!-- Filter & Category Controls -->
+      <section class="controls-bar">
+        <div class="filter-tabs">
+          <button class="tab active" data-genre="all">Tất Cả Phim</button>
+          <button class="tab" data-genre="Hành Động"><i class="fa-solid fa-bolt"></i> Hành Động</button>
+          <button class="tab" data-genre="Kinh Dị"><i class="fa-solid fa-ghost"></i> Kinh Dị</button>
         </div>
+
+        <select id="yearSelect" class="year-select">
+          <option value="all">Tất cả năm (2022 - 2026)</option>
+          <option value="2026">Năm 2026</option>
+          <option value="2025">Năm 2025</option>
+          <option value="2024">Năm 2024</option>
+          <option value="2023">Năm 2023</option>
+          <option value="2022">Năm 2022</option>
+        </select>
+      </section>
+
+      <!-- Movie Grid Header -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+        <h2 class="section-title" id="gridHeading" style="margin-bottom: 0;">Danh Sách Phim Lẻ Đề Xuất</h2>
+        <span id="moviesCountBadge" style="color: var(--text-sub); font-size: 0.9rem; font-weight: 600;">Hiển thị 422 phim</span>
       </div>
-    </section>
 
-    <!-- Filter & Category Controls -->
-    <section class="controls-bar">
-      <div class="filter-tabs">
-        <button class="tab active" data-genre="all">Tất Cả Phim</button>
-        <button class="tab" data-genre="Hành Động"><i class="fa-solid fa-bolt"></i> Hành Động</button>
-        <button class="tab" data-genre="Kinh Dị"><i class="fa-solid fa-ghost"></i> Kinh Dị</button>
+      <div class="movie-grid" id="movieGrid">
+        <!-- Cards dynamically rendered by app.js -->
       </div>
 
-      <select id="yearSelect" class="year-select">
-        <option value="all">Tất cả năm (2022 - 2026)</option>
-        <option value="2026">Năm 2026</option>
-        <option value="2025">Năm 2025</option>
-        <option value="2024">Năm 2024</option>
-        <option value="2023">Năm 2023</option>
-        <option value="2022">Năm 2022</option>
-      </select>
-    </section>
-
-    <!-- Movie Grid -->
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
-      <h2 class="section-title" id="gridHeading" style="margin-bottom: 0;">Danh Sách Phim Lẻ Đề Xuất</h2>
-      <span id="moviesCountBadge" style="color: var(--text-sub); font-size: 0.9rem; font-weight: 600;">Hiển thị 422 phim</span>
-    </div>
-
-    <div class="movie-grid" id="movieGrid">
-      <!-- Cards dynamically rendered by app.js -->
-    </div>
-
-    <!-- Pagination Controls -->
-    <div class="pagination" id="pagination">
-      <!-- Page numbers rendered dynamically -->
-    </div>
-  </main>
+      <!-- Pagination Controls -->
+      <div class="pagination" id="pagination">
+        <!-- Page numbers rendered dynamically -->
+      </div>
+    </main>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">

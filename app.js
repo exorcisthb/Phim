@@ -10,7 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const ITEMS_PER_PAGE = 24;
   let currentPage = 1;
 
-  // DOM Elements
+  // DOM Elements - Views
+  const homeView = document.getElementById('homeView');
+  const watchView = document.getElementById('watchView');
+
+  // DOM Elements - Home
   const movieGrid = document.getElementById('movieGrid');
   const paginationEl = document.getElementById('pagination');
   const moviesCountBadge = document.getElementById('moviesCountBadge');
@@ -19,23 +23,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearSelect = document.getElementById('yearSelect');
   const gridHeading = document.getElementById('gridHeading');
   const brandLogo = document.getElementById('brandLogo');
-  const mainContainer = document.getElementById('mainContainer');
 
-  // Cinema Section Elements
-  const cinemaSection = document.getElementById('cinemaSection');
+  // DOM Elements - Watch View
   const backToHomeBtn = document.getElementById('backToHomeBtn');
+  const watchBreadcrumbTitle = document.getElementById('watchBreadcrumbTitle');
   const cinemaTitle = document.getElementById('cinemaTitle');
   const cinemaRating = document.getElementById('cinemaRating');
+  const cinemaYear = document.getElementById('cinemaYear');
+  const cinemaGenre = document.getElementById('cinemaGenre');
   const cinemaDuration = document.getElementById('cinemaDuration');
   const cinemaDesc = document.getElementById('cinemaDesc');
-  const cinemaGenreTag = document.getElementById('cinemaGenreTag');
-  const cinemaYearTag = document.getElementById('cinemaYearTag');
   const videoPlayer = document.getElementById('videoPlayer');
   const qualitySelect = document.getElementById('qualitySelect');
   const bufferStatus = document.getElementById('bufferStatus');
   const btnSwitchHls = document.getElementById('btnSwitchHls');
   const btnSwitchLocal = document.getElementById('btnSwitchLocal');
   const currentSourceLabel = document.getElementById('currentSourceLabel');
+  const relatedGrid = document.getElementById('relatedGrid');
 
   // Hero Elements
   const heroBg = document.getElementById('heroBg');
@@ -104,11 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
     heroDuration.textContent = movie.duration;
     heroDesc.textContent = movie.description;
 
-    heroPlayBtn.onclick = () => openCinemaWatchView(movie);
-    heroInfoBtn.onclick = () => openCinemaWatchView(movie);
+    heroPlayBtn.onclick = () => showWatchView(movie);
+    heroInfoBtn.onclick = () => showWatchView(movie);
   }
 
-  // 3. Render Movies Grid with Pagination
+  // 3. Render Movies Grid on Home View
   function renderMovies() {
     const normGenre = removeVietnameseTones(currentGenre);
 
@@ -172,12 +176,12 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `).join('');
 
-    // Add Click Listener to Card -> Open Massive Cinema View
-    document.querySelectorAll('.card').forEach(card => {
+    // Add Click Listener to Card -> Switch View to Dedicated Watch View
+    document.querySelectorAll('#movieGrid .card').forEach(card => {
       card.addEventListener('click', () => {
         const id = parseInt(card.getAttribute('data-id'));
         const movie = moviesData.find(m => m.id === id);
-        if (movie) openCinemaWatchView(movie);
+        if (movie) showWatchView(movie);
       });
     });
 
@@ -242,40 +246,102 @@ document.addEventListener('DOMContentLoaded', () => {
     gridHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // 5. Open Motchill/Netflix Style Cinema Watch View
-  function openCinemaWatchView(movie) {
-    activeMovie = movie;
-    cinemaTitle.textContent = `${movie.title} (${movie.year})`;
-    cinemaGenreTag.textContent = movie.genre;
-    cinemaYearTag.textContent = movie.year;
-    cinemaRating.innerHTML = `<i class="fa-solid fa-star" style="color: #ffb703;"></i> ${movie.rating}`;
-    cinemaDuration.innerHTML = `<i class="fa-solid fa-clock"></i> ${movie.duration}`;
-    cinemaDesc.textContent = movie.description;
+  // 5. VIEW SWITCHING LOGIC (Single-Page App Router)
 
-    cinemaSection.classList.remove('hidden');
-    cinemaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    
-    loadVideoSource();
-  }
+  // Switch to Home View
+  function showHomeView() {
+    watchView.classList.add('hidden');
+    homeView.classList.remove('hidden');
 
-  function closeCinemaWatchView() {
-    cinemaSection.classList.add('hidden');
     videoPlayer.pause();
     if (hlsInstance) {
       hlsInstance.destroy();
       hlsInstance = null;
     }
     videoPlayer.src = '';
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  backToHomeBtn.addEventListener('click', closeCinemaWatchView);
+  // Switch to Dedicated Watch View for Selected Movie
+  function showWatchView(movie) {
+    activeMovie = movie;
+
+    // Populate Details
+    watchBreadcrumbTitle.textContent = movie.title;
+    cinemaTitle.textContent = `${movie.title} (${movie.year})`;
+    cinemaRating.innerHTML = `<i class="fa-solid fa-star" style="color: #ffb703;"></i> ${movie.rating}`;
+    cinemaYear.innerHTML = `<i class="fa-solid fa-calendar"></i> ${movie.year}`;
+    cinemaGenre.innerHTML = `<i class="fa-solid fa-film"></i> ${movie.genre}`;
+    cinemaDuration.innerHTML = `<i class="fa-solid fa-clock"></i> ${movie.duration}`;
+    cinemaDesc.textContent = movie.description;
+
+    // Render Related Movies Grid
+    renderRelatedMovies(movie);
+
+    // Switch View Visibility
+    homeView.classList.add('hidden');
+    watchView.classList.remove('hidden');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Load Stream
+    loadVideoSource();
+  }
+
+  // Render Related Movies in Watch View
+  function renderRelatedMovies(currentMovie) {
+    const related = moviesData.filter(m => 
+      m.id !== currentMovie.id && 
+      (m.genre === currentMovie.genre || m.year === currentMovie.year)
+    ).slice(0, 6);
+
+    if (related.length === 0) {
+      relatedGrid.innerHTML = '';
+      return;
+    }
+
+    relatedGrid.innerHTML = related.map(movie => `
+      <div class="card" data-id="${movie.id}">
+        <div class="card-poster-wrapper">
+          <img class="card-poster" src="${movie.poster}" alt="${movie.title}" loading="lazy" onerror="this.src='https://phimimg.com/uploads/movies/20260707/con-thinh-no-poster.webp'">
+          <span class="card-quality">${movie.quality}</span>
+          <span class="card-badge">
+            <i class="fa-solid fa-star"></i> ${movie.rating}
+          </span>
+          <div class="card-play-overlay">
+            <div class="play-icon">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">${movie.title}</h3>
+          <div class="card-sub">
+            <span>${movie.year} • ${movie.genre}</span>
+            <span><i class="fa-solid fa-clock"></i> ${movie.duration}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    document.querySelectorAll('#relatedGrid .card').forEach(card => {
+      card.addEventListener('click', () => {
+        const id = parseInt(card.getAttribute('data-id'));
+        const movie = moviesData.find(m => m.id === id);
+        if (movie) showWatchView(movie);
+      });
+    });
+  }
+
+  // Navigation Click Listeners
+  backToHomeBtn.addEventListener('click', showHomeView);
   brandLogo.addEventListener('click', (e) => {
     e.preventDefault();
-    closeCinemaWatchView();
-    mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showHomeView();
   });
 
-  // 6. Load Video Stream (Optimized HLS & Quality Selector)
+  // 6. Load Video Stream & Quality Control
   function loadVideoSource() {
     if (!activeMovie) return;
 
@@ -294,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (Hls.isSupported()) {
         hlsInstance = new Hls({
           capLevelToPlayerSize: true,
-          maxBufferLength: 90,        // Buffer 90 seconds ahead for zero-lag streaming
+          maxBufferLength: 90,        // 90 seconds buffer prefetch for zero-lag playback
           maxMaxBufferLength: 180,
           maxBufferSize: 100 * 1000 * 1000,
           maxBufferHole: 0.5,
@@ -306,14 +372,14 @@ document.addEventListener('DOMContentLoaded', () => {
         hlsInstance.attachMedia(videoPlayer);
         
         hlsInstance.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
-          bufferStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #00f2fe;"></i> Đã tải luồng m3u8`;
+          bufferStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #00f2fe;"></i> Sẵn sàng phát 1080p`;
           
-          // Populate Quality Selector Dropdown
+          // Quality Options
           const levels = hlsInstance.levels;
           if (levels && levels.length > 0) {
             let opts = '<option value="-1">Tự động (Auto HD)</option>';
             levels.forEach((lvl, idx) => {
-              const res = lvl.height ? `${lvl.height}p` : `Luồng ${idx + 1}`;
+              const res = lvl.height ? `${lvl.height}p` : `Chất lượng ${idx + 1}`;
               opts += `<option value="${idx}">${res}</option>`;
             });
             qualitySelect.innerHTML = opts;
@@ -332,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (data.fatal) {
             switch (data.type) {
               case Hls.ErrorTypes.NETWORK_ERROR:
-                bufferStatus.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color: #ffb703;"></i> Đang kết nối lại CDN...`;
+                bufferStatus.innerHTML = `<i class="fa-solid fa-rotate" style="color: #ffb703;"></i> Đang kết nối lại CDN...`;
                 hlsInstance.startLoad();
                 break;
               case Hls.ErrorTypes.MEDIA_ERROR:
@@ -361,18 +427,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Handle Quality Selector Change (1080p / 720p / Auto)
+  // Handle Quality Selector Change
   qualitySelect.addEventListener('change', (e) => {
     const val = parseInt(e.target.value);
     if (hlsInstance) {
-      hlsInstance.currentLevel = val; // -1 for Auto, or 0, 1, 2 for specific levels
+      hlsInstance.currentLevel = val;
       bufferStatus.innerHTML = val === -1 
         ? `<i class="fa-solid fa-bolt" style="color: #00f2fe;"></i> Tự động điều chỉnh độ phân giải`
         : `<i class="fa-solid fa-check" style="color: #00f2fe;"></i> Đã đổi độ phân giải`;
     }
   });
 
-  // Source Switching Buttons
+  // Source Switcher Buttons
   btnSwitchHls.addEventListener('click', () => {
     useCloudStream = true;
     loadVideoSource();
@@ -397,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeMovie) loadVideoSource();
   });
 
-  // Filter Tab Events
+  // Filter Tabs Event Listeners
   filterTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       filterTabs.forEach(t => t.classList.remove('active'));
@@ -409,6 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
         : `Phim Lẻ Thể Loại: ${currentGenre}`;
         
       currentPage = 1;
+      showHomeView();
       renderMovies();
     });
   });
@@ -416,12 +483,14 @@ document.addEventListener('DOMContentLoaded', () => {
   yearSelect.addEventListener('change', (e) => {
     currentYear = e.target.value;
     currentPage = 1;
+    showHomeView();
     renderMovies();
   });
 
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.trim();
     currentPage = 1;
+    showHomeView();
     renderMovies();
   });
 });

@@ -61,6 +61,15 @@ body {
   background: var(--accent-red);
 }
 
+/* SPA View Section Switcher */
+.view-section {
+  display: block;
+}
+
+.view-section.hidden {
+  display: none !important;
+}
+
 /* Header & Navigation */
 .header {
   position: sticky;
@@ -187,15 +196,11 @@ body {
   padding: 2rem;
 }
 
-/* CINEMA WATCH VIEW (Motchill / Netflix Style Full Player) */
-.cinema-section {
+/* DEDICATED WATCH PAGE VIEW (Motchill / Netflix Style) */
+#watchView {
   background: #060609;
-  border-bottom: 1px solid var(--border-glass);
   padding: 1.5rem 0 3rem 0;
-}
-
-.cinema-section.hidden {
-  display: none;
+  min-height: calc(100vh - 80px);
 }
 
 .cinema-container {
@@ -208,7 +213,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .back-btn {
@@ -231,22 +238,16 @@ body {
   border-color: var(--accent-red);
 }
 
-.cinema-title-badge {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.badge-tag {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-glass);
+.breadcrumb {
   color: var(--text-sub);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
 }
 
-/* Massive Video Player Wrapper */
+.breadcrumb strong {
+  color: white;
+}
+
+/* Massive Cinema Video Player */
 .cinema-player-wrapper {
   position: relative;
   width: 100%;
@@ -344,10 +345,11 @@ video {
 .cinema-meta {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1.25rem;
   color: var(--text-sub);
   font-size: 0.95rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .source-badge {
@@ -360,9 +362,26 @@ video {
   border-radius: var(--radius-sm);
 }
 
+.synopsis-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+}
+
+.synopsis-box h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .cinema-desc {
   color: #b0b0c5;
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.65;
 }
 
@@ -384,6 +403,9 @@ video {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .source-mode-btn {
@@ -402,6 +424,11 @@ video {
 .source-mode-btn.active {
   background: linear-gradient(135deg, var(--accent-red), #b20710);
   border-color: var(--accent-red);
+}
+
+/* Related Movies Section */
+.related-section {
+  margin-top: 3rem;
 }
 
 /* Hero Featured Section */
@@ -591,6 +618,7 @@ video {
   font-family: 'Outfit', sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
+  margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
