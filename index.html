@@ -85,9 +85,18 @@
     </section>
 
     <!-- Movie Grid -->
-    <h2 class="section-title" id="gridHeading">Danh Sách Phim Lẻ Đề Xuất</h2>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+      <h2 class="section-title" id="gridHeading" style="margin-bottom: 0;">Danh Sách Phim Lẻ Đề Xuất</h2>
+      <span id="moviesCountBadge" style="color: var(--text-sub); font-size: 0.9rem; font-weight: 600;">Hiển thị 422 phim</span>
+    </div>
+
     <div class="movie-grid" id="movieGrid">
       <!-- Cards dynamically rendered by app.js -->
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination" id="pagination">
+      <!-- Page numbers rendered dynamically -->
     </div>
   </main>
 

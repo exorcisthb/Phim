@@ -6,8 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let activeMovie = null;
   let useCloudStream = true;
 
+  // Pagination Variables
+  const ITEMS_PER_PAGE = 24;
+  let currentPage = 1;
+
   // DOM Elements
   const movieGrid = document.getElementById('movieGrid');
+  const paginationEl = document.getElementById('pagination');
+  const moviesCountBadge = document.getElementById('moviesCountBadge');
   const searchInput = document.getElementById('searchInput');
   const filterTabs = document.querySelectorAll('.tab');
   const yearSelect = document.getElementById('yearSelect');
@@ -97,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heroInfoBtn.onclick = () => openPlayerModal(movie);
   }
 
-  // 3. Render Movies Grid with Robust Filtering
+  // 3. Render Movies Grid with Pagination
   function renderMovies() {
     const normGenre = removeVietnameseTones(currentGenre);
 
@@ -118,6 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return matchGenre && matchYear && matchSearch;
     });
 
+    moviesCountBadge.textContent = `Tổng cộng ${filtered.length} phim`;
+
     if (filtered.length === 0) {
       movieGrid.innerHTML = `
         <div class="empty-state">
@@ -125,13 +133,22 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>Không tìm thấy phim lẻ nào phù hợp với điều kiện chọn.</p>
         </div>
       `;
+      paginationEl.innerHTML = '';
       return;
     }
 
-    movieGrid.innerHTML = filtered.map(movie => `
+    // Pagination calculations
+    const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+    if (currentPage > totalPages) currentPage = 1;
+
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const paginatedItems = filtered.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+    // Render Grid
+    movieGrid.innerHTML = paginatedItems.map(movie => `
       <div class="card" data-id="${movie.id}">
         <div class="card-poster-wrapper">
-          <img class="card-poster" src="${movie.poster}" alt="${movie.title}" loading="lazy" onerror="this.src='https://motchillu.app/motchill.png'">
+          <img class="card-poster" src="${movie.poster}" alt="${movie.title}" loading="lazy" onerror="this.src='https://phimimg.com/uploads/movies/20260707/con-thinh-no-poster.webp'">
           <span class="card-quality">${movie.quality}</span>
           <span class="card-badge">
             <i class="fa-solid fa-star"></i> ${movie.rating}
@@ -160,9 +177,74 @@ document.addEventListener('DOMContentLoaded', () => {
         if (movie) openPlayerModal(movie);
       });
     });
+
+    // Render Pagination Controls
+    renderPagination(totalPages);
   }
 
-  // 4. Open Player Modal
+  // 4. Render Pagination Buttons
+  function renderPagination(totalPages) {
+    if (totalPages <= 1) {
+      paginationEl.innerHTML = '';
+      return;
+    }
+
+    let buttonsHtml = '';
+
+    // Previous Button
+    buttonsHtml += `<button class="page-btn ${currentPage === 1 ? 'disabled' : ''}" id="prevPageBtn"><i class="fa-solid fa-chevron-left"></i> Trước</button>`;
+
+    // Page Numbers logic
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+        buttonsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+      } else if (i === currentPage - 3 || i === currentPage + 3) {
+        buttonsHtml += `<span class="page-ellipsis">...</span>`;
+      }
+    }
+
+    // Next Button
+    buttonsHtml += `<button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}" id="nextPageBtn">Sau <i class="fa-solid fa-chevron-right"></i></button>`;
+
+    paginationEl.innerHTML = buttonsHtml;
+
+    // Page Button Click Listeners
+    paginationEl.querySelectorAll('.page-btn[data-page]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentPage = parseInt(btn.getAttribute('data-page'));
+        renderMovies();
+        scrollToGrid();
+      });
+    });
+
+    const prevBtn = document.getElementById('prevPageBtn');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderMovies();
+          scrollToGrid();
+        }
+      });
+    }
+
+    const nextBtn = document.getElementById('nextPageBtn');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderMovies();
+          scrollToGrid();
+        }
+      });
+    }
+  }
+
+  function scrollToGrid() {
+    gridHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // 5. Open Player Modal
   function openPlayerModal(movie) {
     activeMovie = movie;
     modalTitle.textContent = `${movie.title} (${movie.year})`;
@@ -175,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadVideoSource();
   }
 
-  // 5. Load Video Stream (Optimized HLS for Maximum Smoothness)
+  // 6. Load Video Stream (Optimized HLS for Maximum Smoothness)
   function loadVideoSource() {
     if (!activeMovie) return;
 
@@ -192,7 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const streamUrl = activeMovie.m3u8_url;
 
       if (Hls.isSupported()) {
-        // Optimized HLS.js configuration for zero-lag high speed streaming
         hlsInstance = new Hls({
           capLevelToPlayerSize: true,
           maxBufferLength: 60,
@@ -211,7 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hlsInstance.on(Hls.Events.ERROR, function (event, data) {
           if (data.fatal) {
-            console.warn('HLS Fatal Error, retrying level load...', data);
             switch (data.type) {
               case Hls.ErrorTypes.NETWORK_ERROR:
                 hlsInstance.startLoad();
@@ -241,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 6. Close Modal
+  // 7. Close Modal
   function closeModal() {
     videoModal.classList.remove('active');
     videoPlayer.pause();
@@ -280,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modeHlsBtn.classList.remove('active');
   });
 
-  // 7. Event Listeners for Filters
+  // 8. Event Listeners for Filters
   filterTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       filterTabs.forEach(t => t.classList.remove('active'));
@@ -291,17 +371,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ? 'Danh Sách Phim Lẻ Đề Xuất' 
         : `Phim Lẻ Thể Loại: ${currentGenre}`;
         
+      currentPage = 1;
       renderMovies();
     });
   });
 
   yearSelect.addEventListener('change', (e) => {
     currentYear = e.target.value;
+    currentPage = 1;
     renderMovies();
   });
 
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.trim();
+    currentPage = 1;
     renderMovies();
   });
 });
