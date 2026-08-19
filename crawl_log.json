@@ -1,5 +1,11 @@
 [
   {
+    "timestamp": "19/08/2026 11:18:03",
+    "total_movies": 218,
+    "new_movies_count": 0,
+    "new_movie_titles": []
+  },
+  {
     "timestamp": "19/08/2026 11:10:00",
     "total_movies": 218,
     "new_movies_count": 10,
