@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return str.toLowerCase().trim();
   }
 
-  // 1. Load Movies Database
-  fetch('movies.json')
+  // 1. Load Movies Database with Cache-Busting
+  fetch('movies.json?t=' + new Date().getTime(), { cache: 'no-store' })
     .then(res => res.json())
     .then(data => {
       moviesData = data;
