@@ -461,11 +461,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setup Season / Part Selector Dropdown
     setupSeasonSelector(movie);
 
-    // Episode Selector for TV Series
+    // Episode Selector for TV Series (Strictly HIDE for Phim Lẻ / Single movies)
     if (episodesPanel && episodesGrid) {
-      if (movie.episodes && movie.episodes.length > 1) {
+      const hasMultipleEpisodes = movie.episodes && Array.isArray(movie.episodes) && movie.episodes.length > 1;
+
+      if (hasMultipleEpisodes) {
         episodesPanel.classList.remove('hidden');
-        epCountText.textContent = `${movie.episodes.length} tập`;
+        if (epCountText) epCountText.textContent = `${movie.episodes.length} tập`;
         episodesGrid.innerHTML = movie.episodes.map((ep, idx) => `
           <button class="ep-btn ${idx === activeEpisodeIndex ? 'active' : ''}" data-idx="${idx}">
             <i class="fa-solid fa-play"></i> ${ep.name}
@@ -487,6 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
         activeMovie.m3u8_url = movie.episodes[0].link_m3u8;
       } else {
         episodesPanel.classList.add('hidden');
+        episodesGrid.innerHTML = '';
       }
     }
 
