@@ -743,14 +743,20 @@ document.addEventListener('DOMContentLoaded', () => {
             hlsInstance.currentLevel = maxLvlIdx;
 
             const topLvl = levels[maxLvlIdx];
-            const maxRes = topLvl.height ? `${topLvl.height}p Ultra HD` : '1080p FullHD';
+            let maxRes = '1080p Full HD';
+            if (topLvl.height >= 2160) maxRes = '4K Ultra HD (2160p)';
+            else if (topLvl.height >= 1440) maxRes = '2K Quad HD (1440p)';
+            else if (topLvl.height) maxRes = `${topLvl.height}p Full HD`;
+
             bufferStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#00f2fe;"></i> Đã bật Max HD (${maxRes})`;
 
             let opts = `<option value="${maxLvlIdx}">🔥 Cao nhất (${maxRes})</option>`;
             opts += '<option value="-1">Tự động (Auto Best)</option>';
             levels.forEach((lvl, idx) => {
               if (idx !== maxLvlIdx) {
-                const res = lvl.height ? `${lvl.height}p` : `Chất lượng ${idx + 1}`;
+                let res = lvl.height ? `${lvl.height}p` : `Chất lượng ${idx + 1}`;
+                if (lvl.height >= 2160) res = '4K (2160p)';
+                else if (lvl.height >= 1080) res = '1080p Full HD';
                 opts += `<option value="${idx}">${res}</option>`;
               }
             });
