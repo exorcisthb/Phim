@@ -240,6 +240,23 @@ def process_slug(slug):
     if country in ["Việt Nam", "Thái Lan", "Trung Quốc"]:
         return None
 
+    # Japanese Anime Rejection (Keep ONLY verified Japanese Live-Action)
+    if country == "Nhật Bản":
+        japan_live_keywords = [
+            'live action', 'thế giới không lối thoát', 'tokyo vice', 'thế giới ngầm tokyo',
+            'shogun', 'first love', 'godzilla', 'lãng khách kenshin', 'phục thù cuộc đời',
+            'tokyo revengers', 'bác sĩ x', 'thầy giáo vĩ đại', 'onizuka', '5 centimet',
+            'fermat', 'từ bất hảo thành bác sĩ', 'đến khi áo phông', 'tagusari',
+            'đội điều tra kỳ án', 'sadako', 'sadak', 'ringu', 'ju-on', 'ma nữ đại chiến',
+            'cuộc chiến băng đảng', 'monarch', 'chiến thần samurai', 'quốc bảo',
+            'exit 8', 'ga tàu vô tận', 'trò chơi nghìn tỷ', 'trò chơi tìm xác',
+            'ngoại tình tột đỉnh', 'đột kích đài truyền hình', 'sa mạc namibia',
+            'cảnh đồi mờ xám', 'ngồi bên nòng súng', 'lôi đài chi thượng',
+            'nhà ga nuốt người', 'nghìn tỷ'
+        ]
+        if not any(k in full_text for k in japan_live_keywords):
+            return None
+
     # Year Range: 2020 to 2026
     year_raw = info.get("year", 2026)
     try:
