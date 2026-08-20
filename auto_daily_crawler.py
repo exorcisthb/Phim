@@ -90,6 +90,38 @@ def fetch_detail(slug):
         time.sleep(0.05)
     return None
 
+# Animation indicators specifically to reject Marvel / DC animation
+animation_indicators = [
+    "hoạt hình", "animated", "animation", "anime", "lego",
+    "spider-verse", "du-hanh-vu-tru-nhen", "vu-tru-nhen", "du hành vũ trụ nhện",
+    "friendly-neighborhood-spider-man", "người nhện hàng xóm thân thiện",
+    "x-men-97", "dị nhân '97", "di-nhan-97", "what-if", "what if",
+    "spidey", "hit-monkey", "eyes-of-wakanda", "marvel-zombies", "i am groot", "tôi là groot",
+    "teen-titans", "teen titans", "dc-super-hero-girls", "mayhem-trong-da-vu-tru",
+    "lien-minh-sieu-thu-dc", "liên minh siêu thú dc", "super-pets",
+    "batman-ninja", "batman-aztec", "batman-unlimited", "batman-arkham",
+    "batman-gotham-knight", "batman-mat-na-ma", "batman-v-superman-tran-chien-cua-cac-anh-hung-nhi",
+    "cau-chuyen-lego-batman", "young-justice"
+]
+
+def is_marvel_or_dc(text_lower):
+    marvel_dc_keywords = [
+        "marvel", "avengers", "spider-man", "spiderman", "iron man", "iron-man", "captain america",
+        "thor", "black panther", "guardians of the galaxy", "ant-man", "doctor strange", "dr. strange",
+        "captain marvel", "black widow", "shang-chi", "eternals", "deadpool", "wolverine", "x-men",
+        "venom", "morbius", "kraven", "loki", "wandavision", "hawkeye", "moon knight", "she-hulk",
+        "secret invasion", "echo", "agatha", "agent carter", "agents of shield", "daredevil", "punisher",
+        "batman", "superman", "the flash", "aquaman", "wonder woman", "justice league", "black adam",
+        "shazam", "joker", "suicide squad", "peacemaker", "gotham", "batwoman", "supergirl", "arrow",
+        "người nhện", "người sắt", "đội trưởng mỹ", "biệt đội siêu anh hùng", "thần sấm",
+        "chiến binh báo đen", "người kiến", "vệ binh dải ngân hà", "phù thủy tối thượng", "góa phụ đen",
+        "dị nhân", "người dơi", "siêu nhân", "người đàn ông thép", "nữ thần chiến binh", "liên minh công lý"
+    ]
+    return any(k in text_lower for k in marvel_dc_keywords)
+
+def is_animated(text_lower):
+    return any(a in text_lower for a in animation_indicators)
+
 # Step 1: Load Existing DB (IMMUTABLE MASTER)
 print("==================================================")
 print("STEP 1: Reading existing movies.json (IMMUTABLE MASTER)...")
@@ -109,11 +141,11 @@ for m in existing_db:
 
 print(f"Loaded {len(existing_db)} existing movies/series. They will NEVER be deleted or modified!")
 
-# Step 2: Collect Candidate Slugs from Latest Pages & Special Slugs
-print("\nSTEP 2: Crawling latest updates from PhimAPI...")
+# Step 2: Collect Candidate Slugs from Latest Pages, Search, & Marvel/DC Slugs
+print("\nSTEP 2: Crawling latest updates & Marvel/DC from PhimAPI...")
 candidate_slugs = set()
 
-# Essential Target Slugs (The Odyssey, Obsession, FROM, Wednesday, etc.)
+# Special Target Slugs (The Odyssey, Obsession, FROM, Wednesday, etc.)
 special_target_slugs = [
     "su-thi-odyssey", "cuoc-phieu-luu", "am-anh-2026", "am-anh-yeu-va-do-ki", "am-anh", "noi-am-anh-2025",
     "thi-tran-ac-mong-hoi-chuong-la-phan-1", "thi-tran-ac-mong-hoi-chuong-la-phan-2",
@@ -121,10 +153,30 @@ special_target_slugs = [
     "nhung-nguoi-con-sot-lai-phan-1", "nhung-nguoi-con-sot-lai-phan-2",
     "thu-tu-phan-1", "thu-tu-phan-2", "gia-toc-rong-phan-1", "gia-toc-rong-phan-2", "gia-toc-rong-phan-3",
     "sup-do-phan-1", "sup-do-phan-2", "hao-quang-phan-1", "hao-quang-phan-2",
-    "bai-hoc-dang-doi", "nu-hoang-nuoc-mat", "cho-san-cong-ly", "bao-thu",
     "ngoi-truong-xac-song", "the-gioi-ma-quai", "parasyte-vung-xam", "sinh-vat-gyeongseong", "ac-quy"
 ]
 candidate_slugs.update(special_target_slugs)
+
+# Marvel & DC Search Terms for Daily Crawler
+marvel_dc_search_terms = [
+    "marvel", "avengers", "spider-man", "spiderman", "iron man", "captain america",
+    "thor", "black panther", "guardians of the galaxy", "ant-man", "doctor strange",
+    "deadpool", "wolverine", "x-men", "venom", "loki", "daredevil", "punisher",
+    "batman", "superman", "the flash", "aquaman", "wonder woman", "justice league",
+    "black adam", "shazam", "joker", "suicide squad", "peacemaker", "gotham",
+    "người nhện", "người sắt", "đội trưởng mỹ", "thần sấm", "biệt đội siêu anh hùng",
+    "vệ binh dải ngân hà", "phù thủy tối thượng", "người dơi", "siêu nhân"
+]
+
+def search_term_slugs(kw):
+    slugs = []
+    try:
+        r = requests.get(f"https://phimapi.com/v1/api/tim-kiem?keyword={kw}&limit=30", headers=headers, timeout=8)
+        if r.status_code == 200:
+            for it in r.json().get("data", {}).get("items", []):
+                if it.get("slug"): slugs.append(it["slug"])
+    except: pass
+    return slugs
 
 def fetch_page_slugs(endpoint, total_pages):
     slugs = []
@@ -142,16 +194,17 @@ def fetch_page_slugs(endpoint, total_pages):
     return slugs
 
 endpoints = [
-    ("https://phimapi.com/v1/api/danh-sach/phim-moi-cap-nhat", 15),
-    ("https://phimapi.com/v1/api/danh-sach/phim-le", 80),
-    ("https://phimapi.com/v1/api/danh-sach/phim-bo", 80),
-    ("https://phimapi.com/v1/api/quoc-gia/au-my", 50),
-    ("https://phimapi.com/v1/api/quoc-gia/han-quoc", 50),
-    ("https://phimapi.com/v1/api/quoc-gia/nhat-ban", 30),
+    ("https://phimapi.com/v1/api/danh-sach/phim-moi-cap-nhat", 20),
+    ("https://phimapi.com/v1/api/danh-sach/phim-le", 100),
+    ("https://phimapi.com/v1/api/danh-sach/phim-bo", 100),
+    ("https://phimapi.com/v1/api/quoc-gia/au-my", 80),
+    ("https://phimapi.com/v1/api/quoc-gia/han-quoc", 60),
+    ("https://phimapi.com/v1/api/quoc-gia/nhat-ban", 40),
 ]
 
-with ThreadPoolExecutor(max_workers=16) as executor:
+with ThreadPoolExecutor(max_workers=20) as executor:
     futures = [executor.submit(fetch_page_slugs, url, pages) for url, pages in endpoints]
+    futures += [executor.submit(search_term_slugs, kw) for kw in marvel_dc_search_terms]
     for future in as_completed(futures):
         candidate_slugs.update(future.result())
 
@@ -169,6 +222,16 @@ def process_slug(slug):
         return None
     info = d.get("movie", {})
     if not info:
+        return None
+
+    title = info.get("name", "Phim")
+    origin_title = info.get("origin_name", info.get("name", ""))
+    desc = info.get("content", "") or f"Bộ phim phát hành năm {info.get('year', 2026)}."
+    desc = re.sub(r'<[^>]+>', '', desc).strip()
+    full_text = f"{slug} {title} {origin_title} {desc}".lower()
+
+    # Reject Marvel / DC animation specifically
+    if is_marvel_or_dc(full_text) and is_animated(full_text):
         return None
 
     # Country check: Exclude VN, TH, CN
@@ -218,13 +281,9 @@ def process_slug(slug):
     if not poster:
         return None
 
-    title = info.get("name", "Phim")
-    origin_title = info.get("origin_name", info.get("name", ""))
     if "thi-tran-ac-mong" in slug or "from" in origin_title.lower():
         origin_title = f"FROM - {origin_title}"
 
-    desc = info.get("content", "") or f"Bộ phim {country} phát hành năm {year}."
-    desc = re.sub(r'<[^>]+>', '', desc).strip()
     if len(desc) > 300:
         desc = desc[:297] + "..."
 
@@ -266,7 +325,10 @@ if newly_added_items:
         item["rating"] = round(4.3 + (item["id"] % 7) * 0.1, 1)
         existing_db.append(item)
 
-# Ensure 2026 movies are prioritized near top while keeping DB intact
+# Re-assign sequential IDs cleanly
+for i, m in enumerate(existing_db):
+    m["id"] = i + 1
+
 final_db = existing_db
 total_pages = (len(final_db) + 23) // 24
 
@@ -288,15 +350,8 @@ wb = openpyxl.Workbook()
 ws_log = wb.active
 ws_log.title = "Nhật Ký Cập Nhật"
 
-# Header styling
 header_font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
 header_fill = PatternFill(start_color="E50914", end_color="E50914", fill_type="solid")
-thin_border = Border(
-    left=Side(style='thin', color='DDDDDD'),
-    right=Side(style='thin', color='DDDDDD'),
-    top=Side(style='thin', color='DDDDDD'),
-    bottom=Side(style='thin', color='DDDDDD')
-)
 
 headers_log = [
     "Ngày Cập Nhật", "ID Phim", "Tên Phim (Việt)", "Tên Gốc (English)", 
@@ -354,7 +409,6 @@ for item in final_db:
         item.get("m3u8_url")
     ])
 
-# Auto-adjust column widths for both sheets
 for sheet in [ws_log, ws_cat]:
     sheet.views.sheetView[0].showGridLines = True
     for col in sheet.columns:
@@ -364,12 +418,3 @@ for sheet in [ws_log, ws_cat]:
 
 wb.save(REPORT_FILE)
 print(f"Excel Report saved successfully to: {REPORT_FILE}")
-
-# Verification of Odyssey & Obsession
-print("\n==================================================")
-print("VERIFICATION: Searching for Odyssey and Obsession in Master DB...")
-target_check = [m for m in final_db if any(k in (m.get("title","") + " " + m.get("origin_title","")).lower() for k in ["odyssey", "obses", "sử thi odyssey", "ám ảnh"])]
-print(f"Found {len(target_check)} Odyssey/Obsession titles in movies.json:")
-for m in target_check:
-    print(f"  - [{m['id']}] {m['title']} ({m['origin_title']}) | {m['country']} | {m['year']} | {m['genre']}")
-
