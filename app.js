@@ -737,22 +737,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // 7. Custom Seek Buttons: +/- 30 seconds
+  // 7. Custom Seek Buttons: +/- 10 seconds
   const seekBackBtn = document.getElementById('seekBackBtn');
   const seekFwdBtn = document.getElementById('seekFwdBtn');
 
-  seekBackBtn.addEventListener('click', () => {
-    videoPlayer.currentTime = Math.max(0, videoPlayer.currentTime - 30);
-    showSeekToast('-30s');
-  });
+  if (seekBackBtn) {
+    seekBackBtn.addEventListener('click', () => {
+      videoPlayer.currentTime = Math.max(0, videoPlayer.currentTime - 10);
+      showSeekToast('⏪ -10s');
+      resetInactivityTimer();
+    });
+  }
 
-  seekFwdBtn.addEventListener('click', () => {
-    videoPlayer.currentTime = Math.min(videoPlayer.duration || Infinity, videoPlayer.currentTime + 30);
-    showSeekToast('+30s');
-  });
+  if (seekFwdBtn) {
+    seekFwdBtn.addEventListener('click', () => {
+      videoPlayer.currentTime = Math.min(videoPlayer.duration || Infinity, videoPlayer.currentTime + 10);
+      showSeekToast('⏩ +10s');
+      resetInactivityTimer();
+    });
+  }
 
-  // Keyboard arrow keys: ← = -30s, → = +30s (only when watch view is active)
-  // useCapture = true: intercepts BEFORE native <video> seek handler
+  // Keyboard arrow keys: ← = -10s, → = +10s (only when watch view is active)
   document.addEventListener('keydown', (e) => {
     if (watchView.classList.contains('hidden')) return;
     if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
@@ -760,14 +765,46 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       e.stopPropagation();
       if (e.key === 'ArrowLeft') {
-        videoPlayer.currentTime = Math.max(0, videoPlayer.currentTime - 30);
-        showSeekToast('⏪ -30s');
+        videoPlayer.currentTime = Math.max(0, videoPlayer.currentTime - 10);
+        showSeekToast('⏪ -10s');
       } else {
-        videoPlayer.currentTime = Math.min(videoPlayer.duration || Infinity, videoPlayer.currentTime + 30);
-        showSeekToast('⏩ +30s');
+        videoPlayer.currentTime = Math.min(videoPlayer.duration || Infinity, videoPlayer.currentTime + 10);
+        showSeekToast('⏩ +10s');
       }
+      resetInactivityTimer();
     }
-  }, true); // capture phase - runs before browser native video seek
+  }, true);
+
+  // 8. 3-Second Inactivity Auto-Hide Controls (Slide Down when hiding, Slide Up when mouse moves)
+  let inactivityTimer = null;
+  const seekControls = document.getElementById('seekControls');
+
+  function showControls() {
+    if (seekControls) {
+      seekControls.classList.remove('controls-hidden');
+    }
+    document.body.classList.remove('user-inactive');
+  }
+
+  function hideControls() {
+    if (!watchView.classList.contains('hidden')) {
+      if (seekControls) {
+        seekControls.classList.add('controls-hidden');
+      }
+      document.body.classList.add('user-inactive');
+    }
+  }
+
+  function resetInactivityTimer() {
+    showControls();
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(hideControls, 3000);
+  }
+
+  // Reset timer on mouse move or click inside watch view
+  watchView.addEventListener('mousemove', resetInactivityTimer);
+  watchView.addEventListener('click', resetInactivityTimer);
+  watchView.addEventListener('touchstart', resetInactivityTimer);
 
   // Toast notification for seek action
   function showSeekToast(text) {
@@ -777,7 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.id = 'seekToast';
       toast.style.cssText = `
         position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
-        background: rgba(0,0,0,0.75); backdrop-filter: blur(10px);
+        background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
         color: #fff; font-size: 1.1rem; font-weight: 700;
         padding: 10px 24px; border-radius: 30px;
         border: 1px solid rgba(255,255,255,0.15);

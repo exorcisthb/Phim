@@ -867,7 +867,7 @@ video {
 }
 
 /* ============================
-   SEEK CONTROLS (±30s)
+   SEEK CONTROLS (±10s) & INACTIVITY ANIMATION
    ============================ */
 .cinema-player-wrapper {
   overflow: visible !important;
@@ -877,10 +877,22 @@ video {
   position: absolute;
   bottom: -58px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
   display: flex;
   gap: 1rem;
   z-index: 20;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.seek-controls.controls-hidden {
+  transform: translateX(-50%) translateY(80px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.user-inactive #watchView {
+  cursor: none;
 }
 
 .seek-btn {
@@ -928,6 +940,95 @@ video {
 
 .cinema-details {
   margin-top: 4.5rem !important;
+}
+
+/* ============================
+   EPISODES PANEL & BUTTONS (Bo góc, Đóng khung)
+   ============================ */
+.episodes-panel {
+  background: rgba(20, 20, 32, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 1.5rem 1.75rem !important;
+  margin-bottom: 2rem !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.episodes-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  margin-bottom: 1.25rem !important;
+  padding-bottom: 0.75rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.episodes-header i {
+  font-size: 1.2rem !important;
+  color: var(--accent-red) !important;
+}
+
+.episodes-header h3 {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+}
+
+.episodes-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
+  gap: 0.75rem !important;
+}
+
+.ep-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  padding: 0.65rem 1rem !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 10px !important;
+  color: #e0e0f0 !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.ep-btn i {
+  font-size: 0.7rem !important;
+  color: var(--accent-red) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.ep-btn:hover {
+  background: rgba(229, 9, 20, 0.2) !important;
+  border-color: rgba(229, 9, 20, 0.6) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.35) !important;
+}
+
+.ep-btn:hover i {
+  transform: scale(1.25) !important;
+  color: #ffffff !important;
+}
+
+.ep-btn.active {
+  background: linear-gradient(135deg, var(--accent-red), #b20710) !important;
+  border-color: var(--accent-red) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 20px rgba(229, 9, 20, 0.6), 0 0 12px rgba(229, 9, 20, 0.4) !important;
+  transform: scale(1.03) !important;
+}
+
+.ep-btn.active i {
+  color: #ffffff !important;
 }
 
 /* CAM Quality Badge & Notice Box */
