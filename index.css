@@ -519,6 +519,87 @@ video {
   gap: 1rem;
 }
 
+/* Hero Slider Navigation & Dots */
+.hero {
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+.hero-fading {
+  opacity: 0.4;
+}
+
+.hero-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(10, 10, 18, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  opacity: 0;
+}
+
+.hero:hover .hero-nav-btn {
+  opacity: 1;
+}
+
+.hero-nav-prev {
+  left: 1rem;
+}
+
+.hero-nav-next {
+  right: 1rem;
+}
+
+.hero-nav-btn:hover {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 2rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.hero-dot.active {
+  width: 28px;
+  border-radius: 10px;
+  background: var(--accent-red);
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+}
+
 /* Action Buttons */
 .btn {
   display: inline-flex;

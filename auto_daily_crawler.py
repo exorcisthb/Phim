@@ -325,6 +325,24 @@ if newly_added_items:
         item["rating"] = round(4.3 + (item["id"] % 7) * 0.1, 1)
         existing_db.append(item)
 
+# Priority sorting: Featured 2026 movies and top rated/Marvel/DC blockbusters prioritized at top
+def calculate_featured_score(m):
+    score = 0
+    year = m.get("year", 2024)
+    if year == 2026: score += 1000
+    elif year == 2025: score += 500
+    elif year == 2024: score += 200
+    
+    rating = m.get("rating", 4.5)
+    score += int(rating * 100)
+    
+    title_text = (m.get("title","") + " " + m.get("origin_title","")).lower()
+    if any(k in title_text for k in ["marvel", "avengers", "spider-man", "deadpool", "batman", "superman", "loki", "thor"]):
+        score += 300
+    return score
+
+existing_db.sort(key=calculate_featured_score, reverse=True)
+
 # Re-assign sequential IDs cleanly
 for i, m in enumerate(existing_db):
     m["id"] = i + 1

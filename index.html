@@ -152,13 +152,13 @@
   <!-- HOME VIEW (Movie List & Search Grid) -->
   <div id="homeView" class="view-section">
     <main class="container">
-      <!-- Hero Banner Featured Movie -->
+      <!-- Hero Banner Featured Movie Carousel (Auto 5s) -->
       <section class="hero" id="heroSection">
         <img id="heroBg" class="hero-bg" src="" alt="Featured Backdrop">
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <div class="hero-tag">
-            <i class="fa-solid fa-fire"></i> Phim Nổi Bật 2026
+            <i class="fa-solid fa-fire"></i> <span id="heroTagText">PHIM NỔI BẬT 2026</span>
           </div>
           <h1 id="heroTitle" class="hero-title">Đang tải...</h1>
           <div class="hero-meta">
@@ -166,7 +166,7 @@
             <span id="heroYear">2026</span>
             <span id="heroGenre">Hành Động</span>
             <span id="heroDuration">122 phút</span>
-            <span class="card-quality">1080p FHD</span>
+            <span id="heroQuality" class="card-quality">1080p FHD</span>
           </div>
           <p id="heroDesc" class="hero-desc">Mô tả phim nổi bật...</p>
           <div class="hero-actions">
@@ -177,6 +177,19 @@
               <i class="fa-solid fa-circle-info"></i> Chi Tiết Phim
             </button>
           </div>
+        </div>
+
+        <!-- Slider Navigation Controls -->
+        <button class="hero-nav-btn hero-nav-prev" id="heroPrevBtn" title="Phim trước">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="hero-nav-btn hero-nav-next" id="heroNextBtn" title="Phim kế tiếp">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Slider Carousel Indicator Dots (10 items) -->
+        <div class="hero-dots" id="heroDots">
+          <!-- Rendered dynamically -->
         </div>
       </section>
 

@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       moviesData = data;
       if (moviesData.length > 0) {
-        setupHero(moviesData[0]);
+        setupHeroCarousel(moviesData);
       }
       renderMovies();
 
@@ -128,18 +128,108 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     });
 
-  // 2. Setup Hero Featured Movie
-  function setupHero(movie) {
-    heroBg.src = movie.backdrop || movie.poster;
-    heroTitle.textContent = movie.title;
-    heroRating.innerHTML = `<i class="fa-solid fa-star" style="color: #ffb703;"></i> ${movie.rating}`;
-    heroYear.textContent = movie.year;
-    heroGenre.textContent = movie.genre;
-    heroDuration.textContent = movie.duration;
-    heroDesc.textContent = movie.description;
+  // 2. Setup 10-Movie Hero Carousel with 5-Second Auto Rotation
+  let heroFeaturedList = [];
+  let currentHeroIndex = 0;
+  let heroAutoTimer = null;
 
-    heroPlayBtn.onclick = () => showWatchView(movie);
-    heroInfoBtn.onclick = () => showWatchView(movie);
+  function setupHeroCarousel(data) {
+    if (!data || data.length === 0) return;
+
+    // Pick top 10 featured movies (priority: 2026 movies, high rating >= 4.7)
+    heroFeaturedList = data.filter(m => m.year === 2026 || m.rating >= 4.7).slice(0, 10);
+    if (heroFeaturedList.length < 10) {
+      heroFeaturedList = data.slice(0, 10);
+    }
+
+    renderHeroDots();
+    renderHeroSlide(0);
+    startHeroAutoRotation();
+
+    // Event listeners for Prev / Next navigation
+    const prevBtn = document.getElementById('heroPrevBtn');
+    const nextBtn = document.getElementById('heroNextBtn');
+
+    if (prevBtn) {
+      prevBtn.onclick = () => {
+        currentHeroIndex = (currentHeroIndex - 1 + heroFeaturedList.length) % heroFeaturedList.length;
+        renderHeroSlide(currentHeroIndex);
+        startHeroAutoRotation();
+      };
+    }
+
+    if (nextBtn) {
+      nextBtn.onclick = () => {
+        currentHeroIndex = (currentHeroIndex + 1) % heroFeaturedList.length;
+        renderHeroSlide(currentHeroIndex);
+        startHeroAutoRotation();
+      };
+    }
+  }
+
+  function renderHeroDots() {
+    const dotsContainer = document.getElementById('heroDots');
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = heroFeaturedList.map((_, idx) => `
+      <button class="hero-dot ${idx === 0 ? 'active' : ''}" data-idx="${idx}" title="Phim nổi bật ${idx + 1}"></button>
+    `).join('');
+
+    dotsContainer.querySelectorAll('.hero-dot').forEach(dot => {
+      dot.onclick = () => {
+        const idx = parseInt(dot.getAttribute('data-idx'));
+        currentHeroIndex = idx;
+        renderHeroSlide(currentHeroIndex);
+        startHeroAutoRotation();
+      };
+    });
+  }
+
+  function renderHeroSlide(index) {
+    if (!heroFeaturedList[index]) return;
+    const movie = heroFeaturedList[index];
+
+    // Smooth fade transition
+    heroSection.classList.add('hero-fading');
+    setTimeout(() => {
+      heroBg.src = movie.backdrop || movie.poster;
+      heroTitle.textContent = movie.title;
+      heroRating.innerHTML = `<i class="fa-solid fa-star" style="color: #ffb703;"></i> ${movie.rating}`;
+      heroYear.textContent = movie.year;
+      heroGenre.textContent = movie.genre;
+      heroDuration.textContent = movie.duration;
+      heroDesc.textContent = movie.description;
+
+      const heroQuality = document.getElementById('heroQuality');
+      if (heroQuality) {
+        const isCam = (movie.quality || '').toLowerCase().includes('cam');
+        heroQuality.textContent = isCam ? '📷 Bản CAM' : (movie.quality || '1080p FHD');
+        if (isCam) heroQuality.classList.add('cam-badge');
+        else heroQuality.classList.remove('cam-badge');
+      }
+
+      heroPlayBtn.onclick = () => showWatchView(movie);
+      heroInfoBtn.onclick = () => showWatchView(movie);
+
+      // Update dot active state
+      const dotsContainer = document.getElementById('heroDots');
+      if (dotsContainer) {
+        dotsContainer.querySelectorAll('.hero-dot').forEach((dot, idx) => {
+          if (idx === index) dot.classList.add('active');
+          else dot.classList.remove('active');
+        });
+      }
+
+      heroSection.classList.remove('hero-fading');
+    }, 200);
+  }
+
+  function startHeroAutoRotation() {
+    clearInterval(heroAutoTimer);
+    heroAutoTimer = setInterval(() => {
+      if (homeView.classList.contains('hidden')) return; // pause if in watch view
+      currentHeroIndex = (currentHeroIndex + 1) % heroFeaturedList.length;
+      renderHeroSlide(currentHeroIndex);
+    }, 5000);
   }
 
   // 3. Render Movies Grid on Home View
