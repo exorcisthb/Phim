@@ -961,13 +961,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, true);
 
-  // 8. 3-Second Inactivity Auto-Hide Controls (Slide Down when hiding, Slide Up when mouse moves)
+  // 8. Auto-Hide Video Controls After 5s Inactivity (Smooth Animation)
   let inactivityTimer = null;
   const seekControls = document.getElementById('seekControls');
+  const cinemaPlayerWrapper = document.getElementById('cinemaPlayerWrapper');
 
   function showControls() {
     if (seekControls) {
       seekControls.classList.remove('controls-hidden');
+    }
+    if (cinemaPlayerWrapper) {
+      cinemaPlayerWrapper.classList.remove('hide-controls');
     }
     document.body.classList.remove('user-inactive');
   }
@@ -977,6 +981,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (seekControls) {
         seekControls.classList.add('controls-hidden');
       }
+      if (cinemaPlayerWrapper) {
+        cinemaPlayerWrapper.classList.add('hide-controls');
+      }
       document.body.classList.add('user-inactive');
     }
   }
@@ -984,13 +991,74 @@ document.addEventListener('DOMContentLoaded', () => {
   function resetInactivityTimer() {
     showControls();
     clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(hideControls, 3000);
+    inactivityTimer = setTimeout(hideControls, 5000); // Changed to 5 seconds
   }
 
-  // Reset timer on mouse move or click inside watch view
+  // Reset timer on mouse move, click, or touch inside watch view
   watchView.addEventListener('mousemove', resetInactivityTimer);
   watchView.addEventListener('click', resetInactivityTimer);
   watchView.addEventListener('touchstart', resetInactivityTimer);
+
+  // Reset timer when video player controls are used
+  if (videoPlayer) {
+    videoPlayer.addEventListener('play', resetInactivityTimer);
+    videoPlayer.addEventListener('pause', resetInactivityTimer);
+    videoPlayer.addEventListener('seeked', resetInactivityTimer); // When user seeks/scrubs
+    videoPlayer.addEventListener('volumechange', resetInactivityTimer);
+    videoPlayer.addEventListener('fullscreenchange', resetInactivityTimer);
+  }
+
+  // Keyboard events (Space for play/pause, F for fullscreen, Arrow keys for seek)
+  document.addEventListener('keydown', (e) => {
+    if (watchView.classList.contains('hidden')) return;
+    if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+    
+    if (e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      if (videoPlayer.paused) {
+        videoPlayer.play();
+      } else {
+        videoPlayer.pause();
+      }
+      resetInactivityTimer();
+    }
+    
+    // Press F to toggle fullscreen
+    if (e.key === 'f' || e.key === 'F') {
+      e.preventDefault();
+      toggleFullscreen();
+      resetInactivityTimer();
+    }
+  });
+
+  // Toggle Fullscreen Function
+  function toggleFullscreen() {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement) {
+      // Enter fullscreen
+      if (videoPlayer.requestFullscreen) {
+        videoPlayer.requestFullscreen();
+      } else if (videoPlayer.webkitRequestFullscreen) {
+        videoPlayer.webkitRequestFullscreen();
+      } else if (videoPlayer.mozRequestFullScreen) {
+        videoPlayer.mozRequestFullScreen();
+      } else if (videoPlayer.msRequestFullscreen) {
+        videoPlayer.msRequestFullscreen();
+      }
+      showSeekToast('⛶ Toàn màn hình');
+    } else {
+      // Exit fullscreen
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+      showSeekToast('⛶ Thoát toàn màn hình');
+    }
+  }
 
   // Toast notification for seek action
   function showSeekToast(text) {
