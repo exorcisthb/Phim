@@ -458,6 +458,9 @@ document.addEventListener('DOMContentLoaded', () => {
       else camNoticeBox.classList.add('hidden');
     }
 
+    // Setup Season / Part Selector Dropdown
+    setupSeasonSelector(movie);
+
     // Episode Selector for TV Series
     if (episodesPanel && episodesGrid) {
       if (movie.episodes && movie.episodes.length > 1) {
@@ -498,6 +501,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load Stream
     loadVideoSource();
+  }
+
+  // Helper & Handler for Multi-Season / Multi-Part Selector
+  function getMovieBaseTitle(title) {
+    if (!title) return '';
+    let base = title.replace(/\(?Phần\s*\d+\)?|\(?Season\s*\d+\)?|\(?Part\s*\d+\)?/gi, '');
+    base = base.replace(/-\s*phần\s*\d+|- \s*season\s*\d+/gi, '');
+    return base.trim();
+  }
+
+  function setupSeasonSelector(currentMovie) {
+    const seasonPanel = document.getElementById('seasonPanel');
+    const seasonSelect = document.getElementById('seasonSelect');
+
+    if (!seasonPanel || !seasonSelect) return;
+
+    const baseTitle = getMovieBaseTitle(currentMovie.title);
+    if (!baseTitle || baseTitle.length < 3) {
+      seasonPanel.classList.add('hidden');
+      return;
+    }
+
+    // Find all movies/series sharing the same base title
+    const relatedSeasons = moviesData.filter(m => {
+      const b = getMovieBaseTitle(m.title);
+      return b.toLowerCase() === baseTitle.toLowerCase();
+    });
+
+    if (relatedSeasons.length > 1) {
+      relatedSeasons.sort((a, b) => (a.year || 2026) - (b.year || 2026));
+
+      seasonSelect.innerHTML = relatedSeasons.map(m => {
+        const isCurrent = m.id === currentMovie.id;
+        return `
+          <option value="${m.id}" ${isCurrent ? 'selected' : ''}>
+            🎬 ${m.title} (${m.year}) - ${m.type === 'series' ? 'Phim Bộ' : 'Phim Lẻ'}
+          </option>
+        `;
+      }).join('');
+
+      seasonPanel.classList.remove('hidden');
+
+      seasonSelect.onchange = () => {
+        const selectedId = parseInt(seasonSelect.value);
+        const targetMovie = moviesData.find(m => m.id === selectedId);
+        if (targetMovie) {
+          showWatchView(targetMovie);
+        }
+      };
+    } else {
+      seasonPanel.classList.add('hidden');
+    }
   }
 
   // Switch to Home View

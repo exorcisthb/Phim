@@ -1024,6 +1024,80 @@ body.user-inactive #watchView {
 }
 
 /* ============================
+   SEASON / PART SELECTOR PANEL
+   ============================ */
+.season-panel {
+  background: rgba(20, 20, 32, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 1.25rem 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.season-panel.hidden {
+  display: none !important;
+}
+
+.season-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  margin-bottom: 0.85rem !important;
+}
+
+.season-header i {
+  font-size: 1.1rem !important;
+  color: var(--accent-red) !important;
+}
+
+.season-header h3 {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+}
+
+.season-dropdown-wrapper {
+  position: relative !important;
+  width: 100% !important;
+}
+
+.season-select-dropdown {
+  width: 100% !important;
+  padding: 0.75rem 1.25rem !important;
+  background: rgba(10, 10, 18, 0.85) !important;
+  border: 1px solid rgba(229, 9, 20, 0.4) !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23e50914' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1.25rem center !important;
+  background-size: 14px !important;
+}
+
+.season-select-dropdown:hover,
+.season-select-dropdown:focus {
+  border-color: var(--accent-red) !important;
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.4) !important;
+}
+
+.season-select-dropdown option {
+  background: #12121c !important;
+  color: #ffffff !important;
+  padding: 10px !important;
+}
+
+/* ============================
    EPISODES PANEL & BUTTONS (Bo góc, Đóng khung)
    ============================ */
 .episodes-panel {
