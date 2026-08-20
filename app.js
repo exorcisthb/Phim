@@ -467,6 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (hasMultipleEpisodes) {
         episodesPanel.classList.remove('hidden');
+        episodesPanel.style.display = 'block';
         if (epCountText) epCountText.textContent = `${movie.episodes.length} tập`;
         episodesGrid.innerHTML = movie.episodes.map((ep, idx) => `
           <button class="ep-btn ${idx === activeEpisodeIndex ? 'active' : ''}" data-idx="${idx}">
@@ -489,6 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
         activeMovie.m3u8_url = movie.episodes[0].link_m3u8;
       } else {
         episodesPanel.classList.add('hidden');
+        episodesPanel.style.display = 'none';
         episodesGrid.innerHTML = '';
       }
     }
