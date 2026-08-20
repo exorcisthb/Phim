@@ -512,14 +512,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function setupSeasonSelector(currentMovie) {
-    const seasonPanel = document.getElementById('seasonPanel');
+    const seasonHeaderGroup = document.getElementById('seasonHeaderGroup');
+    const seasonMetaGroup = document.getElementById('seasonMetaGroup');
     const seasonSelect = document.getElementById('seasonSelect');
+    const seasonSelectMeta = document.getElementById('seasonSelectMeta');
 
-    if (!seasonPanel || !seasonSelect) return;
+    if (!seasonHeaderGroup && !seasonMetaGroup) return;
 
     const baseTitle = getMovieBaseTitle(currentMovie.title);
     if (!baseTitle || baseTitle.length < 3) {
-      seasonPanel.classList.add('hidden');
+      if (seasonHeaderGroup) seasonHeaderGroup.classList.add('hidden');
+      if (seasonMetaGroup) seasonMetaGroup.classList.add('hidden');
       return;
     }
 
@@ -532,26 +535,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (relatedSeasons.length > 1) {
       relatedSeasons.sort((a, b) => (a.year || 2026) - (b.year || 2026));
 
-      seasonSelect.innerHTML = relatedSeasons.map(m => {
+      const optionsHtml = relatedSeasons.map(m => {
         const isCurrent = m.id === currentMovie.id;
-        return `
-          <option value="${m.id}" ${isCurrent ? 'selected' : ''}>
-            🎬 ${m.title} (${m.year}) - ${m.type === 'series' ? 'Phim Bộ' : 'Phim Lẻ'}
-          </option>
-        `;
+        return `<option value="${m.id}" ${isCurrent ? 'selected' : ''}>🎬 ${m.title} (${m.year})</option>`;
       }).join('');
 
-      seasonPanel.classList.remove('hidden');
+      if (seasonSelect) seasonSelect.innerHTML = optionsHtml;
+      if (seasonSelectMeta) seasonSelectMeta.innerHTML = optionsHtml;
 
-      seasonSelect.onchange = () => {
-        const selectedId = parseInt(seasonSelect.value);
+      // Show header dropdown for TV Series (episodes exist), or meta dropdown for single movies
+      if (currentMovie.episodes && currentMovie.episodes.length > 1) {
+        if (seasonHeaderGroup) seasonHeaderGroup.classList.remove('hidden');
+        if (seasonMetaGroup) seasonMetaGroup.classList.add('hidden');
+      } else {
+        if (seasonHeaderGroup) seasonHeaderGroup.classList.add('hidden');
+        if (seasonMetaGroup) seasonMetaGroup.classList.remove('hidden');
+      }
+
+      const handleChange = (e) => {
+        const selectedId = parseInt(e.target.value);
         const targetMovie = moviesData.find(m => m.id === selectedId);
         if (targetMovie) {
           showWatchView(targetMovie);
         }
       };
+
+      if (seasonSelect) seasonSelect.onchange = handleChange;
+      if (seasonSelectMeta) seasonSelectMeta.onchange = handleChange;
     } else {
-      seasonPanel.classList.add('hidden');
+      if (seasonHeaderGroup) seasonHeaderGroup.classList.add('hidden');
+      if (seasonMetaGroup) seasonMetaGroup.classList.add('hidden');
     }
   }
 
