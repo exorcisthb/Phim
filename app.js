@@ -535,9 +535,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (relatedSeasons.length > 1) {
       relatedSeasons.sort((a, b) => (a.year || 2026) - (b.year || 2026));
 
-      const optionsHtml = relatedSeasons.map(m => {
+      const optionsHtml = relatedSeasons.map((m, idx) => {
         const isCurrent = m.id === currentMovie.id;
-        return `<option value="${m.id}" ${isCurrent ? 'selected' : ''}>🎬 ${m.title} (${m.year})</option>`;
+        let seasonLabel = `Phần ${idx + 1}`;
+        const match = (m.title + ' ' + m.slug).match(/Phần\s*(\d+)|Season\s*(\d+)|Part\s*(\d+)/i);
+        if (match) {
+          const num = match[1] || match[2] || match[3];
+          seasonLabel = `Phần ${num}`;
+        }
+        return `<option value="${m.id}" ${isCurrent ? 'selected' : ''}>${seasonLabel} (${m.year})</option>`;
       }).join('');
 
       if (seasonSelect) seasonSelect.innerHTML = optionsHtml;
@@ -708,15 +714,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (Hls.isSupported()) {
         hlsInstance = new Hls({
-          capLevelToPlayerSize: true,
+          capLevelToPlayerSize: false, // Don't restrict resolution
           maxBufferLength: 90,
           maxMaxBufferLength: 180,
-          maxBufferSize: 100 * 1000 * 1000,
+          maxBufferSize: 150 * 1000 * 1000,
           maxBufferHole: 0.5,
           lowLatencyMode: false,
           enableWorker: true,
           manifestLoadingTimeOut: 12000,
-          manifestLoadingMaxRetry: 1,
+          manifestLoadingMaxRetry: 2,
           levelLoadingTimeOut: 10000,
         });
 
@@ -726,19 +732,30 @@ document.addEventListener('DOMContentLoaded', () => {
         hlsInstance.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
           if (loadTimeout) { clearTimeout(loadTimeout); loadTimeout = null; }
           hideVideoError();
-          bufferStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#00f2fe;"></i> Sẵn sàng phát 1080p`;
 
           const levels = hlsInstance.levels;
           if (levels && levels.length > 0) {
-            let opts = '<option value="-1">Tự động (Auto HD)</option>';
+            // Auto-force highest available HD/4K level by default
+            const maxLvlIdx = levels.length - 1;
+            hlsInstance.currentLevel = maxLvlIdx;
+
+            const topLvl = levels[maxLvlIdx];
+            const maxRes = topLvl.height ? `${topLvl.height}p Ultra HD` : '1080p FullHD';
+            bufferStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#00f2fe;"></i> Đã bật Max HD (${maxRes})`;
+
+            let opts = `<option value="${maxLvlIdx}">🔥 Cao nhất (${maxRes})</option>`;
+            opts += '<option value="-1">Tự động (Auto Best)</option>';
             levels.forEach((lvl, idx) => {
-              const res = lvl.height ? `${lvl.height}p` : `Chất lượng ${idx + 1}`;
-              opts += `<option value="${idx}">${res}</option>`;
+              if (idx !== maxLvlIdx) {
+                const res = lvl.height ? `${lvl.height}p` : `Chất lượng ${idx + 1}`;
+                opts += `<option value="${idx}">${res}</option>`;
+              }
             });
             qualitySelect.innerHTML = opts;
           } else {
+            bufferStatus.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#00f2fe;"></i> Phát Full HD 1080p`;
             qualitySelect.innerHTML = `
-              <option value="-1">Tự động (Auto HD)</option>
+              <option value="-1">🔥 Cao nhất (1080p FullHD)</option>
               <option value="1080">1080p FullHD</option>
               <option value="720">720p HD</option>
             `;
