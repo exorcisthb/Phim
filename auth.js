@@ -1,5 +1,5 @@
 // Auth Page JavaScript
-const USER_DATA_KEY = 'rophim_user_data';
+const SESSION_USER_KEY = 'rophim_session_user';
 
 // Switch between login and signup
 document.getElementById('showSignup')?.addEventListener('click', (e) => {
@@ -15,33 +15,30 @@ document.getElementById('showLogin')?.addEventListener('click', (e) => {
 });
 
 // Login form
-document.getElementById('loginForm')?.addEventListener('submit', (e) => {
+document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
   
-  const userData = localStorage.getItem(USER_DATA_KEY);
-  
-  if (!userData) {
-    alert('❌ Tài khoản không tồn tại. Vui lòng đăng ký!');
-    return;
+  try {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message);
+    sessionStorage.setItem(SESSION_USER_KEY, JSON.stringify(data.user));
+    sessionStorage.setItem('isLoggedIn', 'true');
+    window.location.href = 'index.html';
+  } catch (error) {
+    alert(`❌ ${error.message || 'Không thể đăng nhập.'}`);
   }
-  
-  const user = JSON.parse(userData);
-  
-  if (user.email !== email || atob(user.password) !== password) {
-    alert('❌ Email hoặc mật khẩu không đúng!');
-    return;
-  }
-  
-  // Login successful
-  sessionStorage.setItem('isLoggedIn', 'true');
-  window.location.href = 'index.html';
 });
 
 // Signup form
-document.getElementById('signupForm')?.addEventListener('submit', (e) => {
+document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   
   const name = document.getElementById('signupName').value;
@@ -53,19 +50,21 @@ document.getElementById('signupForm')?.addEventListener('submit', (e) => {
     return;
   }
   
-  const userData = {
-    name: name,
-    email: email,
-    password: btoa(password),
-    avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=e50914&color=fff&bold=true`,
-    joinDate: Date.now()
-  };
-  
-  localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
-  sessionStorage.setItem('isLoggedIn', 'true');
-  
-  alert('✅ Đăng ký thành công! Chào mừng ' + name);
-  window.location.href = 'index.html';
+  try {
+    const response = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password })
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message);
+    sessionStorage.setItem(SESSION_USER_KEY, JSON.stringify(data.user));
+    sessionStorage.setItem('isLoggedIn', 'true');
+    alert('✅ Đăng ký thành công! Chào mừng ' + data.user.name);
+    window.location.href = 'index.html';
+  } catch (error) {
+    alert(`❌ ${error.message || 'Không thể đăng ký.'}`);
+  }
 });
 
 // Guest mode

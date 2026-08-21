@@ -8,5 +8,6 @@ test_*.py
 inspect_*.py
 parse_*.py
 node_modules/
+data/*.db
 .env
 motchill_movies.json

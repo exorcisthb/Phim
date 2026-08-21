@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "RoPhim Cinema - Xem Phim Trực Tuyến Chất Lượng Cao",
   "main": "server.js",
+  "engines": {
+    "node": ">=22.5.0"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "npx -y serve -l 8080",

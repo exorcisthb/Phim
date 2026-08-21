@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== WATCH HISTORY SYSTEM (localStorage) =====
   const WATCH_HISTORY_KEY = 'rophim_watch_history';
-  const USER_DATA_KEY = 'rophim_user_data';
+  const SESSION_USER_KEY = 'rophim_session_user';
   const MAX_HISTORY_ITEMS = 50;
 
   // ===== USER AUTHENTICATION SYSTEM =====
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load user data
   function loadUserData() {
     try {
-      const data = localStorage.getItem(USER_DATA_KEY);
+      const data = sessionStorage.getItem(SESSION_USER_KEY);
       return data ? JSON.parse(data) : null;
     } catch (e) {
       return null;
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Save user data
   function saveUserData(userData) {
     try {
-      localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
+      sessionStorage.setItem(SESSION_USER_KEY, JSON.stringify(userData));
     } catch (e) {
       console.warn('Failed to save user data');
     }
@@ -73,49 +73,56 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Signup function
-  function signup(name, email, password) {
-    const userData = {
-      name: name,
-      email: email,
-      password: btoa(password), // Simple encoding (not secure, just for demo)
-      avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=e50914&color=fff&bold=true`,
-      joinDate: Date.now()
-    };
-    
-    saveUserData(userData);
-    currentUser = userData;
-    sessionStorage.setItem('isLoggedIn', 'true');
-    updateUIAuth();
-    closeAuthModal();
-    showToast('✅ Đăng ký thành công! Chào mừng ' + name);
+  async function signup(name, email, password) {
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Không thể đăng ký.');
+
+      currentUser = data.user;
+      saveUserData(currentUser);
+      sessionStorage.setItem('isLoggedIn', 'true');
+      updateUIAuth();
+      closeAuthModal();
+      showToast('✅ Đăng ký thành công! Chào mừng ' + currentUser.name);
+    } catch (error) {
+      showToast(`❌ ${error.message}`);
+    }
   }
 
   // Login function
-  function login(email, password) {
-    const userData = loadUserData();
-    
-    if (!userData) {
-      showToast('❌ Tài khoản không tồn tại. Vui lòng đăng ký!');
+  async function login(email, password) {
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Không thể đăng nhập.');
+
+      currentUser = data.user;
+      saveUserData(currentUser);
+      sessionStorage.setItem('isLoggedIn', 'true');
+      updateUIAuth();
+      closeAuthModal();
+      showToast('✅ Đăng nhập thành công! Chào ' + currentUser.name);
+      return true;
+    } catch (error) {
+      showToast(`❌ ${error.message}`);
       return false;
     }
-    
-    if (userData.email !== email || atob(userData.password) !== password) {
-      showToast('❌ Email hoặc mật khẩu không đúng!');
-      return false;
-    }
-    
-    currentUser = userData;
-    sessionStorage.setItem('isLoggedIn', 'true');
-    updateUIAuth();
-    closeAuthModal();
-    showToast('✅ Đăng nhập thành công! Chào ' + userData.name);
-    return true;
   }
 
   // Logout function
   function logout() {
     currentUser = null;
     sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem(SESSION_USER_KEY);
     updateUIAuth();
     showHomeView();
     showToast('Bạn đã đăng xuất');
