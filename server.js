@@ -5,6 +5,23 @@ const crypto = require('crypto');
 const { DatabaseSync } = require('node:sqlite');
 const app = express();
 
+// Cho phép GitHub Pages và các origin khác gọi API
+app.use((req, res, next) => {
+  const allowed = [
+    'https://exorcisthb.github.io',
+    'http://localhost:8080',
+    'http://127.0.0.1:8080'
+  ];
+  const origin = req.headers.origin;
+  if (allowed.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
 const dataDir = path.join(__dirname, 'data');
 fs.mkdirSync(dataDir, { recursive: true });
 const db = new DatabaseSync(path.join(dataDir, 'rophim.db'));

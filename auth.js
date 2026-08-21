@@ -1,12 +1,18 @@
 // Auth Page JavaScript
 const SESSION_USER_KEY = 'rophim_session_user';
 
+// Tự động xác định API URL:
+// - Nếu chạy trên GitHub Pages → gọi thẳng Render server
+// - Nếu chạy local (localhost / 127.0.0.1) → dùng relative URL
+const API_BASE = (location.hostname.includes('github.io'))
+  ? 'https://phim-dkvv.onrender.com'
+  : '';
+
 async function readAuthResponse(response) {
   const contentType = response.headers.get('content-type') || '';
   if (contentType.includes('application/json')) return response.json();
   return { message: 'Máy chủ tài khoản chưa chạy. Hãy mở web bằng "npm start" rồi thử lại.' };
 }
-
 // Switch between login and signup
 document.getElementById('showSignup')?.addEventListener('click', (e) => {
   e.preventDefault();
@@ -28,7 +34,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
   const password = document.getElementById('loginPassword').value;
   
   try {
-    const response = await fetch('/api/auth/login', {
+    const response = await fetch(`${API_BASE}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -57,7 +63,7 @@ document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
   }
   
   try {
-    const response = await fetch('/api/auth/register', {
+    const response = await fetch(`${API_BASE}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password })
