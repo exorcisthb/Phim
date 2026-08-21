@@ -1,15 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Check authentication status on page load
-  const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-  const isGuest = sessionStorage.getItem('isGuest');
-  
-  if (!isLoggedIn && !isGuest) {
-    // Not logged in - redirect to auth page
-    window.location.href = 'auth.html';
-    return;
-  }
-  
-  checkAuth();
+  // Dashboard is public; authentication is optional and happens in the header modal.
   
   let moviesData = [];
   let currentType = 'all';     // 'all', 'single', 'series'
@@ -30,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== USER AUTHENTICATION SYSTEM =====
   let currentUser = null;
+
+  checkAuth();
 
   // Load user data
   function loadUserData() {
@@ -52,8 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Check if user is logged in
   function checkAuth() {
-    currentUser = loadUserData();
+    currentUser = sessionStorage.getItem('isLoggedIn') === 'true' ? loadUserData() : null;
     updateUIAuth();
+  }
+
+  function getHistoryKey() {
+    return currentUser ? `${WATCH_HISTORY_KEY}_${currentUser.email.toLowerCase()}` : null;
   }
 
   // Update UI based on auth status
@@ -88,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     saveUserData(userData);
     currentUser = userData;
+    sessionStorage.setItem('isLoggedIn', 'true');
     updateUIAuth();
     closeAuthModal();
     showToast('✅ Đăng ký thành công! Chào mừng ' + name);
@@ -108,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     currentUser = userData;
+    sessionStorage.setItem('isLoggedIn', 'true');
     updateUIAuth();
     closeAuthModal();
     showToast('✅ Đăng nhập thành công! Chào ' + userData.name);
@@ -118,8 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function logout() {
     currentUser = null;
     sessionStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('isGuest');
-    window.location.href = 'auth.html';
+    updateUIAuth();
+    showHomeView();
+    showToast('Bạn đã đăng xuất');
   }
 
   // Toast notification
@@ -242,7 +241,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Clear all history
   document.getElementById('clearAllHistoryBtn')?.addEventListener('click', () => {
     if (confirm('Xóa toàn bộ lịch sử xem phim?')) {
-      localStorage.removeItem(WATCH_HISTORY_KEY);
+      const historyKey = getHistoryKey();
+      if (historyKey) localStorage.removeItem(historyKey);
       renderHistoryPage();
       showToast('🗑️ Đã xóa toàn bộ lịch sử');
     }
@@ -250,8 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load watch history from localStorage
   function getWatchHistory() {
+    const historyKey = getHistoryKey();
+    if (!historyKey) return [];
     try {
-      const data = localStorage.getItem(WATCH_HISTORY_KEY);
+      const data = localStorage.getItem(historyKey);
       return data ? JSON.parse(data) : [];
     } catch (e) {
       return [];
@@ -260,8 +262,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Save watch history to localStorage
   function saveWatchHistory(history) {
+    const historyKey = getHistoryKey();
+    if (!historyKey) return;
     try {
-      localStorage.setItem(WATCH_HISTORY_KEY, JSON.stringify(history));
+      localStorage.setItem(historyKey, JSON.stringify(history));
     } catch (e) {
       console.warn('Failed to save watch history');
     }
@@ -269,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update watch history when user watches a movie
   function updateWatchHistory(movie, currentTime, duration) {
-    if (!movie || !duration || currentTime < 10) return; // Skip if less than 10s watched
+    if (!currentUser || !movie || !duration || currentTime < 10) return; // Skip if less than 10s watched
     
     const progress = Math.min(100, Math.max(0, (currentTime / duration) * 100));
     
@@ -295,7 +299,8 @@ document.addEventListener('DOMContentLoaded', () => {
       duration: Math.floor(duration),
       progress: Math.floor(progress),
       timestamp: Date.now(),
-      episodeIndex: activeEpisodeIndex || 0
+      episodeIndex: activeEpisodeIndex || 0,
+      episodeName: movie.episodes?.[activeEpisodeIndex]?.name || ''
     });
     
     // Keep only MAX_HISTORY_ITEMS
@@ -324,12 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const movie = moviesData.find(m => m.id === movieId);
     if (!movie) return;
     
-    // Set episode index if series
-    if (item.episodeIndex) {
-      activeEpisodeIndex = item.episodeIndex;
-    }
-    
-    showWatchView(movie);
+    showWatchView(movie, item.episodeIndex || 0);
     
     // Wait for video to load, then seek to saved position
     const checkVideoReady = setInterval(() => {
@@ -373,6 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="history-progress-bar" style="width: ${item.progress}%"></div>
           </div>
           <div class="history-time-badge">${formatTime(item.currentTime)} / ${formatTime(item.duration)}</div>
+          ${item.episodeName ? `<div class="history-episode-badge">${item.episodeName}</div>` : ''}
           <button class="history-remove-btn" data-id="${item.id}" title="Xóa khỏi lịch sử">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -432,29 +433,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Save on video pause/ended/before unload
-  if (videoPlayer) {
-    videoPlayer.addEventListener('pause', () => {
-      if (activeMovie && videoPlayer.duration > 0) {
-        updateWatchHistory(activeMovie, videoPlayer.currentTime, videoPlayer.duration);
-      }
-    });
-    
-    videoPlayer.addEventListener('ended', () => {
-      if (activeMovie) {
-        removeFromWatchHistory(activeMovie.id);
-        renderWatchHistory();
-      }
-    });
-  }
-
-  // Save before user leaves page
-  window.addEventListener('beforeunload', () => {
-    if (activeMovie && videoPlayer && videoPlayer.duration > 0) {
-      updateWatchHistory(activeMovie, videoPlayer.currentTime, videoPlayer.duration);
-    }
-  });
-
   // Pagination Variables
   const ITEMS_PER_PAGE = 24;
   let currentPage = 1;
@@ -499,6 +477,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoErrorDesc = document.getElementById('videoErrorDesc');
   const retryStreamBtn = document.getElementById('retryStreamBtn');
   const reportBrokenBtn = document.getElementById('reportBrokenBtn');
+
+  // Save on pause, completion, and when the page is closed. This must be
+  // registered after videoPlayer is obtained from the DOM.
+  videoPlayer?.addEventListener('pause', () => {
+    if (activeMovie && videoPlayer.duration > 0) {
+      updateWatchHistory(activeMovie, videoPlayer.currentTime, videoPlayer.duration);
+    }
+  });
+
+  videoPlayer?.addEventListener('ended', () => {
+    if (activeMovie) {
+      removeFromWatchHistory(activeMovie.id);
+      renderWatchHistory();
+    }
+  });
+
+  window.addEventListener('beforeunload', () => {
+    if (activeMovie && videoPlayer?.duration > 0) {
+      updateWatchHistory(activeMovie, videoPlayer.currentTime, videoPlayer.duration);
+    }
+  });
 
   // Episode Selector Elements for TV Series
   const episodesPanel = document.getElementById('episodesPanel');
@@ -872,6 +871,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openHomeViewDOM() {
     watchView.classList.add('hidden');
+    historyView.classList.add('hidden');
     homeView.classList.remove('hidden');
 
     // Stop auto-save watch progress
@@ -890,9 +890,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function openWatchViewDOM(movie) {
+  function openWatchViewDOM(movie, episodeIndex = 0) {
     activeMovie = movie;
-    activeEpisodeIndex = 0;
+    activeEpisodeIndex = episodeIndex;
 
     // Start auto-save watch progress
     startAutoSaveProgress();
@@ -949,8 +949,8 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         });
         
-        // Set first episode stream
-        activeMovie.m3u8_url = movie.episodes[0].link_m3u8;
+        // Use the requested episode (for example when resuming from history).
+        activeMovie.m3u8_url = movie.episodes[activeEpisodeIndex].link_m3u8;
       } else {
         episodesPanel.classList.add('hidden');
         episodesPanel.style.display = 'none';
@@ -963,6 +963,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Switch View Visibility
     homeView.classList.add('hidden');
+    historyView.classList.add('hidden');
     watchView.classList.remove('hidden');
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1051,9 +1052,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Switch to Dedicated Watch View for Selected Movie
-  function showWatchView(movie) {
+  function showWatchView(movie, episodeIndex = 0) {
     history.pushState({ view: 'watch', movieId: movie.id }, '', `#watch-${movie.id}`);
-    openWatchViewDOM(movie);
+    openWatchViewDOM(movie, episodeIndex);
   }
 
   // Switch to History View
@@ -1096,7 +1097,7 @@ document.addEventListener('DOMContentLoaded', () => {
     historyPageGrid.innerHTML = history.map(item => {
       const movie = moviesData.find(m => m.id === item.id);
       const isSeries = movie && movie.episodes && movie.episodes.length > 1;
-      const episodeInfo = isSeries && item.episodeIndex >= 0 ? `Tập ${item.episodeIndex + 1}` : '';
+      const episodeInfo = isSeries && item.episodeIndex >= 0 ? (item.episodeName || `Tập ${item.episodeIndex + 1}`) : '';
       
       return `
         <div class="history-card" data-id="${item.id}">

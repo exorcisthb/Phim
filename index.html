@@ -12,118 +12,6 @@
 </head>
 <body>
 
-  <!-- ============================================ -->
-  <!-- AUTH VIEW (Full Screen Login/Signup Pages) -->
-  <!-- ============================================ -->
-  <div id="authView" class="view-section">
-    <div class="auth-container">
-      <!-- Left Side - Branding -->
-      <div class="auth-left">
-        <div class="auth-brand">
-          <div class="brand-icon-large">
-            <i class="fa-solid fa-play"></i>
-          </div>
-          <h1 class="auth-brand-title">RoPhim<span class="brand-badge-auth">Cinema</span></h1>
-          <p class="auth-tagline">Xem phim không giới hạn<br>Lưu lịch sử & tiếp tục xem mọi lúc</p>
-        </div>
-        
-        <div class="auth-features">
-          <div class="feature-item">
-            <i class="fa-solid fa-infinity"></i>
-            <span>3,000+ Phim Mới Nhất</span>
-          </div>
-          <div class="feature-item">
-            <i class="fa-solid fa-hd-video"></i>
-            <span>Chất Lượng Full HD 1080p</span>
-          </div>
-          <div class="feature-item">
-            <i class="fa-solid fa-cloud"></i>
-            <span>Stream Trực Tiếp 0MB</span>
-          </div>
-          <div class="feature-item">
-            <i class="fa-solid fa-history"></i>
-            <span>Lưu Lịch Sử Xem Phim</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Side - Login/Signup Forms -->
-      <div class="auth-right">
-        <!-- Login Form -->
-        <div class="auth-card" id="loginCard">
-          <h2 class="auth-card-title">Đăng Nhập</h2>
-          <p class="auth-card-subtitle">Chào mừng trở lại! Tiếp tục xem phim yêu thích</p>
-          
-          <form id="loginFormNew">
-            <div class="form-group-new">
-              <label><i class="fa-solid fa-envelope"></i> Email</label>
-              <input type="email" id="loginEmailNew" placeholder="your@email.com" required>
-            </div>
-            
-            <div class="form-group-new">
-              <label><i class="fa-solid fa-lock"></i> Mật khẩu</label>
-              <input type="password" id="loginPasswordNew" placeholder="••••••••" required>
-            </div>
-            
-            <button type="submit" class="btn-auth-submit">
-              <i class="fa-solid fa-right-to-bracket"></i>
-              Đăng Nhập
-            </button>
-          </form>
-          
-          <p class="auth-switch-text">
-            Chưa có tài khoản? <a href="#" id="showSignupForm" class="auth-link">Đăng ký ngay</a>
-          </p>
-          
-          <div class="auth-or">
-            <span>HOẶC</span>
-          </div>
-          
-          <button class="btn-guest" id="continueAsGuest">
-            <i class="fa-solid fa-user"></i>
-            Tiếp tục với Khách
-          </button>
-        </div>
-
-        <!-- Signup Form -->
-        <div class="auth-card hidden" id="signupCard">
-          <h2 class="auth-card-title">Đăng Ký</h2>
-          <p class="auth-card-subtitle">Tạo tài khoản miễn phí và bắt đầu xem phim</p>
-          
-          <form id="signupFormNew">
-            <div class="form-group-new">
-              <label><i class="fa-solid fa-user"></i> Tên hiển thị</label>
-              <input type="text" id="signupNameNew" placeholder="Tên của bạn" required>
-            </div>
-            
-            <div class="form-group-new">
-              <label><i class="fa-solid fa-envelope"></i> Email</label>
-              <input type="email" id="signupEmailNew" placeholder="your@email.com" required>
-            </div>
-            
-            <div class="form-group-new">
-              <label><i class="fa-solid fa-lock"></i> Mật khẩu</label>
-              <input type="password" id="signupPasswordNew" placeholder="Tối thiểu 6 ký tự" required minlength="6">
-            </div>
-            
-            <button type="submit" class="btn-auth-submit">
-              <i class="fa-solid fa-user-plus"></i>
-              Đăng Ký
-            </button>
-          </form>
-          
-          <p class="auth-switch-text">
-            Đã có tài khoản? <a href="#" id="showLoginForm" class="auth-link">Đăng nhập</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================ -->
-  <!-- DASHBOARD VIEW (Main App After Login) -->
-  <!-- ============================================ -->
-
   <!-- Header Section -->
   <header class="header">
     <a href="#" class="brand" id="brandLogo">
@@ -164,7 +52,7 @@
       <div class="user-avatar-dropdown" id="userAvatarDropdown" style="display: none;">
         <button class="avatar-btn" id="avatarBtn">
           <img src="" alt="Avatar" class="avatar-img" id="userAvatar">
-          <span class="user-name" id="userName">User</span>
+          <span class="user-identity"><span class="user-name" id="userName">User</span><span class="user-role">User</span></span>
           <i class="fa-solid fa-chevron-down"></i>
         </button>
         <div class="dropdown-menu" id="dropdownMenu">
@@ -289,7 +177,7 @@
         </button>
       </div>
     </div>
-  </header>
+  </div>
 
   <!-- WATCH VIEW (Dedicated Watch Page for Single Movie) -->
   <div id="watchView" class="view-section hidden">
