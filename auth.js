@@ -1,6 +1,12 @@
 // Auth Page JavaScript
 const SESSION_USER_KEY = 'rophim_session_user';
 
+async function readAuthResponse(response) {
+  const contentType = response.headers.get('content-type') || '';
+  if (contentType.includes('application/json')) return response.json();
+  return { message: 'Máy chủ tài khoản chưa chạy. Hãy mở web bằng "npm start" rồi thử lại.' };
+}
+
 // Switch between login and signup
 document.getElementById('showSignup')?.addEventListener('click', (e) => {
   e.preventDefault();
@@ -27,7 +33,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     });
-    const data = await response.json();
+    const data = await readAuthResponse(response);
     if (!response.ok) throw new Error(data.message);
     sessionStorage.setItem(SESSION_USER_KEY, JSON.stringify(data.user));
     sessionStorage.setItem('isLoggedIn', 'true');
@@ -56,7 +62,7 @@ document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password })
     });
-    const data = await response.json();
+    const data = await readAuthResponse(response);
     if (!response.ok) throw new Error(data.message);
     sessionStorage.setItem(SESSION_USER_KEY, JSON.stringify(data.user));
     sessionStorage.setItem('isLoggedIn', 'true');

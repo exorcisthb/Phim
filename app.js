@@ -42,6 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  async function readAuthResponse(response) {
+    const contentType = response.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) return response.json();
+
+    return {
+      message: 'Máy chủ tài khoản chưa chạy. Hãy mở web bằng "npm start" (không dùng Live Server hoặc npm run dev cũ) rồi thử lại.'
+    };
+  }
+
   // Check if user is logged in
   function checkAuth() {
     currentUser = sessionStorage.getItem('isLoggedIn') === 'true' ? loadUserData() : null;
@@ -80,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })
       });
-      const data = await response.json();
+      const data = await readAuthResponse(response);
       if (!response.ok) throw new Error(data.message || 'Không thể đăng ký.');
 
       currentUser = data.user;
@@ -102,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       });
-      const data = await response.json();
+      const data = await readAuthResponse(response);
       if (!response.ok) throw new Error(data.message || 'Không thể đăng nhập.');
 
       currentUser = data.user;

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "npx -y serve -l 8080",
+    "dev": "node server.js",
     "crawl": "python auto_daily_crawler.py",
     "deploy": "python auto_crawl_and_deploy.py"
   },
