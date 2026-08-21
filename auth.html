@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập - RoPhim Cinema</title>
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="auth-container">
+    <!-- Left Side - Branding & Features -->
+    <div class="auth-left">
+      <div class="auth-brand">
+        <div class="brand-icon-large">
+          <i class="fa-solid fa-play"></i>
+        </div>
+        <h1 class="auth-brand-title">RoPhim <span>Cinema</span></h1>
+        <p class="auth-tagline">Xem phim không giới hạn • Lưu lịch sử xem • Tiếp tục mọi lúc</p>
+      </div>
+      
+      <div class="auth-features">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fa-solid fa-infinity"></i></div>
+          <div class="feature-text">
+            <h3>3,000+ Phim Mới</h3>
+            <p>Cập nhật liên tục mỗi ngày</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fa-solid fa-video"></i></div>
+          <div class="feature-text">
+            <h3>Full HD 1080p</h3>
+            <p>Chất lượng hình ảnh tuyệt đỉnh</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fa-solid fa-cloud"></i></div>
+          <div class="feature-text">
+            <h3>Stream 0MB</h3>
+            <p>Không tốn dung lượng máy</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fa-solid fa-history"></i></div>
+          <div class="feature-text">
+            <h3>Lưu Lịch Sử</h3>
+            <p>Xem tiếp từ vị trí cũ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Forms -->
+    <div class="auth-right">
+      <!-- Login Form -->
+      <div class="auth-card" id="loginCard">
+        <h2>Đăng Nhập</h2>
+        <p class="subtitle">Chào mừng trở lại! Tiếp tục xem phim yêu thích</p>
+        
+        <form id="loginForm">
+          <div class="input-group">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="loginEmail" placeholder="Email của bạn" required>
+          </div>
+          
+          <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="loginPassword" placeholder="Mật khẩu" required>
+          </div>
+          
+          <button type="submit" class="btn-primary">
+            Đăng Nhập
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+        
+        <p class="switch-text">
+          Chưa có tài khoản? <a href="#" id="showSignup">Đăng ký ngay</a>
+        </p>
+        
+        <div class="divider"><span>HOẶC</span></div>
+        
+        <button class="btn-guest" id="guestBtn">
+          <i class="fa-solid fa-user"></i>
+          Tiếp tục với Khách
+        </button>
+      </div>
+
+      <!-- Signup Form -->
+      <div class="auth-card hidden" id="signupCard">
+        <h2>Đăng Ký</h2>
+        <p class="subtitle">Tạo tài khoản miễn phí và bắt đầu xem phim</p>
+        
+        <form id="signupForm">
+          <div class="input-group">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="signupName" placeholder="Tên của bạn" required>
+          </div>
+          
+          <div class="input-group">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="signupEmail" placeholder="Email của bạn" required>
+          </div>
+          
+          <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="signupPassword" placeholder="Mật khẩu (tối thiểu 6 ký tự)" required minlength="6">
+          </div>
+          
+          <button type="submit" class="btn-primary">
+            Đăng Ký
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+        
+        <p class="switch-text">
+          Đã có tài khoản? <a href="#" id="showLogin">Đăng nhập</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

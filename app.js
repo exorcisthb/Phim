@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Check authentication status on page load
+  const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+  const isGuest = sessionStorage.getItem('isGuest');
+  
+  if (!isLoggedIn && !isGuest) {
+    // Not logged in - redirect to auth page
+    window.location.href = 'auth.html';
+    return;
+  }
+  
   checkAuth();
   
   let moviesData = [];
@@ -108,9 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Logout function
   function logout() {
     currentUser = null;
-    updateUIAuth();
-    showToast('👋 Đã đăng xuất. Hẹn gặp lại!');
-    showHomeView();
+    sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem('isGuest');
+    window.location.href = 'auth.html';
   }
 
   // Toast notification
