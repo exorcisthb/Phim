@@ -504,8 +504,14 @@ body {
 .history-page-header {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  position: relative;
   margin-bottom: 2rem;
+}
+
+.history-page-header .back-btn {
+  position: absolute;
+  right: calc(100% + 1.5rem);
+  white-space: nowrap;
 }
 
 .history-page-title {
@@ -515,6 +521,13 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+@media (max-width: 760px) {
+  .history-page-header .back-btn {
+    position: static;
+    margin-right: 1rem;
+  }
 }
 
 .history-page-stats {

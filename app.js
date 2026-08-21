@@ -516,8 +516,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroInfoBtn = document.getElementById('heroInfoBtn');
 
   // Header Mode Buttons
-  const modeHlsBtn = document.getElementById('modeHls');
-  const modeLocalBtn = document.getElementById('modeLocal');
 
   let hlsInstance = null;
 
@@ -1409,20 +1407,6 @@ document.addEventListener('DOMContentLoaded', () => {
   btnSwitchLocal.addEventListener('click', () => {
     useCloudStream = false;
     loadVideoSource();
-  });
-
-  modeHlsBtn.addEventListener('click', () => {
-    useCloudStream = true;
-    modeHlsBtn.classList.add('active');
-    modeLocalBtn.classList.remove('active');
-    if (activeMovie) loadVideoSource();
-  });
-
-  modeLocalBtn.addEventListener('click', () => {
-    useCloudStream = false;
-    modeLocalBtn.classList.add('active');
-    modeHlsBtn.classList.remove('active');
-    if (activeMovie) loadVideoSource();
   });
 
   // Type Filter Tabs Event Listeners
