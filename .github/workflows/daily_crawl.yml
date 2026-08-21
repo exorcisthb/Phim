@@ -1,38 +1,115 @@
-name: Daily Auto Movie Crawler
+name: Auto Crawl & Deploy Movies
 
 on:
   schedule:
-    # Chạy lúc 17:00 UTC (00:00 ICT - nửa đêm giờ Hà Nội) mỗi ngày
-    - cron: '0 17 * * *'
+    # Chạy 4 lần mỗi ngày để cập nhật phim mới liên tục
+    - cron: '0 0 * * *'   # 00:00 UTC (07:00 ICT - Sáng sớm)
+    - cron: '0 6 * * *'   # 06:00 UTC (13:00 ICT - Trưa)
+    - cron: '0 12 * * *'  # 12:00 UTC (19:00 ICT - Tối)
+    - cron: '0 18 * * *'  # 18:00 UTC (01:00 ICT - Đêm khuya)
   workflow_dispatch: # Cho phép chạy thủ công từ GitHub Actions UI
 
 jobs:
-  crawl:
+  crawl-and-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
 
     steps:
-      - name: Checkout repository
+      - name: 🔄 Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Set up Python 3.11
+      - name: 🐍 Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests openpyxl
 
-      - name: Run Daily Crawler (Immutable DB - Append Only)
-        run: python auto_daily_crawler.py
-
-      - name: Commit and Push Updated Data
+      - name: 🕷️ Run Movie Crawler (Smart Merge - No Duplicates)
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add movies.json movie_changes_report.xlsx
-          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 [Auto] Cập nhật phim mới $(date +'%Y-%m-%d')"
+          echo "🎬 Starting movie crawler..."
+          python auto_daily_crawler.py
+          echo "✅ Crawler completed!"
+
+      - name: 📊 Check Results
+        id: check_results
+        run: |
+          MOVIE_COUNT=$(python -c "import json; data = json.load(open('movies.json', 'r', encoding='utf-8')); print(len(data))")
+          TOTAL_PAGES=$(python -c "print(($MOVIE_COUNT + 23) // 24)")
+          echo "total_movies=$MOVIE_COUNT" >> $GITHUB_OUTPUT
+          echo "total_pages=$TOTAL_PAGES" >> $GITHUB_OUTPUT
+          echo "📊 Database now has $MOVIE_COUNT movies ($TOTAL_PAGES pages)"
+
+      - name: 🔄 Update cache version in app.js
+        run: |
+          CACHE_VERSION=$(date +'%Y%m%d%H%M')
+          sed -i "s/const cacheVersion = '[^']*';/const cacheVersion = '$CACHE_VERSION';/" app.js
+          echo "✅ Cache version updated to: $CACHE_VERSION"
+
+      - name: 📤 Commit and Push to GitHub
+        run: |
+          git config --global user.name "RoPhim AutoBot"
+          git config --global user.email "bot@rophim.cinema"
+          
+          git add movies.json movie_changes_report.xlsx app.js
+          
+          # Check if there are changes
+          if git diff --staged --quiet; then
+            echo "ℹ️  No new movies found - database is up to date"
+            exit 0
+          fi
+          
+          # Count new movies added
+          NEW_COUNT=$(python -c "
+          import openpyxl
+          try:
+              wb = openpyxl.load_workbook('movie_changes_report.xlsx')
+              ws = wb['Nhật Ký Cập Nhật']
+              count = ws.max_row - 1
+              print(max(0, count))
+          except:
+              print(0)
+          ")
+          
+          TOTAL_MOVIES="${{ steps.check_results.outputs.total_movies }}"
+          TOTAL_PAGES="${{ steps.check_results.outputs.total_pages }}"
+          
+          # Create detailed commit message
+          git commit -m "🤖 Auto-update: +$NEW_COUNT phim | Total: $TOTAL_MOVIES phim ($TOTAL_PAGES trang)
+
+          📅 Auto-crawled: $(date +'%Y-%m-%d %H:%M:%S UTC')
+          🎬 New movies added: $NEW_COUNT
+          📊 Total database: $TOTAL_MOVIES movies
+          📄 Total pages: $TOTAL_PAGES
+          🔄 Cache version updated
+          
+          ✨ Crawler run by GitHub Actions
+          🚀 Website will auto-update in 1-2 minutes"
+          
           git push
+          
+          echo "✅ Successfully pushed $NEW_COUNT new movies to GitHub!"
+          echo "🌐 Production site will update automatically"
+
+      - name: 🎉 Deployment Summary
+        run: |
+          echo "════════════════════════════════════════════"
+          echo "🎬 RoPhim Auto Crawler - Deployment Summary"
+          echo "════════════════════════════════════════════"
+          echo "📊 Total Movies: ${{ steps.check_results.outputs.total_movies }}"
+          echo "📄 Total Pages: ${{ steps.check_results.outputs.total_pages }}"
+          echo "⏰ Completed: $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "🚀 Status: DEPLOYED TO PRODUCTION ✅"
+          echo "════════════════════════════════════════════"
+          echo ""
+          echo "💡 Next scheduled run:"
+          echo "   - 07:00 ICT (Morning)"
+          echo "   - 13:00 ICT (Afternoon)" 
+          echo "   - 19:00 ICT (Evening)"
+          echo "   - 01:00 ICT (Night)"

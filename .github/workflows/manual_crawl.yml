@@ -1,0 +1,104 @@
+name: Manual Crawl (On Demand)
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_pages:
+        description: 'Số trang tối đa để cào (default: 100)'
+        required: false
+        default: '100'
+      force_update:
+        description: 'Force cập nhật cache (yes/no)'
+        required: false
+        default: 'yes'
+
+jobs:
+  manual-crawl:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 🔄 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests openpyxl
+
+      - name: 🕷️ Run Manual Crawler
+        run: |
+          echo "🎬 Starting manual crawler..."
+          echo "📊 Max pages: ${{ github.event.inputs.max_pages }}"
+          python auto_daily_crawler.py
+
+      - name: 📊 Check Results
+        id: results
+        run: |
+          MOVIE_COUNT=$(python -c "import json; data = json.load(open('movies.json', 'r', encoding='utf-8')); print(len(data))")
+          TOTAL_PAGES=$(python -c "print(($MOVIE_COUNT + 23) // 24)")
+          echo "total_movies=$MOVIE_COUNT" >> $GITHUB_OUTPUT
+          echo "total_pages=$TOTAL_PAGES" >> $GITHUB_OUTPUT
+          
+          NEW_COUNT=$(python -c "
+          import openpyxl
+          try:
+              wb = openpyxl.load_workbook('movie_changes_report.xlsx')
+              ws = wb['Nhật Ký Cập Nhật']
+              print(max(0, ws.max_row - 1))
+          except:
+              print(0)
+          ")
+          echo "new_movies=$NEW_COUNT" >> $GITHUB_OUTPUT
+          
+          echo "✅ Crawler completed!"
+          echo "📊 Total: $MOVIE_COUNT movies ($TOTAL_PAGES pages)"
+          echo "🆕 New: $NEW_COUNT movies"
+
+      - name: 🔄 Update cache version
+        if: github.event.inputs.force_update == 'yes'
+        run: |
+          CACHE_VERSION=$(date +'%Y%m%d%H%M')
+          sed -i "s/const cacheVersion = '[^']*';/const cacheVersion = '$CACHE_VERSION';/" app.js
+          echo "✅ Cache version: $CACHE_VERSION"
+
+      - name: 📤 Push to GitHub
+        run: |
+          git config --global user.name "RoPhim Manual Bot"
+          git config --global user.email "manual-bot@rophim.cinema"
+          
+          git add movies.json movie_changes_report.xlsx app.js
+          
+          if git diff --staged --quiet; then
+            echo "ℹ️  No changes to commit"
+            exit 0
+          fi
+          
+          git commit -m "🎯 Manual crawl: +${{ steps.results.outputs.new_movies }} phim | Total: ${{ steps.results.outputs.total_movies }} (${{ steps.results.outputs.total_pages }} trang)
+
+          🔧 Triggered manually by @${{ github.actor }}
+          📅 Date: $(date +'%Y-%m-%d %H:%M:%S UTC')
+          🎬 New movies: ${{ steps.results.outputs.new_movies }}
+          📊 Total database: ${{ steps.results.outputs.total_movies }} movies"
+          
+          git push
+          
+          echo "✅ Pushed successfully!"
+
+      - name: 🎉 Summary
+        run: |
+          echo "════════════════════════════════════════"
+          echo "🎯 Manual Crawl Complete!"
+          echo "════════════════════════════════════════"
+          echo "🆕 New movies: ${{ steps.results.outputs.new_movies }}"
+          echo "📊 Total movies: ${{ steps.results.outputs.total_movies }}"
+          echo "📄 Total pages: ${{ steps.results.outputs.total_pages }}"
+          echo "👤 Triggered by: @${{ github.actor }}"
+          echo "✅ Status: SUCCESS"
+          echo "════════════════════════════════════════"
