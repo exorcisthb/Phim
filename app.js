@@ -97,8 +97,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return str.toLowerCase().trim();
   }
 
-  // 1. Load Movies Database with Cache-Busting
-  fetch('movies.json?t=' + new Date().getTime(), { cache: 'no-store' })
+  // 1. Load Movies Database with Aggressive Cache-Busting
+  const cacheVersion = '20260109'; // Update this when movies.json changes
+  fetch(`movies.json?v=${cacheVersion}&t=` + new Date().getTime(), { 
+    cache: 'no-store',
+    headers: {
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    }
+  })
     .then(res => res.json())
     .then(data => {
       moviesData = data;
