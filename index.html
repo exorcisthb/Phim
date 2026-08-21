@@ -35,6 +35,148 @@
         <i class="fa-solid fa-hard-drive"></i> File MP4 Local
       </button>
     </div>
+
+    <!-- User Auth Section -->
+    <div class="user-section" id="userSection">
+      <!-- Not Logged In -->
+      <div class="auth-buttons" id="authButtons">
+        <button class="auth-btn login-btn" id="openLoginBtn">
+          <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
+        </button>
+        <button class="auth-btn signup-btn" id="openSignupBtn">
+          <i class="fa-solid fa-user-plus"></i> Đăng ký
+        </button>
+      </div>
+
+      <!-- Logged In - User Avatar Dropdown -->
+      <div class="user-avatar-dropdown" id="userAvatarDropdown" style="display: none;">
+        <button class="avatar-btn" id="avatarBtn">
+          <img src="" alt="Avatar" class="avatar-img" id="userAvatar">
+          <span class="user-name" id="userName">User</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="#" class="dropdown-item" id="viewHistoryBtn">
+            <i class="fa-solid fa-clock-rotate-left"></i> Lịch sử xem phim
+          </a>
+          <a href="#" class="dropdown-item" id="viewProfileBtn">
+            <i class="fa-solid fa-user"></i> Tài khoản của tôi
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item logout-item" id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login/Signup Modal -->
+  <div class="auth-modal" id="authModal">
+    <div class="auth-modal-overlay" id="authModalOverlay"></div>
+    <div class="auth-modal-content">
+      <button class="modal-close-btn" id="closeAuthModal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Login Form -->
+      <div class="auth-form" id="loginForm">
+        <div class="auth-header">
+          <h2>Đăng nhập RoPhim</h2>
+          <p>Xem phim và lưu lịch sử của bạn</p>
+        </div>
+        <form id="loginFormElement">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Mật khẩu</label>
+            <input type="password" id="loginPassword" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="auth-submit-btn">
+            <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
+          </button>
+        </form>
+        <p class="auth-switch">
+          Chưa có tài khoản? <a href="#" id="switchToSignup">Đăng ký ngay</a>
+        </p>
+      </div>
+
+      <!-- Signup Form -->
+      <div class="auth-form" id="signupForm" style="display: none;">
+        <div class="auth-header">
+          <h2>Đăng ký RoPhim</h2>
+          <p>Tạo tài khoản miễn phí</p>
+        </div>
+        <form id="signupFormElement">
+          <div class="form-group">
+            <label for="signupName">Tên hiển thị</label>
+            <input type="text" id="signupName" placeholder="Tên của bạn" required>
+          </div>
+          <div class="form-group">
+            <label for="signupEmail">Email</label>
+            <input type="email" id="signupEmail" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">Mật khẩu</label>
+            <input type="password" id="signupPassword" placeholder="••••••••" required minlength="6">
+          </div>
+          <button type="submit" class="auth-submit-btn">
+            <i class="fa-solid fa-user-plus"></i> Đăng ký
+          </button>
+        </form>
+        <p class="auth-switch">
+          Đã có tài khoản? <a href="#" id="switchToLogin">Đăng nhập</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY VIEW (Dedicated Watch History Page) -->
+  <div id="historyView" class="view-section hidden">
+    <div class="container">
+      <div class="history-page-header">
+        <button class="back-btn" id="backToHomeFromHistory">
+          <i class="fa-solid fa-arrow-left"></i> Quay lại trang chủ
+        </button>
+        <h1 class="history-page-title">
+          <i class="fa-solid fa-clock-rotate-left"></i> Lịch Sử Xem Phim
+        </h1>
+      </div>
+
+      <div class="history-page-stats">
+        <div class="stat-box">
+          <i class="fa-solid fa-film"></i>
+          <span id="totalHistoryCount">0</span>
+          <p>Phim đang xem</p>
+        </div>
+        <div class="stat-box">
+          <i class="fa-solid fa-clock"></i>
+          <span id="totalWatchTime">0h</span>
+          <p>Tổng thời gian</p>
+        </div>
+      </div>
+
+      <div class="history-controls">
+        <button class="history-control-btn" id="clearAllHistoryBtn">
+          <i class="fa-solid fa-trash"></i> Xóa tất cả lịch sử
+        </button>
+      </div>
+
+      <div class="movie-grid" id="historyPageGrid">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="empty-history" id="emptyHistory" style="display: none;">
+        <div class="empty-icon">📺</div>
+        <h3>Chưa có lịch sử xem phim</h3>
+        <p>Các phim bạn xem sẽ được lưu tại đây để tiện xem tiếp</p>
+        <button class="btn btn-primary" id="browseMoviesBtn">
+          <i class="fa-solid fa-film"></i> Khám phá phim
+        </button>
+      </div>
+    </div>
   </header>
 
   <!-- WATCH VIEW (Dedicated Watch Page for Single Movie) -->
@@ -53,6 +195,14 @@
       <!-- Massive Cinema Video Player -->
       <div class="cinema-player-wrapper" id="cinemaPlayerWrapper">
         <video id="videoPlayer" controls autoplay poster=""></video>
+        
+        <!-- Current Position Indicator -->
+        <div class="video-position-badge" id="videoPositionBadge">
+          <i class="fa-solid fa-clock"></i>
+          <span id="currentTimeDisplay">0:00</span>
+          <span class="time-separator">/</span>
+          <span id="totalTimeDisplay">0:00</span>
+        </div>
 
         <!-- Video Error Overlay -->
         <div id="videoErrorOverlay" class="video-error-overlay hidden">
@@ -197,6 +347,16 @@
 
         <!-- Slider Carousel Indicator Dots (10 items) -->
         <div class="hero-dots" id="heroDots">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- Watch History Section (Continue Watching) -->
+      <section class="history-section" id="historySection" style="display: none;">
+        <h2 class="section-title">
+          <i class="fa-solid fa-clock-rotate-left"></i> Xem Tiếp
+        </h2>
+        <div class="movie-grid" id="historyGrid">
           <!-- Rendered dynamically -->
         </div>
       </section>

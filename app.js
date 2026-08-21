@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Check authentication status on page load
+  checkAuth();
+  
   let moviesData = [];
   let currentType = 'all';     // 'all', 'single', 'series'
   let currentGenre = 'all';    // 'all', 'Hành Động', etc.
@@ -11,6 +14,438 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const SVG_FALLBACK = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='450' viewBox='0 0 300 450'><rect width='300' height='450' fill='%23181824'/><circle cx='150' cy='200' r='40' fill='%23e50914' opacity='0.8'/><polygon points='140,185 170,200 140,215' fill='%23ffffff'/><text x='150' y='270' fill='%23888888' font-family='sans-serif' font-size='14' text-anchor='middle'>RoPhim Cinema</text></svg>";
 
+  // ===== WATCH HISTORY SYSTEM (localStorage) =====
+  const WATCH_HISTORY_KEY = 'rophim_watch_history';
+  const USER_DATA_KEY = 'rophim_user_data';
+  const MAX_HISTORY_ITEMS = 50;
+
+  // ===== USER AUTHENTICATION SYSTEM =====
+  let currentUser = null;
+
+  // Load user data
+  function loadUserData() {
+    try {
+      const data = localStorage.getItem(USER_DATA_KEY);
+      return data ? JSON.parse(data) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Save user data
+  function saveUserData(userData) {
+    try {
+      localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
+    } catch (e) {
+      console.warn('Failed to save user data');
+    }
+  }
+
+  // Check if user is logged in
+  function checkAuth() {
+    currentUser = loadUserData();
+    updateUIAuth();
+  }
+
+  // Update UI based on auth status
+  function updateUIAuth() {
+    const authButtons = document.getElementById('authButtons');
+    const userAvatarDropdown = document.getElementById('userAvatarDropdown');
+    const userName = document.getElementById('userName');
+    const userAvatar = document.getElementById('userAvatar');
+
+    if (currentUser) {
+      // Logged in
+      authButtons.style.display = 'none';
+      userAvatarDropdown.style.display = 'block';
+      userName.textContent = currentUser.name;
+      userAvatar.src = currentUser.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser.name)}&background=e50914&color=fff&bold=true`;
+    } else {
+      // Not logged in
+      authButtons.style.display = 'flex';
+      userAvatarDropdown.style.display = 'none';
+    }
+  }
+
+  // Signup function
+  function signup(name, email, password) {
+    const userData = {
+      name: name,
+      email: email,
+      password: btoa(password), // Simple encoding (not secure, just for demo)
+      avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=e50914&color=fff&bold=true`,
+      joinDate: Date.now()
+    };
+    
+    saveUserData(userData);
+    currentUser = userData;
+    updateUIAuth();
+    closeAuthModal();
+    showToast('✅ Đăng ký thành công! Chào mừng ' + name);
+  }
+
+  // Login function
+  function login(email, password) {
+    const userData = loadUserData();
+    
+    if (!userData) {
+      showToast('❌ Tài khoản không tồn tại. Vui lòng đăng ký!');
+      return false;
+    }
+    
+    if (userData.email !== email || atob(userData.password) !== password) {
+      showToast('❌ Email hoặc mật khẩu không đúng!');
+      return false;
+    }
+    
+    currentUser = userData;
+    updateUIAuth();
+    closeAuthModal();
+    showToast('✅ Đăng nhập thành công! Chào ' + userData.name);
+    return true;
+  }
+
+  // Logout function
+  function logout() {
+    currentUser = null;
+    updateUIAuth();
+    showToast('👋 Đã đăng xuất. Hẹn gặp lại!');
+    showHomeView();
+  }
+
+  // Toast notification
+  function showToast(message) {
+    let toast = document.getElementById('authToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'authToast';
+      toast.style.cssText = `
+        position: fixed; top: 80px; right: 20px;
+        background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+        color: #fff; font-size: 0.95rem; font-weight: 600;
+        padding: 12px 20px; border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.15);
+        z-index: 10000; pointer-events: none;
+        transition: all 0.3s ease;
+        opacity: 0; transform: translateX(400px);
+      `;
+      document.body.appendChild(toast);
+    }
+    
+    toast.textContent = message;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateX(0)';
+    
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(400px)';
+    }, 3000);
+  }
+
+  // Modal controls
+  function openAuthModal(mode = 'login') {
+    const modal = document.getElementById('authModal');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    
+    modal.classList.add('active');
+    
+    if (mode === 'login') {
+      loginForm.style.display = 'block';
+      signupForm.style.display = 'none';
+    } else {
+      loginForm.style.display = 'none';
+      signupForm.style.display = 'block';
+    }
+  }
+
+  function closeAuthModal() {
+    document.getElementById('authModal').classList.remove('active');
+  }
+
+  // Avatar dropdown toggle
+  document.getElementById('avatarBtn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('userAvatarDropdown').classList.toggle('active');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', () => {
+    document.getElementById('userAvatarDropdown')?.classList.remove('active');
+  });
+
+  // Auth modal event listeners
+  document.getElementById('openLoginBtn')?.addEventListener('click', () => openAuthModal('login'));
+  document.getElementById('openSignupBtn')?.addEventListener('click', () => openAuthModal('signup'));
+  document.getElementById('closeAuthModal')?.addEventListener('click', closeAuthModal);
+  document.getElementById('authModalOverlay')?.addEventListener('click', closeAuthModal);
+  
+  document.getElementById('switchToSignup')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openAuthModal('signup');
+  });
+  
+  document.getElementById('switchToLogin')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openAuthModal('login');
+  });
+
+  // Login form submit
+  document.getElementById('loginFormElement')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    login(email, password);
+  });
+
+  // Signup form submit
+  document.getElementById('signupFormElement')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    
+    if (password.length < 6) {
+      showToast('❌ Mật khẩu phải có ít nhất 6 ký tự!');
+      return;
+    }
+    
+    signup(name, email, password);
+  });
+
+  // Logout button
+  document.getElementById('logoutBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    logout();
+  });
+
+  // View history page
+  document.getElementById('viewHistoryBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    showHistoryView();
+  });
+
+  // Back to home from history
+  document.getElementById('backToHomeFromHistory')?.addEventListener('click', showHomeView);
+  document.getElementById('browseMoviesBtn')?.addEventListener('click', showHomeView);
+
+  // Clear all history
+  document.getElementById('clearAllHistoryBtn')?.addEventListener('click', () => {
+    if (confirm('Xóa toàn bộ lịch sử xem phim?')) {
+      localStorage.removeItem(WATCH_HISTORY_KEY);
+      renderHistoryPage();
+      showToast('🗑️ Đã xóa toàn bộ lịch sử');
+    }
+  });
+
+  // Load watch history from localStorage
+  function getWatchHistory() {
+    try {
+      const data = localStorage.getItem(WATCH_HISTORY_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  // Save watch history to localStorage
+  function saveWatchHistory(history) {
+    try {
+      localStorage.setItem(WATCH_HISTORY_KEY, JSON.stringify(history));
+    } catch (e) {
+      console.warn('Failed to save watch history');
+    }
+  }
+
+  // Update watch history when user watches a movie
+  function updateWatchHistory(movie, currentTime, duration) {
+    if (!movie || !duration || currentTime < 10) return; // Skip if less than 10s watched
+    
+    const progress = Math.min(100, Math.max(0, (currentTime / duration) * 100));
+    
+    // Skip if almost finished (>95%)
+    if (progress > 95) {
+      removeFromWatchHistory(movie.id);
+      return;
+    }
+
+    let history = getWatchHistory();
+    
+    // Remove existing entry for this movie
+    history = history.filter(item => item.id !== movie.id);
+    
+    // Add to beginning
+    history.unshift({
+      id: movie.id,
+      title: movie.title,
+      poster: movie.poster,
+      year: movie.year,
+      genre: movie.genre,
+      currentTime: Math.floor(currentTime),
+      duration: Math.floor(duration),
+      progress: Math.floor(progress),
+      timestamp: Date.now(),
+      episodeIndex: activeEpisodeIndex || 0
+    });
+    
+    // Keep only MAX_HISTORY_ITEMS
+    if (history.length > MAX_HISTORY_ITEMS) {
+      history = history.slice(0, MAX_HISTORY_ITEMS);
+    }
+    
+    saveWatchHistory(history);
+  }
+
+  // Remove from watch history
+  function removeFromWatchHistory(movieId) {
+    let history = getWatchHistory();
+    history = history.filter(item => item.id !== movieId);
+    saveWatchHistory(history);
+    renderWatchHistory(); // Re-render
+  }
+
+  // Resume watching from saved position
+  function resumeFromHistory(movieId) {
+    const history = getWatchHistory();
+    const item = history.find(h => h.id === movieId);
+    
+    if (!item) return;
+    
+    const movie = moviesData.find(m => m.id === movieId);
+    if (!movie) return;
+    
+    // Set episode index if series
+    if (item.episodeIndex) {
+      activeEpisodeIndex = item.episodeIndex;
+    }
+    
+    showWatchView(movie);
+    
+    // Wait for video to load, then seek to saved position
+    const checkVideoReady = setInterval(() => {
+      if (videoPlayer.readyState >= 2 && videoPlayer.duration > 0) {
+        clearInterval(checkVideoReady);
+        videoPlayer.currentTime = item.currentTime;
+        showSeekToast(`⏩ Tiếp tục từ ${formatTime(item.currentTime)}`);
+      }
+    }, 100);
+    
+    setTimeout(() => clearInterval(checkVideoReady), 5000); // Stop checking after 5s
+  }
+
+  // Format seconds to MM:SS
+  function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+
+  // Render watch history section on home page
+  function renderWatchHistory() {
+    const history = getWatchHistory();
+    const historySection = document.getElementById('historySection');
+    
+    if (!historySection) return;
+    
+    if (history.length === 0) {
+      historySection.style.display = 'none';
+      return;
+    }
+    
+    historySection.style.display = 'block';
+    const historyGrid = document.getElementById('historyGrid');
+    
+    historyGrid.innerHTML = history.map(item => `
+      <div class="history-card" data-id="${item.id}">
+        <div class="card-poster-wrapper">
+          <img class="card-poster" src="${item.poster}" alt="${item.title}" loading="lazy" onerror="this.onerror=null; this.src='${SVG_FALLBACK}';">
+          <div class="history-progress-overlay">
+            <div class="history-progress-bar" style="width: ${item.progress}%"></div>
+          </div>
+          <div class="history-time-badge">${formatTime(item.currentTime)} / ${formatTime(item.duration)}</div>
+          <button class="history-remove-btn" data-id="${item.id}" title="Xóa khỏi lịch sử">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <div class="card-play-overlay">
+            <div class="play-icon">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">${item.title}</h3>
+          <div class="card-sub">
+            <span>${item.year} • ${item.genre}</span>
+            <span class="history-badge">📺 ${item.progress}% đã xem</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    
+    // Add click listeners
+    historyGrid.querySelectorAll('.history-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Don't trigger if clicking remove button
+        if (e.target.closest('.history-remove-btn')) return;
+        
+        const id = parseInt(card.getAttribute('data-id'));
+        resumeFromHistory(id);
+      });
+    });
+    
+    // Remove buttons
+    historyGrid.querySelectorAll('.history-remove-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = parseInt(btn.getAttribute('data-id'));
+        removeFromWatchHistory(id);
+      });
+    });
+  }
+
+  // Auto-save watch progress every 10 seconds
+  let saveProgressInterval = null;
+  
+  function startAutoSaveProgress() {
+    stopAutoSaveProgress();
+    saveProgressInterval = setInterval(() => {
+      if (activeMovie && videoPlayer && !videoPlayer.paused && videoPlayer.duration > 0) {
+        updateWatchHistory(activeMovie, videoPlayer.currentTime, videoPlayer.duration);
+      }
+    }, 10000); // Every 10 seconds
+  }
+  
+  function stopAutoSaveProgress() {
+    if (saveProgressInterval) {
+      clearInterval(saveProgressInterval);
+      saveProgressInterval = null;
+    }
+  }
+
+  // Save on video pause/ended/before unload
+  if (videoPlayer) {
+    videoPlayer.addEventListener('pause', () => {
+      if (activeMovie && videoPlayer.duration > 0) {
+        updateWatchHistory(activeMovie, videoPlayer.currentTime, videoPlayer.duration);
+      }
+    });
+    
+    videoPlayer.addEventListener('ended', () => {
+      if (activeMovie) {
+        removeFromWatchHistory(activeMovie.id);
+        renderWatchHistory();
+      }
+    });
+  }
+
+  // Save before user leaves page
+  window.addEventListener('beforeunload', () => {
+    if (activeMovie && videoPlayer && videoPlayer.duration > 0) {
+      updateWatchHistory(activeMovie, videoPlayer.currentTime, videoPlayer.duration);
+    }
+  });
+
   // Pagination Variables
   const ITEMS_PER_PAGE = 24;
   let currentPage = 1;
@@ -18,6 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // DOM Elements - Views
   const homeView = document.getElementById('homeView');
   const watchView = document.getElementById('watchView');
+  const historyView = document.getElementById('historyView');
 
   // DOM Elements - Home
   const movieGrid = document.getElementById('movieGrid');
@@ -114,6 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupHeroCarousel(moviesData);
       }
       renderMovies();
+      renderWatchHistory(); // Render watch history on load
 
       // Check URL hash to restore view on load or refresh
       const hashMatch = window.location.hash.match(/^#watch-(\d+)$/);
@@ -428,6 +865,9 @@ document.addEventListener('DOMContentLoaded', () => {
     watchView.classList.add('hidden');
     homeView.classList.remove('hidden');
 
+    // Stop auto-save watch progress
+    stopAutoSaveProgress();
+
     videoPlayer.pause();
     if (hlsInstance) {
       hlsInstance.destroy();
@@ -435,12 +875,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     videoPlayer.src = '';
     
+    // Render watch history
+    renderWatchHistory();
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function openWatchViewDOM(movie) {
     activeMovie = movie;
     activeEpisodeIndex = 0;
+
+    // Start auto-save watch progress
+    startAutoSaveProgress();
 
     // Populate Details
     watchBreadcrumbTitle.textContent = movie.title;
@@ -599,6 +1045,97 @@ document.addEventListener('DOMContentLoaded', () => {
   function showWatchView(movie) {
     history.pushState({ view: 'watch', movieId: movie.id }, '', `#watch-${movie.id}`);
     openWatchViewDOM(movie);
+  }
+
+  // Switch to History View
+  function showHistoryView() {
+    homeView.classList.add('hidden');
+    watchView.classList.add('hidden');
+    historyView.classList.remove('hidden');
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    renderHistoryPage();
+  }
+
+  // Render history page
+  function renderHistoryPage() {
+    const history = getWatchHistory();
+    const historyPageGrid = document.getElementById('historyPageGrid');
+    const emptyHistory = document.getElementById('emptyHistory');
+    const totalHistoryCount = document.getElementById('totalHistoryCount');
+    const totalWatchTime = document.getElementById('totalWatchTime');
+    
+    if (history.length === 0) {
+      historyPageGrid.style.display = 'none';
+      emptyHistory.style.display = 'block';
+      if (totalHistoryCount) totalHistoryCount.textContent = '0';
+      if (totalWatchTime) totalWatchTime.textContent = '0h';
+      return;
+    }
+    
+    historyPageGrid.style.display = 'grid';
+    emptyHistory.style.display = 'none';
+    
+    // Calculate stats
+    const totalMinutes = history.reduce((sum, item) => sum + Math.floor(item.currentTime / 60), 0);
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    
+    if (totalHistoryCount) totalHistoryCount.textContent = history.length;
+    if (totalWatchTime) totalWatchTime.textContent = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+    
+    historyPageGrid.innerHTML = history.map(item => {
+      const movie = moviesData.find(m => m.id === item.id);
+      const isSeries = movie && movie.episodes && movie.episodes.length > 1;
+      const episodeInfo = isSeries && item.episodeIndex >= 0 ? `Tập ${item.episodeIndex + 1}` : '';
+      
+      return `
+        <div class="history-card" data-id="${item.id}">
+          <div class="card-poster-wrapper">
+            <img class="card-poster" src="${item.poster}" alt="${item.title}" loading="lazy" onerror="this.onerror=null; this.src='${SVG_FALLBACK}';">
+            <div class="history-progress-overlay">
+              <div class="history-progress-bar" style="width: ${item.progress}%"></div>
+            </div>
+            <div class="history-time-badge">${formatTime(item.currentTime)} / ${formatTime(item.duration)}</div>
+            ${episodeInfo ? `<div class="history-episode-badge">${episodeInfo}</div>` : ''}
+            <button class="history-remove-btn" data-id="${item.id}" title="Xóa khỏi lịch sử">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="card-play-overlay">
+              <div class="play-icon">
+                <i class="fa-solid fa-play"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-title">${item.title}</h3>
+            <div class="card-sub">
+              <span>${item.year} • ${item.genre}</span>
+              <span class="history-badge">📺 ${item.progress}%</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    // Add click listeners
+    historyPageGrid.querySelectorAll('.history-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.history-remove-btn')) return;
+        const id = parseInt(card.getAttribute('data-id'));
+        resumeFromHistory(id);
+      });
+    });
+    
+    // Remove buttons
+    historyPageGrid.querySelectorAll('.history-remove-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = parseInt(btn.getAttribute('data-id'));
+        removeFromWatchHistory(id);
+        renderHistoryPage();
+      });
+    });
   }
 
   // Handle browser Back/Forward button
@@ -955,6 +1492,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (watchView.classList.contains('hidden')) return;
     if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+    
+    // Arrow Left/Right: Seek -10s / +10s
     if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
       e.preventDefault();
       e.stopPropagation();
@@ -965,6 +1504,26 @@ document.addEventListener('DOMContentLoaded', () => {
         videoPlayer.currentTime = Math.min(videoPlayer.duration || Infinity, videoPlayer.currentTime + 10);
         showSeekToast('⏩ +10s');
       }
+      resetInactivityTimer();
+    }
+    
+    // Space: Play/Pause toggle
+    if (e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      e.stopPropagation();
+      if (videoPlayer.paused) {
+        videoPlayer.play();
+      } else {
+        videoPlayer.pause();
+      }
+      resetInactivityTimer();
+    }
+    
+    // F key: Toggle fullscreen
+    if (e.key === 'f' || e.key === 'F') {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleFullscreen();
       resetInactivityTimer();
     }
   }, true);
@@ -1015,29 +1574,6 @@ document.addEventListener('DOMContentLoaded', () => {
     videoPlayer.addEventListener('volumechange', resetInactivityTimer);
     videoPlayer.addEventListener('fullscreenchange', resetInactivityTimer);
   }
-
-  // Keyboard events (Space for play/pause, F for fullscreen, Arrow keys for seek)
-  document.addEventListener('keydown', (e) => {
-    if (watchView.classList.contains('hidden')) return;
-    if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-    
-    if (e.key === ' ' || e.key === 'Spacebar') {
-      e.preventDefault();
-      if (videoPlayer.paused) {
-        videoPlayer.play();
-      } else {
-        videoPlayer.pause();
-      }
-      resetInactivityTimer();
-    }
-    
-    // Press F to toggle fullscreen
-    if (e.key === 'f' || e.key === 'F') {
-      e.preventDefault();
-      toggleFullscreen();
-      resetInactivityTimer();
-    }
-  });
 
   // Toggle Fullscreen Function
   function toggleFullscreen() {
