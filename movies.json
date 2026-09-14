@@ -189353,5 +189353,65 @@
     ],
     "id": 3506,
     "rating": 4.3
+  },
+  {
+    "slug": "goc-bep-ky-tai-phan-1",
+    "title": "Góc Bếp Kỳ Tài (Phần 1)",
+    "origin_title": "The Bear (Season 1)",
+    "year": 2022,
+    "genre": "Hài",
+    "country": "Mỹ",
+    "type": "series",
+    "quality": "1080p FHD",
+    "duration": "8 Tập (28 phút/tập)",
+    "poster": "https://phimimg.com/upload/vod/20250704-1/1e5439a4142987247db1083e70963304.jpg",
+    "backdrop": "https://phimimg.com/upload/vod/20250704-1/923eaf4da6f0eb5b394ada75295fe5cd.jpg",
+    "description": "Carmen “Carmy” Berzatto, một đầu bếp trẻ đến từ thế giới ẩm thực cao cấp, trở về nhà ở Chicago để điều hành cửa hàng bánh sandwich của gia đình sau cái chết đau lòng. Khi Carmy chiến đấu để biến đổi nhà hàng và chính bản thân mình, cuối cùng đội ngũ bếp thô lỗ của anh ấy cũng tiết lộ họ là gia đì...",
+    "m3u8_url": "https://s6.kkphimplayer6.com/20250704/ms6FOSRV/index.m3u8",
+    "local_mp4": "E:\\Phim\\Phim_Le_MP4\\goc-bep-ky-tai-phan-1.mp4",
+    "episodes": [
+      {
+        "name": "Tập 01",
+        "slug": "tap-01",
+        "link_m3u8": "https://s6.kkphimplayer6.com/20250704/ms6FOSRV/index.m3u8"
+      },
+      {
+        "name": "Tập 02",
+        "slug": "tap-02",
+        "link_m3u8": "https://s6.kkphimplayer6.com/20250704/M7MmxMf0/index.m3u8"
+      },
+      {
+        "name": "Tập 03",
+        "slug": "tap-03",
+        "link_m3u8": "https://s6.kkphimplayer6.com/20250704/MYp42pco/index.m3u8"
+      },
+      {
+        "name": "Tập 04",
+        "slug": "tap-04",
+        "link_m3u8": "https://s6.kkphimplayer6.com/20250704/L34NpXcv/index.m3u8"
+      },
+      {
+        "name": "Tập 05",
+        "slug": "tap-05",
+        "link_m3u8": "https://s6.kkphimplayer6.com/20250704/TQZSv2fS/index.m3u8"
+      },
+      {
+        "name": "Tập 06",
+        "slug": "tap-06",
+        "link_m3u8": "https://s6.kkphimplayer6.com/20250704/lHWMbNiP/index.m3u8"
+      },
+      {
+        "name": "Tập 07",
+        "slug": "tap-07",
+        "link_m3u8": "https://s6.kkphimplayer6.com/20250704/Bz6AKelo/index.m3u8"
+      },
+      {
+        "name": "Tập 08",
+        "slug": "tap-08",
+        "link_m3u8": "https://s6.kkphimplayer6.com/20250704/D8lhUecI/index.m3u8"
+      }
+    ],
+    "id": 3507,
+    "rating": 4.3
   }
 ]
