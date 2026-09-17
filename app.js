@@ -556,7 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 1. Load Movies Database with Aggressive Cache-Busting
-  const cacheVersion = '202609170416'; // Update this when movies.json changes
+  const cacheVersion = '202609171036'; // Update this when movies.json changes
   fetch(`movies.json?v=${cacheVersion}&t=` + new Date().getTime(), { 
     cache: 'no-store',
     headers: {
