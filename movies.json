@@ -195828,5 +195828,65 @@
     ],
     "id": 3632,
     "rating": 4.3
+  },
+  {
+    "slug": "the-gioi-vien-tay-phan-3",
+    "title": "Thế Giới Viễn Tây (Phần 3)",
+    "origin_title": "Westworld (Season 3)",
+    "year": 2020,
+    "genre": "Viễn Tưởng",
+    "country": "Mỹ",
+    "type": "series",
+    "quality": "1080p FHD",
+    "duration": "8 Tập (68 phút/tập)",
+    "poster": "https://phimimg.com/uploads/movies/20261017/the-gioi-vien-tay-phan-3-poster.webp",
+    "backdrop": "https://phimimg.com/uploads/movies/20261017/the-gioi-vien-tay-phan-3-thumb.webp",
+    "description": "Thế giới miền Tây (tiếng Anh: Westworld) là một bộ phim khoa học viễn tưởng miền Tây rùng rợn do tiểu thuyết gia Michael Crichton đạo diễn và viết kịch bản nói về những con rô-bốt trong công viên giải trí gặp sự cố và bắt đầu giết hại du khách tới đây. Phim có sự tham gia của Yul Brynner vai Guns...",
+    "m3u8_url": "https://a.kvp726.com/20261017/XoGgZBhG/index.m3u8",
+    "local_mp4": "E:\\Phim\\Phim_Le_MP4\\the-gioi-vien-tay-phan-3.mp4",
+    "episodes": [
+      {
+        "name": "Tập 01",
+        "slug": "tap-01",
+        "link_m3u8": "https://a.kvp726.com/20261017/XoGgZBhG/index.m3u8"
+      },
+      {
+        "name": "Tập 02",
+        "slug": "tap-02",
+        "link_m3u8": "https://a.kvp726.com/20261016/LgCaiomx/index.m3u8"
+      },
+      {
+        "name": "Tập 03",
+        "slug": "tap-03",
+        "link_m3u8": "https://a.kvp726.com/20261016/0jIs6yp5/index.m3u8"
+      },
+      {
+        "name": "Tập 04",
+        "slug": "tap-04",
+        "link_m3u8": "https://a.kvp726.com/20261016/PXAU9vjt/index.m3u8"
+      },
+      {
+        "name": "Tập 05",
+        "slug": "tap-05",
+        "link_m3u8": "https://a.kvp726.com/20261016/YBIEL9At/index.m3u8"
+      },
+      {
+        "name": "Tập 06",
+        "slug": "tap-06",
+        "link_m3u8": "https://a.kvp726.com/20261017/vNHQrsCT/index.m3u8"
+      },
+      {
+        "name": "Tập 07",
+        "slug": "tap-07",
+        "link_m3u8": "https://a.kvp726.com/20261016/xKC0R6Yl/index.m3u8"
+      },
+      {
+        "name": "Tập 08",
+        "slug": "tap-08",
+        "link_m3u8": "https://a.kvp726.com/20261017/SYoeqyfP/index.m3u8"
+      }
+    ],
+    "id": 3633,
+    "rating": 4.3
   }
 ]
