@@ -196943,5 +196943,60 @@
     ],
     "id": 3660,
     "rating": 4.3
+  },
+  {
+    "slug": "lupin-phan-3",
+    "title": "Lupin (Phần 3)",
+    "origin_title": "Lupin (Season 3)",
+    "year": 2023,
+    "genre": "Hành Động",
+    "country": "Mỹ",
+    "type": "series",
+    "quality": "1080p FHD",
+    "duration": "7 Tập (50 phút/tập)",
+    "poster": "https://phimimg.com/uploads/movies/20261024/lupin-phan-3-poster.webp",
+    "backdrop": "https://phimimg.com/uploads/movies/20261024/lupin-phan-3-thumb.webp",
+    "description": "Lấy cảm hứng từ những cuộc phiêu lưu của Arsène Lupin, tên trộm lịch lãm Assane Diop tiến hành trả thù một gia đình giàu có để đòi lại công lý cho cha.",
+    "m3u8_url": "https://s2.phim1280.tv/20240118/YF0vHc0L/index.m3u8",
+    "local_mp4": "E:\\Phim\\Phim_Le_MP4\\lupin-phan-3.mp4",
+    "episodes": [
+      {
+        "name": "Tập 01",
+        "slug": "tap-01",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/YF0vHc0L/index.m3u8"
+      },
+      {
+        "name": "Tập 02",
+        "slug": "tap-02",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/ywK62pjJ/index.m3u8"
+      },
+      {
+        "name": "Tập 03",
+        "slug": "tap-03",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/3lrsytYd/index.m3u8"
+      },
+      {
+        "name": "Tập 04",
+        "slug": "tap-04",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/ts9XYQE7/index.m3u8"
+      },
+      {
+        "name": "Tập 05",
+        "slug": "tap-05",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/XfDjcqFG/index.m3u8"
+      },
+      {
+        "name": "Tập 06",
+        "slug": "tap-06",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/2SBQer13/index.m3u8"
+      },
+      {
+        "name": "Tập 07",
+        "slug": "tap-07",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/4tKh3vBd/index.m3u8"
+      }
+    ],
+    "id": 3661,
+    "rating": 4.3
   }
 ]
