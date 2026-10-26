@@ -176105,6 +176105,61 @@
     "rating": 4.5
   },
   {
+    "slug": "sieu-trom-lupin-phan-3",
+    "title": "Siêu Trộm Lupin (Phần 3)",
+    "origin_title": "Lupin (Season 3)",
+    "year": 2023,
+    "genre": "Hành Động",
+    "country": "Mỹ",
+    "type": "series",
+    "quality": "1080p FHD",
+    "duration": "7 Tập (50 phút/tập)",
+    "poster": "https://phimimg.com/uploads/movies/20261024/lupin-phan-3-poster.webp",
+    "backdrop": "https://phimimg.com/uploads/movies/20261024/lupin-phan-3-thumb.webp",
+    "description": "Lấy cảm hứng từ những cuộc phiêu lưu của Arsène Lupin, tên trộm lịch lãm Assane Diop tiến hành trả thù một gia đình giàu có để đòi lại công lý cho cha.",
+    "m3u8_url": "https://s2.phim1280.tv/20240118/YF0vHc0L/index.m3u8",
+    "local_mp4": "E:\\Phim\\Phim_Le_MP4\\sieu-trom-lupin-phan-3.mp4",
+    "episodes": [
+      {
+        "name": "Tập 01",
+        "slug": "tap-01",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/YF0vHc0L/index.m3u8"
+      },
+      {
+        "name": "Tập 02",
+        "slug": "tap-02",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/ywK62pjJ/index.m3u8"
+      },
+      {
+        "name": "Tập 03",
+        "slug": "tap-03",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/3lrsytYd/index.m3u8"
+      },
+      {
+        "name": "Tập 04",
+        "slug": "tap-04",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/ts9XYQE7/index.m3u8"
+      },
+      {
+        "name": "Tập 05",
+        "slug": "tap-05",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/XfDjcqFG/index.m3u8"
+      },
+      {
+        "name": "Tập 06",
+        "slug": "tap-06",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/2SBQer13/index.m3u8"
+      },
+      {
+        "name": "Tập 07",
+        "slug": "tap-07",
+        "link_m3u8": "https://s2.phim1280.tv/20240118/4tKh3vBd/index.m3u8"
+      }
+    ],
+    "id": 3328,
+    "rating": 4.5
+  },
+  {
     "slug": "giang-sinh-doan-tu",
     "title": "Giáng Sinh Đoàn Tụ",
     "origin_title": "A Season For Family",
@@ -176126,7 +176181,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251211/dvIn1GfZ/index.m3u8"
       }
     ],
-    "id": 3328,
+    "id": 3329,
     "rating": 4.4
   },
   {
@@ -176191,7 +176246,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240325/Jt5zWiTb/index.m3u8"
       }
     ],
-    "id": 3329,
+    "id": 3330,
     "rating": 4.4
   },
   {
@@ -176291,7 +176346,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240308/jOX5LZ34/index.m3u8"
       }
     ],
-    "id": 3330,
+    "id": 3331,
     "rating": 4.4
   },
   {
@@ -176341,7 +176396,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20231216/gXTsczhy/index.m3u8"
       }
     ],
-    "id": 3331,
+    "id": 3332,
     "rating": 4.4
   },
   {
@@ -176366,7 +176421,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260112/XEZ6lPYE/index.m3u8"
       }
     ],
-    "id": 3332,
+    "id": 3333,
     "rating": 4.4
   },
   {
@@ -176391,7 +176446,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260508/SD1C9oK9/index.m3u8"
       }
     ],
-    "id": 3333,
+    "id": 3334,
     "rating": 4.4
   },
   {
@@ -176416,7 +176471,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240309/sx5auR9v/index.m3u8"
       }
     ],
-    "id": 3334,
+    "id": 3335,
     "rating": 4.4
   },
   {
@@ -176441,7 +176496,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260307/dCGPK7n4/index.m3u8"
       }
     ],
-    "id": 3335,
+    "id": 3336,
     "rating": 4.4
   },
   {
@@ -176466,7 +176521,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251014/zyjQvCCt/index.m3u8"
       }
     ],
-    "id": 3336,
+    "id": 3337,
     "rating": 4.4
   },
   {
@@ -176516,7 +176571,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260816/O3sJrRjs/index.m3u8"
       }
     ],
-    "id": 3337,
+    "id": 3338,
     "rating": 4.4
   },
   {
@@ -176541,7 +176596,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251121/IbTrkTFW/index.m3u8"
       }
     ],
-    "id": 3338,
+    "id": 3339,
     "rating": 4.4
   },
   {
@@ -176566,7 +176621,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260117/XB3A9vAE/index.m3u8"
       }
     ],
-    "id": 3339,
+    "id": 3340,
     "rating": 4.4
   },
   {
@@ -176626,7 +176681,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240326/JPe3PiyU/index.m3u8"
       }
     ],
-    "id": 3340,
+    "id": 3341,
     "rating": 4.4
   },
   {
@@ -176651,7 +176706,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260710/YoZASIbJ/index.m3u8"
       }
     ],
-    "id": 3341,
+    "id": 3342,
     "rating": 4.4
   },
   {
@@ -176676,7 +176731,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260818/GS9oTGKM/index.m3u8"
       }
     ],
-    "id": 3342,
+    "id": 3343,
     "rating": 4.4
   },
   {
@@ -176701,7 +176756,7 @@
         "link_m3u8": "https://vip.opstream90.com/20251028/16280_5d08d9a6/index.m3u8"
       }
     ],
-    "id": 3343,
+    "id": 3344,
     "rating": 4.4
   },
   {
@@ -176726,7 +176781,7 @@
         "link_m3u8": "https://vip.opstream11.com/20230912/47092_89c2f7b3/index.m3u8"
       }
     ],
-    "id": 3344,
+    "id": 3345,
     "rating": 4.4
   },
   {
@@ -176751,7 +176806,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20230712/oJXKzNTp/index.m3u8"
       }
     ],
-    "id": 3345,
+    "id": 3346,
     "rating": 4.4
   },
   {
@@ -176806,7 +176861,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260315/8cXguCwx/index.m3u8"
       }
     ],
-    "id": 3346,
+    "id": 3347,
     "rating": 4.4
   },
   {
@@ -176876,7 +176931,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241022/ITSLeraj/index.m3u8"
       }
     ],
-    "id": 3347,
+    "id": 3348,
     "rating": 4.4
   },
   {
@@ -176931,7 +176986,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20230926/NzWzJK5P/index.m3u8"
       }
     ],
-    "id": 3348,
+    "id": 3349,
     "rating": 4.4
   },
   {
@@ -176991,7 +177046,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260305/AVA5AfeN/index.m3u8"
       }
     ],
-    "id": 3349,
+    "id": 3350,
     "rating": 4.4
   },
   {
@@ -177051,7 +177106,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20250222/kiXIe8x1/index.m3u8"
       }
     ],
-    "id": 3350,
+    "id": 3351,
     "rating": 4.4
   },
   {
@@ -177131,7 +177186,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250525/sbgvAT13/index.m3u8"
       }
     ],
-    "id": 3351,
+    "id": 3352,
     "rating": 4.4
   },
   {
@@ -177156,7 +177211,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250928/wuZ80aWI/index.m3u8"
       }
     ],
-    "id": 3352,
+    "id": 3353,
     "rating": 4.4
   },
   {
@@ -177431,7 +177486,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241008/vLPaPYqz/index.m3u8"
       }
     ],
-    "id": 3353,
+    "id": 3354,
     "rating": 4.4
   },
   {
@@ -177466,7 +177521,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/NfKrNPA1/index.m3u8"
       }
     ],
-    "id": 3354,
+    "id": 3355,
     "rating": 4.4
   },
   {
@@ -177491,7 +177546,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260112/RSrG3zsP/index.m3u8"
       }
     ],
-    "id": 3355,
+    "id": 3356,
     "rating": 4.4
   },
   {
@@ -177571,7 +177626,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20230929/V4TAbcKY/index.m3u8"
       }
     ],
-    "id": 3356,
+    "id": 3357,
     "rating": 4.4
   },
   {
@@ -177641,7 +177696,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250308/QVfW3WE5/index.m3u8"
       }
     ],
-    "id": 3357,
+    "id": 3358,
     "rating": 4.4
   },
   {
@@ -177706,7 +177761,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240112/mMXxaw1T/index.m3u8"
       }
     ],
-    "id": 3358,
+    "id": 3359,
     "rating": 4.4
   },
   {
@@ -177786,7 +177841,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240530/aIbAq5dF/index.m3u8"
       }
     ],
-    "id": 3359,
+    "id": 3360,
     "rating": 4.4
   },
   {
@@ -177811,7 +177866,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260101/p1WR2ico/index.m3u8"
       }
     ],
-    "id": 3360,
+    "id": 3361,
     "rating": 4.4
   },
   {
@@ -177891,7 +177946,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240120/1wVOvZYs/index.m3u8"
       }
     ],
-    "id": 3361,
+    "id": 3362,
     "rating": 4.4
   },
   {
@@ -177936,7 +177991,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20231218/dl9imaxO/index.m3u8"
       }
     ],
-    "id": 3362,
+    "id": 3363,
     "rating": 4.4
   },
   {
@@ -177996,7 +178051,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240601/r4xDzVrq/index.m3u8"
       }
     ],
-    "id": 3363,
+    "id": 3364,
     "rating": 4.4
   },
   {
@@ -178076,7 +178131,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20231231/qW5qXS3r/index.m3u8"
       }
     ],
-    "id": 3364,
+    "id": 3365,
     "rating": 4.4
   },
   {
@@ -178116,7 +178171,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260331/HE0TzZdL/index.m3u8"
       }
     ],
-    "id": 3365,
+    "id": 3366,
     "rating": 4.4
   },
   {
@@ -178216,7 +178271,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240503/ouhTpRla/index.m3u8"
       }
     ],
-    "id": 3366,
+    "id": 3367,
     "rating": 4.4
   },
   {
@@ -178276,7 +178331,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240222/l1oWq2kr/index.m3u8"
       }
     ],
-    "id": 3367,
+    "id": 3368,
     "rating": 4.4
   },
   {
@@ -178356,7 +178411,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240606/ChM5UlJ4/index.m3u8"
       }
     ],
-    "id": 3368,
+    "id": 3369,
     "rating": 4.4
   },
   {
@@ -178381,7 +178436,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250513/ZU0dQxi5/index.m3u8"
       }
     ],
-    "id": 3369,
+    "id": 3370,
     "rating": 4.4
   },
   {
@@ -178406,7 +178461,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20230928/x8ax0Mnn/index.m3u8"
       }
     ],
-    "id": 3370,
+    "id": 3371,
     "rating": 4.4
   },
   {
@@ -178431,7 +178486,7 @@
         "link_m3u8": "https://vip.opstream90.com/20260316/27310_36784239/index.m3u8"
       }
     ],
-    "id": 3371,
+    "id": 3372,
     "rating": 4.4
   },
   {
@@ -178456,7 +178511,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260323/GAI9zVLk/index.m3u8"
       }
     ],
-    "id": 3372,
+    "id": 3373,
     "rating": 4.4
   },
   {
@@ -178481,7 +178536,7 @@
         "link_m3u8": "https://vip.opstream15.com/20221030/27820_cfdee6f7/index.m3u8"
       }
     ],
-    "id": 3373,
+    "id": 3374,
     "rating": 4.4
   },
   {
@@ -178506,7 +178561,7 @@
         "link_m3u8": "https://vip.opstream14.com/20220920/21720_fe857fb7/index.m3u8"
       }
     ],
-    "id": 3374,
+    "id": 3375,
     "rating": 4.4
   },
   {
@@ -178531,7 +178586,7 @@
         "link_m3u8": "https://vip.opstream11.com/20220326/33852_b74d9a12/index.m3u8"
       }
     ],
-    "id": 3375,
+    "id": 3376,
     "rating": 4.4
   },
   {
@@ -178596,7 +178651,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240301/ZVbLH19J/index.m3u8"
       }
     ],
-    "id": 3376,
+    "id": 3377,
     "rating": 4.4
   },
   {
@@ -178696,7 +178751,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260218/2n6AtBWr/index.m3u8"
       }
     ],
-    "id": 3377,
+    "id": 3378,
     "rating": 4.4
   },
   {
@@ -178766,7 +178821,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260818/exM0JIpq/index.m3u8"
       }
     ],
-    "id": 3378,
+    "id": 3379,
     "rating": 4.4
   },
   {
@@ -178866,7 +178921,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240505/peMNfQO0/index.m3u8"
       }
     ],
-    "id": 3379,
+    "id": 3380,
     "rating": 4.4
   },
   {
@@ -178976,7 +179031,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240329/CCtomadv/index.m3u8"
       }
     ],
-    "id": 3380,
+    "id": 3381,
     "rating": 4.4
   },
   {
@@ -179001,7 +179056,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240121/3GXWZiTy/index.m3u8"
       }
     ],
-    "id": 3381,
+    "id": 3382,
     "rating": 4.4
   },
   {
@@ -179101,7 +179156,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240601/33zaMTdS/index.m3u8"
       }
     ],
-    "id": 3382,
+    "id": 3383,
     "rating": 4.4
   },
   {
@@ -179126,7 +179181,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260518/xwO95M9K/index.m3u8"
       }
     ],
-    "id": 3383,
+    "id": 3384,
     "rating": 4.4
   },
   {
@@ -179201,7 +179256,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240417/4rUCq4y7/index.m3u8"
       }
     ],
-    "id": 3384,
+    "id": 3385,
     "rating": 4.4
   },
   {
@@ -179236,7 +179291,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/urKYpThi/index.m3u8"
       }
     ],
-    "id": 3385,
+    "id": 3386,
     "rating": 4.4
   },
   {
@@ -179261,7 +179316,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/n3XxjHrv/index.m3u8"
       }
     ],
-    "id": 3386,
+    "id": 3387,
     "rating": 4.4
   },
   {
@@ -179346,7 +179401,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260130/ZgCtFbQ2/index.m3u8"
       }
     ],
-    "id": 3387,
+    "id": 3388,
     "rating": 4.4
   },
   {
@@ -179386,7 +179441,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240413/qhrU47IS/index.m3u8"
       }
     ],
-    "id": 3388,
+    "id": 3389,
     "rating": 4.4
   },
   {
@@ -179466,7 +179521,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240414/Ayxus9Sn/index.m3u8"
       }
     ],
-    "id": 3389,
+    "id": 3390,
     "rating": 4.4
   },
   {
@@ -179566,7 +179621,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240131/qSKzcnvS/index.m3u8"
       }
     ],
-    "id": 3390,
+    "id": 3391,
     "rating": 4.4
   },
   {
@@ -179656,7 +179711,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240131/QX3VJZC6/index.m3u8"
       }
     ],
-    "id": 3391,
+    "id": 3392,
     "rating": 4.4
   },
   {
@@ -179776,7 +179831,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20241006/mqcAXAKE/index.m3u8"
       }
     ],
-    "id": 3392,
+    "id": 3393,
     "rating": 4.4
   },
   {
@@ -179866,7 +179921,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260818/Ravhja65/index.m3u8"
       }
     ],
-    "id": 3393,
+    "id": 3394,
     "rating": 4.4
   },
   {
@@ -179926,7 +179981,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240118/nHmCYass/index.m3u8"
       }
     ],
-    "id": 3394,
+    "id": 3395,
     "rating": 4.4
   },
   {
@@ -179986,7 +180041,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251031/3IrUnJF6/index.m3u8"
       }
     ],
-    "id": 3395,
+    "id": 3396,
     "rating": 4.4
   },
   {
@@ -180056,7 +180111,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240114/mkAvtU8L/index.m3u8"
       }
     ],
-    "id": 3396,
+    "id": 3397,
     "rating": 4.4
   },
   {
@@ -180126,7 +180181,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240621/Evqif8Kt/index.m3u8"
       }
     ],
-    "id": 3397,
+    "id": 3398,
     "rating": 4.4
   },
   {
@@ -180186,7 +180241,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240712/kxxJ6uqM/index.m3u8"
       }
     ],
-    "id": 3398,
+    "id": 3399,
     "rating": 4.4
   },
   {
@@ -180271,7 +180326,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260811/XpIVoAG3/index.m3u8"
       }
     ],
-    "id": 3399,
+    "id": 3400,
     "rating": 4.4
   },
   {
@@ -180296,7 +180351,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260206/titU7qsR/index.m3u8"
       }
     ],
-    "id": 3400,
+    "id": 3401,
     "rating": 4.4
   },
   {
@@ -180346,7 +180401,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250326/sDsLXmrq/index.m3u8"
       }
     ],
-    "id": 3401,
+    "id": 3402,
     "rating": 4.4
   },
   {
@@ -180526,7 +180581,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250704/806OSUei/index.m3u8"
       }
     ],
-    "id": 3402,
+    "id": 3403,
     "rating": 4.4
   },
   {
@@ -180551,7 +180606,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/fltAu5cN/index.m3u8"
       }
     ],
-    "id": 3403,
+    "id": 3404,
     "rating": 4.4
   },
   {
@@ -180706,7 +180761,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260808/nN6Sjpke/index.m3u8"
       }
     ],
-    "id": 3404,
+    "id": 3405,
     "rating": 4.4
   },
   {
@@ -180731,7 +180786,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/FxxZgiav/index.m3u8"
       }
     ],
-    "id": 3405,
+    "id": 3406,
     "rating": 4.4
   },
   {
@@ -180756,7 +180811,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260807/ab9yJ2T1/index.m3u8"
       }
     ],
-    "id": 3406,
+    "id": 3407,
     "rating": 4.4
   },
   {
@@ -180856,7 +180911,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240522/tMUiEE03/index.m3u8"
       }
     ],
-    "id": 3407,
+    "id": 3408,
     "rating": 4.4
   },
   {
@@ -180956,7 +181011,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240502/4c78b51V/index.m3u8"
       }
     ],
-    "id": 3408,
+    "id": 3409,
     "rating": 4.4
   },
   {
@@ -180981,7 +181036,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250527/jhIxfX6A/index.m3u8"
       }
     ],
-    "id": 3409,
+    "id": 3410,
     "rating": 4.4
   },
   {
@@ -181006,7 +181061,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260220/3BCLT6Nh/index.m3u8"
       }
     ],
-    "id": 3410,
+    "id": 3411,
     "rating": 4.4
   },
   {
@@ -181126,7 +181181,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20241118/kMYsMkbY/index.m3u8"
       }
     ],
-    "id": 3411,
+    "id": 3412,
     "rating": 4.4
   },
   {
@@ -181531,7 +181586,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260303/bNwjW5Hu/index.m3u8"
       }
     ],
-    "id": 3412,
+    "id": 3413,
     "rating": 4.4
   },
   {
@@ -181556,7 +181611,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250412/I0A38AoX/index.m3u8"
       }
     ],
-    "id": 3413,
+    "id": 3414,
     "rating": 4.4
   },
   {
@@ -181581,7 +181636,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241020/GfoUSV5P/index.m3u8"
       }
     ],
-    "id": 3414,
+    "id": 3415,
     "rating": 4.4
   },
   {
@@ -181681,7 +181736,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20241124/jYYJ1gri/index.m3u8"
       }
     ],
-    "id": 3415,
+    "id": 3416,
     "rating": 4.4
   },
   {
@@ -181706,7 +181761,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251228/5T4lc9j0/index.m3u8"
       }
     ],
-    "id": 3416,
+    "id": 3417,
     "rating": 4.4
   },
   {
@@ -181806,7 +181861,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241206/vGzEz0RI/index.m3u8"
       }
     ],
-    "id": 3417,
+    "id": 3418,
     "rating": 4.4
   },
   {
@@ -181831,7 +181886,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260420/SRdCgdzx/index.m3u8"
       }
     ],
-    "id": 3418,
+    "id": 3419,
     "rating": 4.4
   },
   {
@@ -181911,7 +181966,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250919/vts9xt2f/index.m3u8"
       }
     ],
-    "id": 3419,
+    "id": 3420,
     "rating": 4.4
   },
   {
@@ -181936,7 +181991,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251219/iEOMMSVi/index.m3u8"
       }
     ],
-    "id": 3420,
+    "id": 3421,
     "rating": 4.4
   },
   {
@@ -182006,7 +182061,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20250505/Xcn0pnTZ/index.m3u8"
       }
     ],
-    "id": 3421,
+    "id": 3422,
     "rating": 4.4
   },
   {
@@ -182186,7 +182241,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20240921/86F9DAxX/index.m3u8"
       }
     ],
-    "id": 3422,
+    "id": 3423,
     "rating": 4.4
   },
   {
@@ -182211,7 +182266,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/ig4AbIkz/index.m3u8"
       }
     ],
-    "id": 3423,
+    "id": 3424,
     "rating": 4.4
   },
   {
@@ -182236,7 +182291,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260710/SlQ2C96D/index.m3u8"
       }
     ],
-    "id": 3424,
+    "id": 3425,
     "rating": 4.4
   },
   {
@@ -182261,7 +182316,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20250423/2ewrPajj/index.m3u8"
       }
     ],
-    "id": 3425,
+    "id": 3426,
     "rating": 4.4
   },
   {
@@ -182286,7 +182341,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260514/AXhFOZN5/index.m3u8"
       }
     ],
-    "id": 3426,
+    "id": 3427,
     "rating": 4.4
   },
   {
@@ -182416,7 +182471,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251220/W6nG5es1/index.m3u8"
       }
     ],
-    "id": 3427,
+    "id": 3428,
     "rating": 4.4
   },
   {
@@ -182441,7 +182496,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/VstUvmzl/index.m3u8"
       }
     ],
-    "id": 3428,
+    "id": 3429,
     "rating": 4.4
   },
   {
@@ -182466,7 +182521,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260518/mkDA8COv/index.m3u8"
       }
     ],
-    "id": 3429,
+    "id": 3430,
     "rating": 4.4
   },
   {
@@ -182636,7 +182691,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251208/k1lmtoTR/index.m3u8"
       }
     ],
-    "id": 3430,
+    "id": 3431,
     "rating": 4.4
   },
   {
@@ -182736,7 +182791,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241220/qN1w80Yl/index.m3u8"
       }
     ],
-    "id": 3431,
+    "id": 3432,
     "rating": 4.4
   },
   {
@@ -182836,7 +182891,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241021/U3ftytB7/index.m3u8"
       }
     ],
-    "id": 3432,
+    "id": 3433,
     "rating": 4.4
   },
   {
@@ -182906,7 +182961,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241204/Kaax0h7V/index.m3u8"
       }
     ],
-    "id": 3433,
+    "id": 3434,
     "rating": 4.4
   },
   {
@@ -182966,7 +183021,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251216/tToRO8A7/index.m3u8"
       }
     ],
-    "id": 3434,
+    "id": 3435,
     "rating": 4.4
   },
   {
@@ -183026,7 +183081,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241026/D5ik7AO5/index.m3u8"
       }
     ],
-    "id": 3435,
+    "id": 3436,
     "rating": 4.4
   },
   {
@@ -183106,7 +183161,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20240920/uQUdwTYG/index.m3u8"
       }
     ],
-    "id": 3436,
+    "id": 3437,
     "rating": 4.4
   },
   {
@@ -183176,7 +183231,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241206/VXvf4wu3/index.m3u8"
       }
     ],
-    "id": 3437,
+    "id": 3438,
     "rating": 4.4
   },
   {
@@ -183221,7 +183276,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240301/gIzsFndF/index.m3u8"
       }
     ],
-    "id": 3438,
+    "id": 3439,
     "rating": 4.4
   },
   {
@@ -183281,7 +183336,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251002/zaLL9skQ/index.m3u8"
       }
     ],
-    "id": 3439,
+    "id": 3440,
     "rating": 4.4
   },
   {
@@ -183306,7 +183361,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260322/EQjMPGrb/index.m3u8"
       }
     ],
-    "id": 3440,
+    "id": 3441,
     "rating": 4.4
   },
   {
@@ -183331,7 +183386,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/z3EaxmvG/index.m3u8"
       }
     ],
-    "id": 3441,
+    "id": 3442,
     "rating": 4.4
   },
   {
@@ -183391,7 +183446,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/p3fFkdvy/index.m3u8"
       }
     ],
-    "id": 3442,
+    "id": 3443,
     "rating": 4.4
   },
   {
@@ -183491,7 +183546,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241021/BdNdUF8a/index.m3u8"
       }
     ],
-    "id": 3443,
+    "id": 3444,
     "rating": 4.4
   },
   {
@@ -183521,7 +183576,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/9loLnZIm/index.m3u8"
       }
     ],
-    "id": 3444,
+    "id": 3445,
     "rating": 4.4
   },
   {
@@ -183621,7 +183676,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241111/lurfnfi6/index.m3u8"
       }
     ],
-    "id": 3445,
+    "id": 3446,
     "rating": 4.4
   },
   {
@@ -183691,7 +183746,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260504/2gQzO9UE/index.m3u8"
       }
     ],
-    "id": 3446,
+    "id": 3447,
     "rating": 4.4
   },
   {
@@ -183751,7 +183806,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240415/JFlme7zq/index.m3u8"
       }
     ],
-    "id": 3447,
+    "id": 3448,
     "rating": 4.4
   },
   {
@@ -183836,7 +183891,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260413/bdgyzwcr/index.m3u8"
       }
     ],
-    "id": 3448,
+    "id": 3449,
     "rating": 4.4
   },
   {
@@ -183926,7 +183981,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20250224/dWznFaGg/index.m3u8"
       }
     ],
-    "id": 3449,
+    "id": 3450,
     "rating": 4.4
   },
   {
@@ -184566,7 +184621,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250226/yg0DrLTO/index.m3u8"
       }
     ],
-    "id": 3450,
+    "id": 3451,
     "rating": 4.4
   },
   {
@@ -184616,7 +184671,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240606/sdgyHKRY/index.m3u8"
       }
     ],
-    "id": 3451,
+    "id": 3452,
     "rating": 4.4
   },
   {
@@ -184666,7 +184721,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260513/h2hgqEvO/index.m3u8"
       }
     ],
-    "id": 3452,
+    "id": 3453,
     "rating": 4.4
   },
   {
@@ -184736,7 +184791,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240610/x9FWLq0v/index.m3u8"
       }
     ],
-    "id": 3453,
+    "id": 3454,
     "rating": 4.4
   },
   {
@@ -184796,7 +184851,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260518/V1nbNdus/index.m3u8"
       }
     ],
-    "id": 3454,
+    "id": 3455,
     "rating": 4.4
   },
   {
@@ -184821,7 +184876,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260128/cxbhrHlC/index.m3u8"
       }
     ],
-    "id": 3455,
+    "id": 3456,
     "rating": 4.4
   },
   {
@@ -184941,7 +184996,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20240930/m6MVk5Pn/index.m3u8"
       }
     ],
-    "id": 3456,
+    "id": 3457,
     "rating": 4.4
   },
   {
@@ -184966,7 +185021,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260509/Qm3zSZL1/index.m3u8"
       }
     ],
-    "id": 3457,
+    "id": 3458,
     "rating": 4.4
   },
   {
@@ -184991,7 +185046,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250822/SzQGxtxC/index.m3u8"
       }
     ],
-    "id": 3458,
+    "id": 3459,
     "rating": 4.4
   },
   {
@@ -185051,7 +185106,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20250212/BW0L6Dz8/index.m3u8"
       }
     ],
-    "id": 3459,
+    "id": 3460,
     "rating": 4.4
   },
   {
@@ -185076,7 +185131,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260603/nhmxpyv3/index.m3u8"
       }
     ],
-    "id": 3460,
+    "id": 3461,
     "rating": 4.4
   },
   {
@@ -185101,7 +185156,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260421/n5Nw36rx/index.m3u8"
       }
     ],
-    "id": 3461,
+    "id": 3462,
     "rating": 4.4
   },
   {
@@ -185126,7 +185181,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241004/ymXHWOel/index.m3u8"
       }
     ],
-    "id": 3462,
+    "id": 3463,
     "rating": 4.4
   },
   {
@@ -185246,7 +185301,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241026/2glWIi1W/index.m3u8"
       }
     ],
-    "id": 3463,
+    "id": 3464,
     "rating": 4.4
   },
   {
@@ -185306,7 +185361,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251205/WgzuAOWd/index.m3u8"
       }
     ],
-    "id": 3464,
+    "id": 3465,
     "rating": 4.4
   },
   {
@@ -185331,7 +185386,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260112/SXWwY6GL/index.m3u8"
       }
     ],
-    "id": 3465,
+    "id": 3466,
     "rating": 4.4
   },
   {
@@ -185356,7 +185411,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260505/kLwG53ES/index.m3u8"
       }
     ],
-    "id": 3466,
+    "id": 3467,
     "rating": 4.4
   },
   {
@@ -185421,7 +185476,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241129/o05P9Ub0/index.m3u8"
       }
     ],
-    "id": 3467,
+    "id": 3468,
     "rating": 4.4
   },
   {
@@ -185446,7 +185501,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260820/mv8BL6oB/index.m3u8"
       }
     ],
-    "id": 3468,
+    "id": 3469,
     "rating": 4.4
   },
   {
@@ -185471,7 +185526,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240515/fzHBjaFl/index.m3u8"
       }
     ],
-    "id": 3469,
+    "id": 3470,
     "rating": 4.4
   },
   {
@@ -185526,7 +185581,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/eRfumSHm/index.m3u8"
       }
     ],
-    "id": 3470,
+    "id": 3471,
     "rating": 4.4
   },
   {
@@ -185551,7 +185606,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260513/eWaeQI2W/index.m3u8"
       }
     ],
-    "id": 3471,
+    "id": 3472,
     "rating": 4.4
   },
   {
@@ -185576,7 +185631,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250930/EdOmAXVH/index.m3u8"
       }
     ],
-    "id": 3472,
+    "id": 3473,
     "rating": 4.4
   },
   {
@@ -185666,7 +185721,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240117/Uqzk6COC/index.m3u8"
       }
     ],
-    "id": 3473,
+    "id": 3474,
     "rating": 4.4
   },
   {
@@ -185736,7 +185791,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260614/r2ZDaLL0/index.m3u8"
       }
     ],
-    "id": 3474,
+    "id": 3475,
     "rating": 4.4
   },
   {
@@ -185821,7 +185876,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260826/bBjBBqpk/index.m3u8"
       }
     ],
-    "id": 3475,
+    "id": 3476,
     "rating": 4.4
   },
   {
@@ -185846,7 +185901,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260110/Yv1QwAwK/index.m3u8"
       }
     ],
-    "id": 3476,
+    "id": 3477,
     "rating": 4.4
   },
   {
@@ -185871,7 +185926,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240618/wswcS5zy/index.m3u8"
       }
     ],
-    "id": 3477,
+    "id": 3478,
     "rating": 4.4
   },
   {
@@ -185896,7 +185951,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260112/GJKqYZ2X/index.m3u8"
       }
     ],
-    "id": 3478,
+    "id": 3479,
     "rating": 4.4
   },
   {
@@ -185966,7 +186021,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260614/SvEvqVx0/index.m3u8"
       }
     ],
-    "id": 3479,
+    "id": 3480,
     "rating": 4.4
   },
   {
@@ -186056,7 +186111,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250616/9qW7E4fe/index.m3u8"
       }
     ],
-    "id": 3480,
+    "id": 3481,
     "rating": 4.4
   },
   {
@@ -186081,7 +186136,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260129/VMYqYE8g/index.m3u8"
       }
     ],
-    "id": 3481,
+    "id": 3482,
     "rating": 4.4
   },
   {
@@ -186136,7 +186191,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240305/U8Ia3SFf/index.m3u8"
       }
     ],
-    "id": 3482,
+    "id": 3483,
     "rating": 4.4
   },
   {
@@ -186216,7 +186271,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241220/BTTNNlTV/index.m3u8"
       }
     ],
-    "id": 3483,
+    "id": 3484,
     "rating": 4.4
   },
   {
@@ -186241,7 +186296,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260902/m95JiREn/index.m3u8"
       }
     ],
-    "id": 3484,
+    "id": 3485,
     "rating": 4.4
   },
   {
@@ -186286,7 +186341,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20240924/zsMTcyTN/index.m3u8"
       }
     ],
-    "id": 3485,
+    "id": 3486,
     "rating": 4.4
   },
   {
@@ -186416,7 +186471,7 @@
         "link_m3u8": "https://a.kvp726.com/20260926/2pbykJFK/index.m3u8"
       }
     ],
-    "id": 3486,
+    "id": 3487,
     "rating": 4.4
   },
   {
@@ -186476,7 +186531,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240321/mQdbVJ5n/index.m3u8"
       }
     ],
-    "id": 3487,
+    "id": 3488,
     "rating": 4.4
   },
   {
@@ -186501,7 +186556,7 @@
         "link_m3u8": "https://a.kvp726.com/20261022/HIzGdWcq/index.m3u8"
       }
     ],
-    "id": 3488,
+    "id": 3489,
     "rating": 4.4
   },
   {
@@ -186526,7 +186581,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240509/lXFcFNRI/index.m3u8"
       }
     ],
-    "id": 3489,
+    "id": 3490,
     "rating": 4.3
   },
   {
@@ -186576,7 +186631,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20231231/9XCZF0ns/index.m3u8"
       }
     ],
-    "id": 3490,
+    "id": 3491,
     "rating": 4.3
   },
   {
@@ -186646,7 +186701,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250108/UnwcCD3z/index.m3u8"
       }
     ],
-    "id": 3491,
+    "id": 3492,
     "rating": 4.3
   },
   {
@@ -186671,7 +186726,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250915/LXqgHOKP/index.m3u8"
       }
     ],
-    "id": 3492,
+    "id": 3493,
     "rating": 4.3
   },
   {
@@ -186816,7 +186871,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240325/FOJTRYNy/index.m3u8"
       }
     ],
-    "id": 3493,
+    "id": 3494,
     "rating": 4.3
   },
   {
@@ -186876,7 +186931,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240314/wVkIpZXE/index.m3u8"
       }
     ],
-    "id": 3494,
+    "id": 3495,
     "rating": 4.3
   },
   {
@@ -186946,7 +187001,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240117/74GWu7JQ/index.m3u8"
       }
     ],
-    "id": 3495,
+    "id": 3496,
     "rating": 4.3
   },
   {
@@ -186971,7 +187026,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251010/rtWMX5Yc/index.m3u8"
       }
     ],
-    "id": 3496,
+    "id": 3497,
     "rating": 4.3
   },
   {
@@ -187051,7 +187106,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240307/rzA8GQAI/index.m3u8"
       }
     ],
-    "id": 3497,
+    "id": 3498,
     "rating": 4.3
   },
   {
@@ -187076,7 +187131,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240819/0JrZRhlu/index.m3u8"
       }
     ],
-    "id": 3498,
+    "id": 3499,
     "rating": 4.3
   },
   {
@@ -187101,7 +187156,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260109/jclBjgvQ/index.m3u8"
       }
     ],
-    "id": 3499,
+    "id": 3500,
     "rating": 4.3
   },
   {
@@ -187166,7 +187221,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250920/OIW7KIPb/index.m3u8"
       }
     ],
-    "id": 3500,
+    "id": 3501,
     "rating": 4.3
   },
   {
@@ -187191,7 +187246,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260710/lJBIw7YZ/index.m3u8"
       }
     ],
-    "id": 3501,
+    "id": 3502,
     "rating": 4.3
   },
   {
@@ -187216,7 +187271,7 @@
         "link_m3u8": "https://vip.opstream17.com/20251120/23094_6c4ce2d6/index.m3u8"
       }
     ],
-    "id": 3502,
+    "id": 3503,
     "rating": 4.3
   },
   {
@@ -187241,7 +187296,7 @@
         "link_m3u8": "https://vip.opstream12.com/20251124/30512_534399ab/index.m3u8"
       }
     ],
-    "id": 3503,
+    "id": 3504,
     "rating": 4.3
   },
   {
@@ -187266,7 +187321,7 @@
         "link_m3u8": "https://vip.opstream12.com/20250822/27985_b1a5a84a/index.m3u8"
       }
     ],
-    "id": 3504,
+    "id": 3505,
     "rating": 4.3
   },
   {
@@ -187291,7 +187346,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20230828/yIQfb4G5/index.m3u8"
       }
     ],
-    "id": 3505,
+    "id": 3506,
     "rating": 4.3
   },
   {
@@ -187316,7 +187371,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260112/j1TVUL1z/index.m3u8"
       }
     ],
-    "id": 3506,
+    "id": 3507,
     "rating": 4.3
   },
   {
@@ -187386,7 +187441,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250829/JmPs0TFr/index.m3u8"
       }
     ],
-    "id": 3507,
+    "id": 3508,
     "rating": 4.3
   },
   {
@@ -187411,7 +187466,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240428/LDYdsSgJ/index.m3u8"
       }
     ],
-    "id": 3508,
+    "id": 3509,
     "rating": 4.3
   },
   {
@@ -187511,7 +187566,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240314/Fu9FPsBm/index.m3u8"
       }
     ],
-    "id": 3509,
+    "id": 3510,
     "rating": 4.3
   },
   {
@@ -187586,7 +187641,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240119/RI2W8gR9/index.m3u8"
       }
     ],
-    "id": 3510,
+    "id": 3511,
     "rating": 4.3
   },
   {
@@ -187686,7 +187741,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20250220/iNDtsBNu/index.m3u8"
       }
     ],
-    "id": 3511,
+    "id": 3512,
     "rating": 4.3
   },
   {
@@ -187746,7 +187801,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260614/ijDYbYFN/index.m3u8"
       }
     ],
-    "id": 3512,
+    "id": 3513,
     "rating": 4.3
   },
   {
@@ -187771,7 +187826,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250623/4F76OuQe/index.m3u8"
       }
     ],
-    "id": 3513,
+    "id": 3514,
     "rating": 4.3
   },
   {
@@ -187796,7 +187851,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251205/TUbWRCLV/index.m3u8"
       }
     ],
-    "id": 3514,
+    "id": 3515,
     "rating": 4.3
   },
   {
@@ -187821,7 +187876,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/kfHQnge3/index.m3u8"
       }
     ],
-    "id": 3515,
+    "id": 3516,
     "rating": 4.3
   },
   {
@@ -187846,7 +187901,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260123/wfd8SQHf/index.m3u8"
       }
     ],
-    "id": 3516,
+    "id": 3517,
     "rating": 4.3
   },
   {
@@ -187881,7 +187936,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/H1w3g4fj/index.m3u8"
       }
     ],
-    "id": 3517,
+    "id": 3518,
     "rating": 4.3
   },
   {
@@ -187931,7 +187986,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260331/iPpO1wDB/index.m3u8"
       }
     ],
-    "id": 3518,
+    "id": 3519,
     "rating": 4.3
   },
   {
@@ -187956,7 +188011,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20230915/G1zv7CoU/index.m3u8"
       }
     ],
-    "id": 3519,
+    "id": 3520,
     "rating": 4.3
   },
   {
@@ -187981,7 +188036,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260112/jF6xM42b/index.m3u8"
       }
     ],
-    "id": 3520,
+    "id": 3521,
     "rating": 4.3
   },
   {
@@ -188041,7 +188096,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260129/N2NbSLmc/index.m3u8"
       }
     ],
-    "id": 3521,
+    "id": 3522,
     "rating": 4.3
   },
   {
@@ -188121,7 +188176,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260409/onFbbt7h/index.m3u8"
       }
     ],
-    "id": 3522,
+    "id": 3523,
     "rating": 4.3
   },
   {
@@ -188146,7 +188201,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260420/LXZKdJsr/index.m3u8"
       }
     ],
-    "id": 3523,
+    "id": 3524,
     "rating": 4.3
   },
   {
@@ -188171,7 +188226,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260814/pXguq5xE/index.m3u8"
       }
     ],
-    "id": 3524,
+    "id": 3525,
     "rating": 4.3
   },
   {
@@ -188231,7 +188286,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240503/k2budgEY/index.m3u8"
       }
     ],
-    "id": 3525,
+    "id": 3526,
     "rating": 4.3
   },
   {
@@ -188326,7 +188381,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251012/SE7NYby6/index.m3u8"
       }
     ],
-    "id": 3526,
+    "id": 3527,
     "rating": 4.3
   },
   {
@@ -188351,7 +188406,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260320/hfywMbKA/index.m3u8"
       }
     ],
-    "id": 3527,
+    "id": 3528,
     "rating": 4.3
   },
   {
@@ -188421,7 +188476,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250112/dYrGd7cc/index.m3u8"
       }
     ],
-    "id": 3528,
+    "id": 3529,
     "rating": 4.3
   },
   {
@@ -188531,7 +188586,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240515/nT7Z0x4R/index.m3u8"
       }
     ],
-    "id": 3529,
+    "id": 3530,
     "rating": 4.3
   },
   {
@@ -188631,7 +188686,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240513/NofuhIzF/index.m3u8"
       }
     ],
-    "id": 3530,
+    "id": 3531,
     "rating": 4.3
   },
   {
@@ -188656,7 +188711,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260217/5AvKhOyL/index.m3u8"
       }
     ],
-    "id": 3531,
+    "id": 3532,
     "rating": 4.3
   },
   {
@@ -188681,7 +188736,7 @@
         "link_m3u8": "https://vip.opstream90.com/20260323/27756_b3511c39/index.m3u8"
       }
     ],
-    "id": 3532,
+    "id": 3533,
     "rating": 4.3
   },
   {
@@ -188706,7 +188761,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260123/42RCvyUx/index.m3u8"
       }
     ],
-    "id": 3533,
+    "id": 3534,
     "rating": 4.3
   },
   {
@@ -188731,7 +188786,7 @@
         "link_m3u8": "https://vip.opstream90.com/20251109/17234_6a40c7d8/index.m3u8"
       }
     ],
-    "id": 3534,
+    "id": 3535,
     "rating": 4.3
   },
   {
@@ -188756,7 +188811,7 @@
         "link_m3u8": "https://vip.opstream15.com/20230420/38077_0a9c5ef5/index.m3u8"
       }
     ],
-    "id": 3535,
+    "id": 3536,
     "rating": 4.3
   },
   {
@@ -188781,7 +188836,7 @@
         "link_m3u8": "https://vip.opstream11.com/20220810/35421_a91c8e23/index.m3u8"
       }
     ],
-    "id": 3536,
+    "id": 3537,
     "rating": 4.3
   },
   {
@@ -188806,7 +188861,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20240928/fn4a9zhi/index.m3u8"
       }
     ],
-    "id": 3537,
+    "id": 3538,
     "rating": 4.3
   },
   {
@@ -188856,7 +188911,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260402/gB0SAP4d/index.m3u8"
       }
     ],
-    "id": 3538,
+    "id": 3539,
     "rating": 4.3
   },
   {
@@ -188956,7 +189011,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260723/OqOkAjPi/index.m3u8"
       }
     ],
-    "id": 3539,
+    "id": 3540,
     "rating": 4.3
   },
   {
@@ -189036,7 +189091,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260201/vaX9YZd8/index.m3u8"
       }
     ],
-    "id": 3540,
+    "id": 3541,
     "rating": 4.3
   },
   {
@@ -189106,7 +189161,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240114/iajprgY2/index.m3u8"
       }
     ],
-    "id": 3541,
+    "id": 3542,
     "rating": 4.3
   },
   {
@@ -189206,7 +189261,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240413/3imF2Ovs/index.m3u8"
       }
     ],
-    "id": 3542,
+    "id": 3543,
     "rating": 4.3
   },
   {
@@ -189231,7 +189286,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240115/Ga29wi9y/index.m3u8"
       }
     ],
-    "id": 3543,
+    "id": 3544,
     "rating": 4.3
   },
   {
@@ -189296,7 +189351,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260320/w6EKtHPu/index.m3u8"
       }
     ],
-    "id": 3544,
+    "id": 3545,
     "rating": 4.3
   },
   {
@@ -189356,7 +189411,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240417/nYTcI6CV/index.m3u8"
       }
     ],
-    "id": 3545,
+    "id": 3546,
     "rating": 4.3
   },
   {
@@ -189406,7 +189461,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260420/jFvWnlIu/index.m3u8"
       }
     ],
-    "id": 3546,
+    "id": 3547,
     "rating": 4.3
   },
   {
@@ -189431,7 +189486,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250724/fVPHf3Iz/index.m3u8"
       }
     ],
-    "id": 3547,
+    "id": 3548,
     "rating": 4.3
   },
   {
@@ -189456,7 +189511,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260315/wO1ZgREr/index.m3u8"
       }
     ],
-    "id": 3548,
+    "id": 3549,
     "rating": 4.3
   },
   {
@@ -189536,7 +189591,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240414/oYkA4x2f/index.m3u8"
       }
     ],
-    "id": 3549,
+    "id": 3550,
     "rating": 4.3
   },
   {
@@ -189576,7 +189631,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/yAi3h3G5/index.m3u8"
       }
     ],
-    "id": 3550,
+    "id": 3551,
     "rating": 4.3
   },
   {
@@ -189601,7 +189656,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260125/7lO4aMZS/index.m3u8"
       }
     ],
-    "id": 3551,
+    "id": 3552,
     "rating": 4.3
   },
   {
@@ -189701,7 +189756,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240606/NBIIYorp/index.m3u8"
       }
     ],
-    "id": 3552,
+    "id": 3553,
     "rating": 4.3
   },
   {
@@ -189801,7 +189856,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240602/qzNZpTnS/index.m3u8"
       }
     ],
-    "id": 3553,
+    "id": 3554,
     "rating": 4.3
   },
   {
@@ -189881,7 +189936,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241018/Id1kS9bo/index.m3u8"
       }
     ],
-    "id": 3554,
+    "id": 3555,
     "rating": 4.3
   },
   {
@@ -189931,7 +189986,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260508/wHiYvdnr/index.m3u8"
       }
     ],
-    "id": 3555,
+    "id": 3556,
     "rating": 4.3
   },
   {
@@ -190011,7 +190066,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241018/D0siW3Pr/index.m3u8"
       }
     ],
-    "id": 3556,
+    "id": 3557,
     "rating": 4.3
   },
   {
@@ -190036,7 +190091,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260118/7W0jSfhN/index.m3u8"
       }
     ],
-    "id": 3557,
+    "id": 3558,
     "rating": 4.3
   },
   {
@@ -190126,7 +190181,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251009/LAcROf4U/index.m3u8"
       }
     ],
-    "id": 3558,
+    "id": 3559,
     "rating": 4.3
   },
   {
@@ -190661,7 +190716,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250411/DMmb9zFz/index.m3u8"
       }
     ],
-    "id": 3559,
+    "id": 3560,
     "rating": 4.3
   },
   {
@@ -190741,7 +190796,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241106/RPPRkCon/index.m3u8"
       }
     ],
-    "id": 3560,
+    "id": 3561,
     "rating": 4.3
   },
   {
@@ -190766,7 +190821,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260726/8hFLEXV4/index.m3u8"
       }
     ],
-    "id": 3561,
+    "id": 3562,
     "rating": 4.3
   },
   {
@@ -190806,7 +190861,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/LuzDPfy1/index.m3u8"
       }
     ],
-    "id": 3562,
+    "id": 3563,
     "rating": 4.3
   },
   {
@@ -190856,7 +190911,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251217/rCnlaAgf/index.m3u8"
       }
     ],
-    "id": 3563,
+    "id": 3564,
     "rating": 4.3
   },
   {
@@ -191076,7 +191131,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240713/ihDzNumt/index.m3u8"
       }
     ],
-    "id": 3564,
+    "id": 3565,
     "rating": 4.3
   },
   {
@@ -191156,7 +191211,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240713/f7EEoHXE/index.m3u8"
       }
     ],
-    "id": 3565,
+    "id": 3566,
     "rating": 4.3
   },
   {
@@ -191181,7 +191236,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260307/hjyvmyAN/index.m3u8"
       }
     ],
-    "id": 3566,
+    "id": 3567,
     "rating": 4.3
   },
   {
@@ -191251,7 +191306,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250308/g89hNJa6/index.m3u8"
       }
     ],
-    "id": 3567,
+    "id": 3568,
     "rating": 4.3
   },
   {
@@ -191331,7 +191386,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240713/6w8SaO1l/index.m3u8"
       }
     ],
-    "id": 3568,
+    "id": 3569,
     "rating": 4.3
   },
   {
@@ -191356,7 +191411,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250801/xJVpY6na/index.m3u8"
       }
     ],
-    "id": 3569,
+    "id": 3570,
     "rating": 4.3
   },
   {
@@ -191381,7 +191436,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260518/KTt6GYf7/index.m3u8"
       }
     ],
-    "id": 3570,
+    "id": 3571,
     "rating": 4.3
   },
   {
@@ -191441,7 +191496,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260305/cbYoXS4W/index.m3u8"
       }
     ],
-    "id": 3571,
+    "id": 3572,
     "rating": 4.3
   },
   {
@@ -191511,7 +191566,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260104/c4dQXZHU/index.m3u8"
       }
     ],
-    "id": 3572,
+    "id": 3573,
     "rating": 4.3
   },
   {
@@ -191571,7 +191626,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251002/bCqti33K/index.m3u8"
       }
     ],
-    "id": 3573,
+    "id": 3574,
     "rating": 4.3
   },
   {
@@ -191596,7 +191651,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260513/n8EyatRN/index.m3u8"
       }
     ],
-    "id": 3574,
+    "id": 3575,
     "rating": 4.3
   },
   {
@@ -191621,7 +191676,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/BGaBZUSP/index.m3u8"
       }
     ],
-    "id": 3575,
+    "id": 3576,
     "rating": 4.3
   },
   {
@@ -191691,7 +191746,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250812/5Asshqv0/index.m3u8"
       }
     ],
-    "id": 3576,
+    "id": 3577,
     "rating": 4.3
   },
   {
@@ -191716,7 +191771,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260620/ASWCXJ6M/index.m3u8"
       }
     ],
-    "id": 3577,
+    "id": 3578,
     "rating": 4.3
   },
   {
@@ -191816,7 +191871,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241108/HkC6606R/index.m3u8"
       }
     ],
-    "id": 3578,
+    "id": 3579,
     "rating": 4.3
   },
   {
@@ -191866,7 +191921,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260613/inwlVkc5/index.m3u8"
       }
     ],
-    "id": 3579,
+    "id": 3580,
     "rating": 4.3
   },
   {
@@ -191966,7 +192021,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20250220/bq8R00Wm/index.m3u8"
       }
     ],
-    "id": 3580,
+    "id": 3581,
     "rating": 4.3
   },
   {
@@ -192046,7 +192101,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241021/EpVIp1tF/index.m3u8"
       }
     ],
-    "id": 3581,
+    "id": 3582,
     "rating": 4.3
   },
   {
@@ -192106,7 +192161,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240305/IL6fwkDK/index.m3u8"
       }
     ],
-    "id": 3582,
+    "id": 3583,
     "rating": 4.3
   },
   {
@@ -192131,7 +192186,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260423/DZz0FcmI/index.m3u8"
       }
     ],
-    "id": 3583,
+    "id": 3584,
     "rating": 4.3
   },
   {
@@ -192191,7 +192246,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241004/rJbabj5S/index.m3u8"
       }
     ],
-    "id": 3584,
+    "id": 3585,
     "rating": 4.3
   },
   {
@@ -192216,7 +192271,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/3uDsaoHC/index.m3u8"
       }
     ],
-    "id": 3585,
+    "id": 3586,
     "rating": 4.3
   },
   {
@@ -192241,7 +192296,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251205/5oEkZwZC/index.m3u8"
       }
     ],
-    "id": 3586,
+    "id": 3587,
     "rating": 4.3
   },
   {
@@ -192291,7 +192346,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/1Jq1DJA7/index.m3u8"
       }
     ],
-    "id": 3587,
+    "id": 3588,
     "rating": 4.3
   },
   {
@@ -192371,7 +192426,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20250218/ss1L0ecN/index.m3u8"
       }
     ],
-    "id": 3588,
+    "id": 3589,
     "rating": 4.3
   },
   {
@@ -192416,7 +192471,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/rIrJIrkd/index.m3u8"
       }
     ],
-    "id": 3589,
+    "id": 3590,
     "rating": 4.3
   },
   {
@@ -192441,7 +192496,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260112/7e3wl848/index.m3u8"
       }
     ],
-    "id": 3590,
+    "id": 3591,
     "rating": 4.3
   },
   {
@@ -192521,7 +192576,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240520/c6IIKjZi/index.m3u8"
       }
     ],
-    "id": 3591,
+    "id": 3592,
     "rating": 4.3
   },
   {
@@ -192571,7 +192626,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/rxhySl3D/index.m3u8"
       }
     ],
-    "id": 3592,
+    "id": 3593,
     "rating": 4.3
   },
   {
@@ -192631,7 +192686,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251230/PtmCBAGB/index.m3u8"
       }
     ],
-    "id": 3593,
+    "id": 3594,
     "rating": 4.3
   },
   {
@@ -192656,7 +192711,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260730/KQ93Ya8K/index.m3u8"
       }
     ],
-    "id": 3594,
+    "id": 3595,
     "rating": 4.3
   },
   {
@@ -192756,7 +192811,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240621/tIZVZTzU/index.m3u8"
       }
     ],
-    "id": 3595,
+    "id": 3596,
     "rating": 4.3
   },
   {
@@ -192781,7 +192836,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260730/4AtWs2Kc/index.m3u8"
       }
     ],
-    "id": 3596,
+    "id": 3597,
     "rating": 4.3
   },
   {
@@ -192881,7 +192936,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241110/F7YigcNS/index.m3u8"
       }
     ],
-    "id": 3597,
+    "id": 3598,
     "rating": 4.3
   },
   {
@@ -192941,7 +192996,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240329/rXXlUQn8/index.m3u8"
       }
     ],
-    "id": 3598,
+    "id": 3599,
     "rating": 4.3
   },
   {
@@ -192966,7 +193021,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260705/k5SuDW78/index.m3u8"
       }
     ],
-    "id": 3599,
+    "id": 3600,
     "rating": 4.3
   },
   {
@@ -192991,7 +193046,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260129/XDmlex1K/index.m3u8"
       }
     ],
-    "id": 3600,
+    "id": 3601,
     "rating": 4.3
   },
   {
@@ -193131,7 +193186,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260104/n959HfR9/index.m3u8"
       }
     ],
-    "id": 3601,
+    "id": 3602,
     "rating": 4.3
   },
   {
@@ -193171,7 +193226,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/H7Mb1EK8/index.m3u8"
       }
     ],
-    "id": 3602,
+    "id": 3603,
     "rating": 4.3
   },
   {
@@ -193231,7 +193286,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241113/fGcf6NmM/index.m3u8"
       }
     ],
-    "id": 3603,
+    "id": 3604,
     "rating": 4.3
   },
   {
@@ -193281,7 +193336,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260330/AipI4lSP/index.m3u8"
       }
     ],
-    "id": 3604,
+    "id": 3605,
     "rating": 4.3
   },
   {
@@ -193381,7 +193436,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250520/ijSnXuSl/index.m3u8"
       }
     ],
-    "id": 3605,
+    "id": 3606,
     "rating": 4.3
   },
   {
@@ -193456,7 +193511,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251205/3FhLcnsg/index.m3u8"
       }
     ],
-    "id": 3606,
+    "id": 3607,
     "rating": 4.3
   },
   {
@@ -193481,7 +193536,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/YRgBBvTy/index.m3u8"
       }
     ],
-    "id": 3607,
+    "id": 3608,
     "rating": 4.3
   },
   {
@@ -193631,7 +193686,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260804/F4E0I5qz/index.m3u8"
       }
     ],
-    "id": 3608,
+    "id": 3609,
     "rating": 4.3
   },
   {
@@ -193656,7 +193711,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260503/bMuQ3PeB/index.m3u8"
       }
     ],
-    "id": 3609,
+    "id": 3610,
     "rating": 4.3
   },
   {
@@ -193681,7 +193736,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260509/2cKpMb8c/index.m3u8"
       }
     ],
-    "id": 3610,
+    "id": 3611,
     "rating": 4.3
   },
   {
@@ -193706,7 +193761,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260202/qdGJFWVI/index.m3u8"
       }
     ],
-    "id": 3611,
+    "id": 3612,
     "rating": 4.3
   },
   {
@@ -193851,7 +193906,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251202/EoYmMQVO/index.m3u8"
       }
     ],
-    "id": 3612,
+    "id": 3613,
     "rating": 4.3
   },
   {
@@ -193921,7 +193976,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240321/JpPwKKXv/index.m3u8"
       }
     ],
-    "id": 3613,
+    "id": 3614,
     "rating": 4.3
   },
   {
@@ -193946,7 +194001,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240828/vkCGv8EQ/index.m3u8"
       }
     ],
-    "id": 3614,
+    "id": 3615,
     "rating": 4.3
   },
   {
@@ -193971,7 +194026,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260112/nJDwVeJs/index.m3u8"
       }
     ],
-    "id": 3615,
+    "id": 3616,
     "rating": 4.3
   },
   {
@@ -193996,7 +194051,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260129/kA6FQHJx/index.m3u8"
       }
     ],
-    "id": 3616,
+    "id": 3617,
     "rating": 4.3
   },
   {
@@ -194101,7 +194156,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20241118/SjaJmkcM/index.m3u8"
       }
     ],
-    "id": 3617,
+    "id": 3618,
     "rating": 4.3
   },
   {
@@ -194151,7 +194206,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241001/yNXzK1yp/index.m3u8"
       }
     ],
-    "id": 3618,
+    "id": 3619,
     "rating": 4.3
   },
   {
@@ -194181,7 +194236,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260531/ZXWstVpa/index.m3u8"
       }
     ],
-    "id": 3619,
+    "id": 3620,
     "rating": 4.3
   },
   {
@@ -194206,7 +194261,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260513/NXnhR2qN/index.m3u8"
       }
     ],
-    "id": 3620,
+    "id": 3621,
     "rating": 4.3
   },
   {
@@ -194231,7 +194286,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260123/t2a4G3hc/index.m3u8"
       }
     ],
-    "id": 3621,
+    "id": 3622,
     "rating": 4.3
   },
   {
@@ -194256,7 +194311,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260501/3KeNP8UA/index.m3u8"
       }
     ],
-    "id": 3622,
+    "id": 3623,
     "rating": 4.3
   },
   {
@@ -194336,7 +194391,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20240219/FMkDfV1Z/index.m3u8"
       }
     ],
-    "id": 3623,
+    "id": 3624,
     "rating": 4.3
   },
   {
@@ -194386,7 +194441,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/BAJapB2u/index.m3u8"
       }
     ],
-    "id": 3624,
+    "id": 3625,
     "rating": 4.3
   },
   {
@@ -194466,7 +194521,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250523/idh4nnZV/index.m3u8"
       }
     ],
-    "id": 3625,
+    "id": 3626,
     "rating": 4.3
   },
   {
@@ -194546,7 +194601,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20241127/XWsd0mPp/index.m3u8"
       }
     ],
-    "id": 3626,
+    "id": 3627,
     "rating": 4.3
   },
   {
@@ -194571,7 +194626,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260513/0IRL9Qml/index.m3u8"
       }
     ],
-    "id": 3627,
+    "id": 3628,
     "rating": 4.3
   },
   {
@@ -194596,7 +194651,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20240928/1lBTlcal/index.m3u8"
       }
     ],
-    "id": 3628,
+    "id": 3629,
     "rating": 4.3
   },
   {
@@ -194666,7 +194721,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251217/HuddSTdR/index.m3u8"
       }
     ],
-    "id": 3629,
+    "id": 3630,
     "rating": 4.3
   },
   {
@@ -194746,7 +194801,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20250115/k2oW95bF/index.m3u8"
       }
     ],
-    "id": 3630,
+    "id": 3631,
     "rating": 4.3
   },
   {
@@ -194851,7 +194906,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241106/NTMXZYsY/index.m3u8"
       }
     ],
-    "id": 3631,
+    "id": 3632,
     "rating": 4.3
   },
   {
@@ -194921,7 +194976,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20240920/as3hI5u2/index.m3u8"
       }
     ],
-    "id": 3632,
+    "id": 3633,
     "rating": 4.3
   },
   {
@@ -194946,7 +195001,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260510/Zkl4P1EH/index.m3u8"
       }
     ],
-    "id": 3633,
+    "id": 3634,
     "rating": 4.3
   },
   {
@@ -195026,7 +195081,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241103/cmvi3djd/index.m3u8"
       }
     ],
-    "id": 3634,
+    "id": 3635,
     "rating": 4.3
   },
   {
@@ -195371,7 +195426,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260820/zXXPSEdT/index.m3u8"
       }
     ],
-    "id": 3635,
+    "id": 3636,
     "rating": 4.3
   },
   {
@@ -195536,7 +195591,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250711/l4Rh3qFn/index.m3u8"
       }
     ],
-    "id": 3636,
+    "id": 3637,
     "rating": 4.3
   },
   {
@@ -195561,7 +195616,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20260408/9SplXQ6Y/index.m3u8"
       }
     ],
-    "id": 3637,
+    "id": 3638,
     "rating": 4.3
   },
   {
@@ -195611,7 +195666,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20241024/1JXpfHaN/index.m3u8"
       }
     ],
-    "id": 3638,
+    "id": 3639,
     "rating": 4.3
   },
   {
@@ -195636,7 +195691,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260704/4eNnJ3tJ/index.m3u8"
       }
     ],
-    "id": 3639,
+    "id": 3640,
     "rating": 4.3
   },
   {
@@ -195671,7 +195726,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260530/2UaZRw9O/index.m3u8"
       }
     ],
-    "id": 3640,
+    "id": 3641,
     "rating": 4.3
   },
   {
@@ -195771,7 +195826,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20250107/CoUCWdqS/index.m3u8"
       }
     ],
-    "id": 3641,
+    "id": 3642,
     "rating": 4.3
   },
   {
@@ -195796,7 +195851,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251217/AMAGUIRp/index.m3u8"
       }
     ],
-    "id": 3642,
+    "id": 3643,
     "rating": 4.3
   },
   {
@@ -195866,7 +195921,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20240919/JTKtvdFp/index.m3u8"
       }
     ],
-    "id": 3643,
+    "id": 3644,
     "rating": 4.3
   },
   {
@@ -195926,7 +195981,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260603/xxs5S1Q3/index.m3u8"
       }
     ],
-    "id": 3644,
+    "id": 3645,
     "rating": 4.3
   },
   {
@@ -195951,7 +196006,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250526/REwM5hzW/index.m3u8"
       }
     ],
-    "id": 3645,
+    "id": 3646,
     "rating": 4.3
   },
   {
@@ -195976,7 +196031,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260827/eqAjJrlG/index.m3u8"
       }
     ],
-    "id": 3646,
+    "id": 3647,
     "rating": 4.3
   },
   {
@@ -196036,7 +196091,7 @@
         "link_m3u8": "https://s4.phim1280.tv/20250222/lQ5uY1R2/index.m3u8"
       }
     ],
-    "id": 3647,
+    "id": 3648,
     "rating": 4.3
   },
   {
@@ -196106,7 +196161,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251101/PLMc3Bcm/index.m3u8"
       }
     ],
-    "id": 3648,
+    "id": 3649,
     "rating": 4.3
   },
   {
@@ -196156,7 +196211,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260511/iiHzVGYX/index.m3u8"
       }
     ],
-    "id": 3649,
+    "id": 3650,
     "rating": 4.3
   },
   {
@@ -196256,7 +196311,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241103/8sFm6cZH/index.m3u8"
       }
     ],
-    "id": 3650,
+    "id": 3651,
     "rating": 4.3
   },
   {
@@ -196281,7 +196336,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260512/ATFvPQfw/index.m3u8"
       }
     ],
-    "id": 3651,
+    "id": 3652,
     "rating": 4.3
   },
   {
@@ -196341,7 +196396,7 @@
         "link_m3u8": "https://s1.phim1280.tv/20231223/QApbEeIy/index.m3u8"
       }
     ],
-    "id": 3652,
+    "id": 3653,
     "rating": 4.3
   },
   {
@@ -196441,7 +196496,7 @@
         "link_m3u8": "https://s3.phim1280.tv/20240321/IAMAj2ti/index.m3u8"
       }
     ],
-    "id": 3653,
+    "id": 3654,
     "rating": 4.3
   },
   {
@@ -196541,7 +196596,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250720/DW2z5n6m/index.m3u8"
       }
     ],
-    "id": 3654,
+    "id": 3655,
     "rating": 4.3
   },
   {
@@ -196591,7 +196646,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260511/tkTAV0eo/index.m3u8"
       }
     ],
-    "id": 3655,
+    "id": 3656,
     "rating": 4.3
   },
   {
@@ -196691,7 +196746,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241105/yb8hCaCD/index.m3u8"
       }
     ],
-    "id": 3656,
+    "id": 3657,
     "rating": 4.3
   },
   {
@@ -196716,7 +196771,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251205/Cu1RGU3C/index.m3u8"
       }
     ],
-    "id": 3657,
+    "id": 3658,
     "rating": 4.3
   },
   {
@@ -196786,7 +196841,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260830/ilTOsza5/index.m3u8"
       }
     ],
-    "id": 3658,
+    "id": 3659,
     "rating": 4.3
   },
   {
@@ -196856,7 +196911,7 @@
         "link_m3u8": "https://s5.phim1280.tv/20241022/YbozOtvQ/index.m3u8"
       }
     ],
-    "id": 3659,
+    "id": 3660,
     "rating": 4.3
   },
   {
@@ -196881,7 +196936,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260902/smyav5m4/index.m3u8"
       }
     ],
-    "id": 3660,
+    "id": 3661,
     "rating": 4.3
   },
   {
@@ -196906,7 +196961,7 @@
         "link_m3u8": "https://v7.kkphimplayer7.com/20260907/gJMWg6L7/index.m3u8"
       }
     ],
-    "id": 3661,
+    "id": 3662,
     "rating": 4.3
   },
   {
@@ -196966,7 +197021,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20251105/mP0xmark/index.m3u8"
       }
     ],
-    "id": 3662,
+    "id": 3663,
     "rating": 4.3
   },
   {
@@ -197026,7 +197081,7 @@
         "link_m3u8": "https://s6.kkphimplayer6.com/20250704/D8lhUecI/index.m3u8"
       }
     ],
-    "id": 3663,
+    "id": 3664,
     "rating": 4.3
   },
   {
@@ -197051,7 +197106,7 @@
         "link_m3u8": "https://a.kvp726.com/20260921/pQnXU5SK/index.m3u8"
       }
     ],
-    "id": 3664,
+    "id": 3665,
     "rating": 4.3
   },
   {
@@ -197076,7 +197131,7 @@
         "link_m3u8": "https://a.kvp726.com/20260925/zS0NwNmM/index.m3u8"
       }
     ],
-    "id": 3665,
+    "id": 3666,
     "rating": 4.3
   },
   {
@@ -197246,7 +197301,7 @@
         "link_m3u8": "https://a.kvp726.com/20260928/GU7YFoBi/index.m3u8"
       }
     ],
-    "id": 3666,
+    "id": 3667,
     "rating": 4.3
   },
   {
@@ -197306,7 +197361,7 @@
         "link_m3u8": "https://a.kvp726.com/20261017/SYoeqyfP/index.m3u8"
       }
     ],
-    "id": 3667,
+    "id": 3668,
     "rating": 4.3
   },
   {
@@ -197361,7 +197416,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240118/4tKh3vBd/index.m3u8"
       }
     ],
-    "id": 3668,
+    "id": 3669,
     "rating": 4.3
   },
   {
@@ -197406,7 +197461,7 @@
         "link_m3u8": "https://s2.phim1280.tv/20240118/5rwTXE1s/index.m3u8"
       }
     ],
-    "id": 3669,
+    "id": 3670,
     "rating": 4.3
   }
 ]
