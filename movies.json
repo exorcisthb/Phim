@@ -202578,5 +202578,35 @@
     ],
     "id": 3793,
     "rating": 4.3
+  },
+  {
+    "slug": "mat-an-vigil-phan-2",
+    "title": "Mật Án Vigil (Phần 2)",
+    "origin_title": "Vigil (Season 2)",
+    "year": 2023,
+    "genre": "Hành Động",
+    "country": "Mỹ",
+    "type": "series",
+    "quality": "1080p FHD",
+    "duration": "2 Tập (60 phút/tập)",
+    "poster": "https://phimimg.com/uploads/movies/20261117/mat-an-vigil-phan-2-poster.webp",
+    "backdrop": "https://phimimg.com/uploads/movies/20261117/mat-an-vigil-phan-2-thumb.webp",
+    "description": "Khi một tàu đánh cá Scotland biến mất không dấu vết và một sĩ quan thiệt mạng trên tàu ngầm hạt nhân Trident, cảnh sát bắt đầu cuộc đối đầu căng thẳng với Hải quân và giới tình báo Anh. DCI Amy Silva phải tiến hành cuộc điều tra nguy hiểm cả trên bờ lẫn dưới biển để vạch trần một âm mưu có thể là...",
+    "m3u8_url": "https://a.kvp726.com/20261116/NblvFMoc/index.m3u8",
+    "local_mp4": "E:\\Phim\\Phim_Le_MP4\\mat-an-vigil-phan-2.mp4",
+    "episodes": [
+      {
+        "name": "Tập 01",
+        "slug": "tap-01",
+        "link_m3u8": "https://a.kvp726.com/20261116/NblvFMoc/index.m3u8"
+      },
+      {
+        "name": "Tập 02",
+        "slug": "tap-02",
+        "link_m3u8": "https://a.kvp726.com/20261116/MgA7JQ9T/index.m3u8"
+      }
+    ],
+    "id": 3794,
+    "rating": 4.3
   }
 ]
